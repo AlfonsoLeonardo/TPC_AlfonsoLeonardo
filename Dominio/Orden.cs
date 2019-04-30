@@ -11,6 +11,10 @@ namespace Dominio
         public int IdOrden { set; get; }
         public int NuemeroOrdenDiario { set; get; }
         public DateTime FechaRegistro { set; get; }
+        public DateTime FechaCreacion { get; set; }
+        public string UsuarioCreacion { get; set; }
+        public DateTime FechaModificacion { get; set; }
+        public string UsuarioModificacion { get; set; }
         public float PrecioOrden {set; get;}
     }
 }

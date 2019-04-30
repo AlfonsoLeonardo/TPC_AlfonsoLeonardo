@@ -15,12 +15,12 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE TABLE [dbo].[INGREDIENTES](
-	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Id] [int] primary key IDENTITY(1,1) NOT NULL,
 	[Nombre] [varchar](50) NULL,
-	[StockIngrediente] [money] Null,
-	[MasterPack] [money] Null,
-	[Precio] [money] NULL,
-	[PrecioPorUnidad] [money] null, 
+	[StockIngrediente] [decimal] (12,4)Null,
+	[MasterPack] [decimal] (12,4) Null,
+	[Precio] [decimal] (12,4) NULL,
+	[PrecioPorUnidad] [decimal] (12,4) null, 
  CONSTRAINT [PK_INGREDIENTES] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
