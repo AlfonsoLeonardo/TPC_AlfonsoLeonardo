@@ -65,7 +65,7 @@ namespace Negocio
             SqlCommand comando = new SqlCommand();
             try
             {
-                conexion.ConnectionString = "data source=(local); initial catalog=PIZZERIA_DB; integrated security=sspi";
+                conexion.ConnectionString = "data source=(local); initial catalog=ALFONSO_DB; integrated security=sspi";
                 comando.CommandType = System.Data.CommandType.Text;
                 comando.CommandText = "insert into INGREDIENTES (Nombre, StockIngrediente, MasterPack, Precio) values ('" + nuevo.NombreIngrediente + "','" + nuevo.StockIngrediente + "','" + nuevo.MasterPack + "','" + nuevo.PrecioIngrediente + "')";
                 comando.Connection = conexion;

@@ -13,7 +13,7 @@ namespace Dominio
         public string UsuarioCreacion { get; set; }
         public DateTime FechaModificacion { get; set; }
         public string UsuarioModificacion { get; set; }
-        public float Cantidad { set; get; }
+        public decimal Cantidad { set; get; }
 
     }
 }
