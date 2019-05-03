@@ -59,11 +59,17 @@ namespace AgregarIngrediente
             IngredienteNegocio negocio = new IngredienteNegocio();
             try
             {
+                DateTime fecha = DateTime.Today;
+
                 ingrediente.NombreIngrediente = textNombreIngrediente.Text;
-               ingrediente.StockIngrediente =0;
+                ingrediente.StockIngrediente =0;
                 
                 ingrediente.MasterPack = Convert.ToDecimal(textCantidadIngrediente.Text);
                 ingrediente.PrecioIngrediente = Convert.ToDecimal(textPrecioIngrediente.Text);
+                ingrediente.FechaCreacion = fecha.ToLocalTime();
+                ingrediente.UsuarioCreacion = 1;
+                ingrediente.FechaModificacion = fecha.ToLocalTime();
+                ingrediente.UsuarioModificacion = 1;
 
                 negocio.agregarIngrediente(ingrediente);
                 textNombreIngrediente.Text = "";

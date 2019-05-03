@@ -7,7 +7,7 @@ use ALFONSO_DB
 go
 
 create table TIPODEUSUARIO(
-Id int not null primary key,
+IdTipoUsuario int not null primary key,
 Descripcion varchar(50) not null,
 )
 go
@@ -20,9 +20,9 @@ go
 
 create table USUARIOS(
 Id int primary key identity (1,1) not null,
-Nombre varchar (50) not null,
+Usuario varchar (50) not null,
 Pass varchar (50) not null,
-TipoUsuario int not null foreign key references TIPODEUSUARIO(Id),
+IdTipoUsuario int not null foreign key references TIPODEUSUARIO(IdTipoUsuario),
 )
 go
 

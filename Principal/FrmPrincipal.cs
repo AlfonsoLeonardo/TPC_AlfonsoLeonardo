@@ -34,7 +34,7 @@ namespace Principal
                 if (usuarioLogueado.Tipo.Id == TipoUsuario.ADMINISTRADOR)
                 {
                     
-                  // mnuPropiedades.Enabled = false;
+                  
                 }
 
             }

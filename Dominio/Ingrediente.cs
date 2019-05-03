@@ -14,9 +14,9 @@ namespace Dominio
         public decimal MasterPack { get; set; }
         public decimal PrecioIngrediente { get; set; }
         public DateTime FechaCreacion { get; set; }
-        public string UsuarioCreacion { get; set; }
+        public int UsuarioCreacion { get; set; }
         public DateTime FechaModificacion { get; set; }
-        public string UsuarioModificacion { get; set; }
+        public int UsuarioModificacion { get; set; }
        
       
     }

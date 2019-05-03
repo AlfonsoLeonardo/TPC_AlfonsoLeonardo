@@ -51,6 +51,7 @@
             this.btnAltacomida.TabIndex = 1;
             this.btnAltacomida.Text = "Alta de comidas";
             this.btnAltacomida.UseVisualStyleBackColor = true;
+            this.btnAltacomida.Click += new System.EventHandler(this.btnAltacomida_Click);
             // 
             // btnUsuario
             // 

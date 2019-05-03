@@ -26,6 +26,12 @@ namespace Principal
 
             formIngredientes.ShowDialog();
         }
+
+        private void btnAltacomida_Click(object sender, EventArgs e)
+        {
+            AltaComida altaComida = new AltaComida();
+            altaComida.ShowDialog();
         }
+    }
     }
 

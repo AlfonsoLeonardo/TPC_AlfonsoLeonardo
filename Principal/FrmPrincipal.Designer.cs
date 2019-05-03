@@ -65,7 +65,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 256);
+            this.ClientSize = new System.Drawing.Size(800, 316);
             this.Controls.Add(this.btnReporte);
             this.Controls.Add(this.btnTomaDePedido);
             this.Controls.Add(this.btnAbm);

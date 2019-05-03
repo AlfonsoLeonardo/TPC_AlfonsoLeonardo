@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AltaComida.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AltaComida.Designer.cs">
+      <DependentUpon>AltaComida.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmABMmenu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -66,6 +72,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AltaComida.resx">
+      <DependentUpon>AltaComida.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmABMmenu.resx">
       <DependentUpon>frmABMmenu.cs</DependentUpon>
     </EmbeddedResource>

@@ -8,25 +8,24 @@ using System.Data.SqlClient;
 using Negocio;
 using AccesoDatos;
 
-
 namespace Negocio
 {
-    public class IngredienteNegocio
+    public class ComidaNegocio
     {
-        public List<Ingrediente> ListarIngrediente()
+        public List<Comida> ListarComida()
         {
             SqlConnection conexion = new SqlConnection();
             SqlCommand comando = new SqlCommand();
             SqlDataReader Lector;
-            List<Ingrediente> listado = new List<Ingrediente>();
+            List<Comida> listado = new List<Comida>();
             //AccesoDatosManager accesoDatos = new AccesoDatosManager();
-            Ingrediente Ingre = new Ingrediente();
+            Comida Comi = new Comida();
             try
             {
                 conexion.ConnectionString = AccesoDatosManager.cadenaConexion;
                 comando.CommandType = System.Data.CommandType.Text;
                 //accesoDatos.setearConsulta( 
-                comando.CommandText = ("select Id, Nombre, StockIngrediente, MasterPack, Precio From INGREDIENTES");
+                comando.CommandText = ("select Id, Nombre, Precio From COMIDAS");
                 comando.Connection = conexion;
                 conexion.Open();
                 Lector = comando.ExecuteReader();
@@ -34,13 +33,12 @@ namespace Negocio
                 // accesoDatos.ejecutarConsulta();
                 while (Lector.Read())
                 {
-                    Ingre = new Ingrediente();
-                    Ingre.IdIngrediente = (int)Lector["Id"];
-                    Ingre.NombreIngrediente = Lector["Nombre"].ToString();
-                    Ingre.StockIngrediente = (decimal)Lector["StockIngrediente"];
-                    Ingre.MasterPack = (decimal)Lector["MasterPack"];
-                    Ingre.PrecioIngrediente = (decimal)Lector["Precio"];
-                    listado.Add(Ingre);
+                    Comi= new Comida();
+                    Comi.IdComida=(int)Lector["Id"];
+                    Comi.NombreComida = Lector["Nombre"].ToString();
+               
+                    Comi.Precio = (decimal)Lector["Precio"];
+                    listado.Add(Comi);
                 }
 
 
@@ -59,7 +57,7 @@ namespace Negocio
         }
 
 
-        public void agregarIngrediente(Ingrediente nuevo)
+        public void agregarcomida(Comida nuevo)
         {
             SqlConnection conexion = new SqlConnection();
             SqlCommand comando = new SqlCommand();
@@ -67,7 +65,7 @@ namespace Negocio
             {
                 conexion.ConnectionString = "data source=(local); initial catalog=ALFONSO_DB; integrated security=sspi";
                 comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "insert into INGREDIENTES (Nombre, StockIngrediente, MasterPack, Precio, FechaCreacion, UsuarioCreacion, FechaModificacion, UsuarioModificacion) values ('" + nuevo.NombreIngrediente + "','" + nuevo.StockIngrediente + "','" + nuevo.PrecioIngrediente + "','" + nuevo.MasterPack + "','"+nuevo.FechaCreacion+"','"+nuevo.UsuarioCreacion+ "','" + nuevo.FechaCreacion + "','" + nuevo.UsuarioCreacion+  "')";
+                comando.CommandText = "insert into COMIDAS (Nombre, Precio, FechaCreacion, UsuarioCreacion, FechaModificacion, UsuarioModificacion) values ('" + nuevo.NombreComida + "','" + nuevo.Precio + "','" + nuevo.FechaCreacion + "','" + nuevo.UsuarioCreacion + "','" + nuevo.FechaCreacion + "','" + nuevo.UsuarioCreacion + "')";
                 comando.Connection = conexion;
                 conexion.Open();
 
@@ -83,17 +81,16 @@ namespace Negocio
                 conexion.Close();
             }
         }
-        public void modificarIngrediente(Ingrediente modificar)
+        public void modificarIngrediente(Comida modificar)
         {
             AccesoDatosManager accesoDatos = new AccesoDatosManager();
             try
             {
 
-                accesoDatos.setearConsulta("update INGREDIENTES Set Nombre=@Nombre,  MasterPack=@MasterPack, Precio=@Precio=" + modificar.IdIngrediente.ToString());
+                accesoDatos.setearConsulta("update COMIDAS Set Nombre=@Nombre,  MasterPack=@MasterPack, Precio=@Precio=" + modificar.IdComida.ToString());
                 accesoDatos.Comando.Parameters.Clear();
-                accesoDatos.Comando.Parameters.AddWithValue("@Nombre", modificar.NombreIngrediente);
-                accesoDatos.Comando.Parameters.AddWithValue("@MasterPack", modificar.MasterPack);
-                accesoDatos.Comando.Parameters.AddWithValue("@Precio", modificar.NombreIngrediente);
+                accesoDatos.Comando.Parameters.AddWithValue("@Nombre", modificar.NombreComida);
+                accesoDatos.Comando.Parameters.AddWithValue("@Precio", modificar.NombreComida);
                 accesoDatos.abrirConexion();
                 accesoDatos.ejecutarAccion();
 
@@ -109,3 +106,4 @@ namespace Negocio
         }
     }
 }
+

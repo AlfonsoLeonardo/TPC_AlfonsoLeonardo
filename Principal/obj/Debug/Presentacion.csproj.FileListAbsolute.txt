@@ -20,3 +20,4 @@ C:\Users\alfon\source\repos\TPC_AlfonsoLeonardo\Principal\bin\Debug\Negocio.pdb
 C:\Users\alfon\source\repos\TPC_AlfonsoLeonardo\Principal\obj\Debug\Presentacion.csproj.CopyComplete
 C:\Users\alfon\source\repos\TPC_AlfonsoLeonardo\Principal\obj\Debug\Principal.exe
 C:\Users\alfon\source\repos\TPC_AlfonsoLeonardo\Principal\obj\Debug\Principal.pdb
+C:\Users\alfon\source\repos\TPC_AlfonsoLeonardo\Principal\obj\Debug\Principal.AltaComida.resources

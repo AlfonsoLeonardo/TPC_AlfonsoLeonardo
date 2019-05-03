@@ -28,21 +28,14 @@ namespace Principal
             usuario = us;
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e)
+        private void btnCancelar_Click_1(object sender, EventArgs e)
         {
             Application.Exit();
         }
-
-        private void frmLogin_FormClosing(object sender, FormClosingEventArgs e)
+       
+        private void btnIngresar_Click_1(object sender, EventArgs e)
         {
-            if (usuario.Id == 0)
-            {
-                Application.Exit();
-            }
-        }
 
-        private void btnIngresar_Click(object sender, EventArgs e)
-        {
             UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
             try
             {
@@ -50,7 +43,7 @@ namespace Principal
                 usuario.Pass = txtPass.Text.Trim();
                 if (usuarioNegocio.validarUsuario(usuario))
                 {
-                    
+
                     //frmPrincipal frmPrincipal = new frmPrincipal();
                     Close();
                 }
@@ -62,6 +55,14 @@ namespace Principal
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void frmLogin_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (usuario.Id == 0)
+            {
+                Application.Exit();
             }
         }
     }
