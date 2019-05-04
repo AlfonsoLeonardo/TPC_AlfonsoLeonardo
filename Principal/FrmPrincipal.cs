@@ -23,8 +23,9 @@ namespace Principal
         {
             InitializeComponent();
         }
-        private void frmPrincipal_Load(object sender, EventArgs e)
+      /*  private void frmPrincipal_Load(object sender, EventArgs e)
         {
+            
             try
             {
                usuarioLogueado = new Usuario();
@@ -42,7 +43,7 @@ namespace Principal
             {
                 MessageBox.Show(ex.ToString());
             }
-        }
+        }*/
 
         private void btnAbm_Click(object sender, EventArgs e)
         {
@@ -52,7 +53,7 @@ namespace Principal
 
         private void frmPrincipal_Load_1(object sender, EventArgs e)
         {
-            try
+          /*  try
             {
                 usuarioLogueado = new Usuario();
                 frmLogin login = new frmLogin(usuarioLogueado);
@@ -67,7 +68,7 @@ namespace Principal
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
-            }
+            }*/
         }
     }
 }

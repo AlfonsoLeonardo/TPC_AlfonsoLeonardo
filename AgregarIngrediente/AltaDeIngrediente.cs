@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using AgregarIngrediente;
 using Dominio;
 using Negocio;
 
@@ -42,11 +43,14 @@ namespace AgregarIngrediente
 
                 listaIngredienteLocal = negocio.ListarIngrediente();
                 dgvIngredientes.DataSource = listaIngredienteLocal;
-               /* dgvIngredientes.Columns[0].Visible = false;
-                dgvIngredientes.Columns[3].Visible = false;
-                dgvIngredientes.Columns[4].Visible = false;
+                dgvIngredientes.Columns[2].Visible = false;
+               // dgvIngredientes.Columns[4].Visible = false;
                 dgvIngredientes.Columns[5].Visible = false;
-                */
+                dgvIngredientes.Columns[6].Visible = false;
+                dgvIngredientes.Columns[7].Visible = false;
+                dgvIngredientes.Columns[8].Visible = false;
+              
+
             }
             catch (Exception ex)
             {
@@ -63,7 +67,6 @@ namespace AgregarIngrediente
 
                 ingrediente.NombreIngrediente = textNombreIngrediente.Text;
                 ingrediente.StockIngrediente =0;
-                
                 ingrediente.MasterPack = Convert.ToDecimal(textCantidadIngrediente.Text);
                 ingrediente.PrecioIngrediente = Convert.ToDecimal(textPrecioIngrediente.Text);
                 ingrediente.FechaCreacion = fecha.ToLocalTime();
@@ -82,29 +85,7 @@ namespace AgregarIngrediente
                 MessageBox.Show(ex.ToString());
             }
         }
-        private void btnModificar_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                //doy de alta el formulario de ALTA pero para modificar, entonces le paso por constructor
-                //el heroe seleccionado en la grilla.
-               /* object modificar;
-                modificar= dgvIngredientes.CurrentRow.DataBoundItem
-                textNombreIngrediente.Text = dgvIngredientes.
-                textCantidadIngrediente.Text = "";
-                textPrecioIngrediente.Text = "";
 
-                
-                dgvIngredientes.CurrentRow.DataBoundItem
-               dgvIn.CurrentRow.DataBoundItem);
-                modificar.ShowDialog();
-                cargarGrilla();*/
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-        }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -114,6 +95,37 @@ namespace AgregarIngrediente
         private void FormIngredientes_Load(object sender, EventArgs e)
         {
             cargarGrilla();
+        }
+
+        private void btnModificar_Click_1(object sender, EventArgs e)
+        {
+            IngredienteNegocio ingredienteNegocio = new IngredienteNegocio();
+            try
+            {
+                Ingrediente ing;
+
+                ing =(Ingrediente)dgvIngredientes.CurrentRow.DataBoundItem;
+               
+
+
+                textNombreIngrediente.Text = ing.NombreIngrediente;
+                textCantidadIngrediente.Text = ing.MasterPack.ToString();
+                textPrecioIngrediente.Text = ing.PrecioIngrediente.ToString();
+
+                //ingredienteNegocio.modificarIngrediente(ing);
+               // cargarGrilla();
+
+                
+            }
+            catch (InvalidCastException ex)
+            {
+                MessageBox.Show("algo paso");
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
     }
 }
