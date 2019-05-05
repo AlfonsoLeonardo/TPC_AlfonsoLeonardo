@@ -16,6 +16,8 @@ namespace AgregarIngrediente
 {
     public partial class FormIngredientes : Form
     {
+        bool estado = false;
+   
         private List<Ingrediente> listaIngredienteLocal;
         public FormIngredientes()
         {
@@ -63,22 +65,55 @@ namespace AgregarIngrediente
             IngredienteNegocio negocio = new IngredienteNegocio();
             try
             {
-                DateTime fecha = DateTime.Today;
+                if (estado == false)
+                {
+                    DateTime fecha = DateTime.Today;
 
-                ingrediente.NombreIngrediente = textNombreIngrediente.Text;
-                ingrediente.StockIngrediente =0;
-                ingrediente.MasterPack = Convert.ToDecimal(textCantidadIngrediente.Text);
-                ingrediente.PrecioIngrediente = Convert.ToDecimal(textPrecioIngrediente.Text);
-                ingrediente.FechaCreacion = fecha.ToLocalTime();
-                ingrediente.UsuarioCreacion = 1;
-                ingrediente.FechaModificacion = fecha.ToLocalTime();
-                ingrediente.UsuarioModificacion = 1;
+                    ingrediente.NombreIngrediente = textNombreIngrediente.Text;
+                    ingrediente.StockIngrediente = 0;
+                    ingrediente.MasterPack = Convert.ToDecimal(textCantidadIngrediente.Text);
+                    ingrediente.PrecioIngrediente = Convert.ToDecimal(textPrecioIngrediente.Text);
+                    ingrediente.FechaCreacion = fecha.ToLocalTime();
+                    ingrediente.UsuarioCreacion = 1;
+                    ingrediente.FechaModificacion = fecha.ToLocalTime();
+                    ingrediente.UsuarioModificacion = 1;
 
-                negocio.agregarIngrediente(ingrediente);
-                textNombreIngrediente.Text = "";
-                textCantidadIngrediente.Text = "";
-                textPrecioIngrediente.Text = "";
-                cargarGrilla();
+                    negocio.agregarIngrediente(ingrediente);
+                    textNombreIngrediente.Text = "";
+                    textCantidadIngrediente.Text = "";
+                    textPrecioIngrediente.Text = "";
+                    cargarGrilla();
+                }
+                if (estado == true)
+                {
+                    DateTime fecha = DateTime.Today;
+                    IngredienteNegocio ingredienteNegocio = new IngredienteNegocio();
+                    Ingrediente ingredient = new Ingrediente();
+
+                    Ingrediente ing;
+
+                    ing = (Ingrediente)dgvIngredientes.CurrentRow.DataBoundItem;
+                   
+                    //textNombreIngrediente.Text = ing.NombreIngrediente;
+                    //textCantidadIngrediente.Text = ing.MasterPack.ToString();
+                    //textPrecioIngrediente.Text = ing.PrecioIngrediente.ToString();
+
+                    
+                    ingredient.IdIngrediente = ing.IdIngrediente;
+                    ingredient.NombreIngrediente = textNombreIngrediente.Text;
+                    ingredient.StockIngrediente = ing.StockIngrediente;
+                    ingredient.MasterPack = Convert.ToDecimal(textCantidadIngrediente.Text);
+                    ingredient.PrecioIngrediente = Convert.ToDecimal(textPrecioIngrediente.Text);
+                    ingredient.FechaModificacion = fecha.ToLocalTime();
+                    ingredient.UsuarioModificacion = 1;
+
+                    negocio.modificarIngrediente(ingredient);
+                    textNombreIngrediente.Text = "";
+                    textCantidadIngrediente.Text = "";
+                    textPrecioIngrediente.Text = "";
+                    cargarGrilla();
+
+                }
             }
             catch (Exception ex)
             {
@@ -99,18 +134,22 @@ namespace AgregarIngrediente
 
         private void btnModificar_Click_1(object sender, EventArgs e)
         {
-            IngredienteNegocio ingredienteNegocio = new IngredienteNegocio();
+            
             try
             {
+                IngredienteNegocio ingredienteNegocio = new IngredienteNegocio();
+               
                 Ingrediente ing;
 
-                ing =(Ingrediente)dgvIngredientes.CurrentRow.DataBoundItem;
-               
-
-
+                ing = (Ingrediente)dgvIngredientes.CurrentRow.DataBoundItem;
                 textNombreIngrediente.Text = ing.NombreIngrediente;
                 textCantidadIngrediente.Text = ing.MasterPack.ToString();
                 textPrecioIngrediente.Text = ing.PrecioIngrediente.ToString();
+
+
+
+                estado = true;
+
 
                 //ingredienteNegocio.modificarIngrediente(ing);
                // cargarGrilla();

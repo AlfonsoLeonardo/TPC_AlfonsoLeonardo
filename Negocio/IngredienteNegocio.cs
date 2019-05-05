@@ -89,11 +89,16 @@ namespace Negocio
             try
             {
 
-                accesoDatos.setearConsulta("update INGREDIENTES Set Nombre=@Nombre,  MasterPack=@MasterPack, Precio=@Precio=" + modificar.IdIngrediente.ToString());
+                accesoDatos.setearConsulta("update INGREDIENTES Set Nombre=@Nombre, StockIngrediente=@StockIngrediente, Precio=@PrecioIngrediente, MasterPack=@MasterPack,  FechaModificacion=@FechaModificacion, UsuarioModificacion=@UsuarioModificacion where Id=" + modificar.IdIngrediente.ToString());
                 accesoDatos.Comando.Parameters.Clear();
                 accesoDatos.Comando.Parameters.AddWithValue("@Nombre", modificar.NombreIngrediente);
+                accesoDatos.Comando.Parameters.AddWithValue("@StockIngrediente", modificar.StockIngrediente);
+                accesoDatos.Comando.Parameters.AddWithValue("@PrecioIngrediente", modificar.PrecioIngrediente);
                 accesoDatos.Comando.Parameters.AddWithValue("@MasterPack", modificar.MasterPack);
-                accesoDatos.Comando.Parameters.AddWithValue("@Precio", modificar.NombreIngrediente);
+                accesoDatos.Comando.Parameters.AddWithValue("@FechaModificacion", modificar.FechaModificacion);
+                accesoDatos.Comando.Parameters.AddWithValue("@UsuarioModificacion", modificar.UsuarioModificacion);
+
+
                 accesoDatos.abrirConexion();
                 accesoDatos.ejecutarAccion();
 
