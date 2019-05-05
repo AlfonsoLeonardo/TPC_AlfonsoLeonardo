@@ -1,86 +1,254 @@
-USE master
-GO
-create database ALFONSO_DB
-GO
-use ALFONSO_DB
-
-go
-
-create table TIPODEUSUARIO(
-IdTipoUsuario int not null primary key,
-Descripcion varchar(50) not null,
-)
-go
-
-insert into TIPODEUSUARIO values (1, 'ADMINISTRADOR')
-insert into TIPODEUSUARIO values (2, 'GERENTE')
-insert into TIPODEUSUARIO values (3, 'ATENCION PUBLICO')
-
-go
-
-create table USUARIOS(
-Id int primary key identity (1,1) not null,
-Usuario varchar (50) not null,
-Pass varchar (50) not null,
-IdTipoUsuario int not null foreign key references TIPODEUSUARIO(IdTipoUsuario),
-)
-go
-
-insert into USUARIOS values ('admin', 'admin', 1)
-go
-
-create table INGREDIENTES(
-Id int primary key identity (1,1) not null,
-Nombre varchar (50) not null,
-Stockingrediente decimal (12,3) not null,
-Precio decimal (12,3) not null,
-MasterPack decimal (12,3) not null,
-FechaCreacion SMALLDATETIME not null,
-UsuarioCreacion int not null foreign key references USUARIOS(Id),
-FechaModificacion SMALLDATETIME not null,
-UsuarioModificacion int not null foreign key references USUARIOS(Id),
-)
-go
-insert into INGREDIENTES values ('Papa',0,1500,15,'03/03/2018',1,'03/03/2018',1)
-insert into INGREDIENTES values ('Masa',0,17,0.435,'03/03/2018',1,'03/03/2018',1)
-insert into INGREDIENTES values ('Muzzarella',0,3500,25,'03/03/2018',1,'03/03/2018',1)
-insert into INGREDIENTES values ('Salsa',0,500,8,'03/03/2018',1,'03/03/2018',1)
-insert into INGREDIENTES values ('Aceituna',0,250,12,'03/03/2018',1,'03/03/2018',1)
-insert into INGREDIENTES values ('Oregano',0,100,500,'03/03/2018',1,'03/03/2018',1)
-
-
-
-create table COMIDAS(
-Id int primary key identity (1,1) not null,
-Nombre varchar (50) not null,
-Precio decimal (12,3) not null,
-FechaCreacion SMALLDATETIME not null,
-UsuarioCreacion int not null foreign key references USUARIOS(Id),
-FechaModificacion SMALLDATETIME not null,
-UsuarioModificacion int not null foreign key references USUARIOS(Id),
-)
-go
-insert into COMIDAS values ('Pizza Mussa',175,'03/03/2018',1,'03/03/2018',1)
-insert into COMIDAS values ('Porcion Papas',85,'03/03/2018',1,'03/03/2018',1)
-
-go
-
-create table INGREDIETESPORCOMIDAS(
-IdComida int not null FOREIGN KEY REFERENCES COMIDAS(Id),
-IdIngrediente int not null FOREIGN KEY REFERENCES INGREDIENTES(Id),
-Cantidad decimal (12,3) not null,
-FechaCreacion SMALLDATETIME not null,
-UsuarioCreacion int not null foreign key references USUARIOS(Id),
-FechaModificacion SMALLDATETIME not null,
-UsuarioModificacion int not null foreign key references USUARIOS(Id),
-primary key (IdComida,IdIngrediente),
-)
-go
-
-insert into INGREDIETESPORCOMIDAS values (1,2,0.435,'03/03/2018',1,'03/03/2018',1)
-insert into INGREDIETESPORCOMIDAS values (1,3,0.200,'03/03/2018',1,'03/03/2018',1)
-insert into INGREDIETESPORCOMIDAS values (1,4,0.005,'03/03/2018',1,'03/03/2018',1)
-insert into INGREDIETESPORCOMIDAS values (1,5,0.010,'03/03/2018',1,'03/03/2018',1)
-insert into INGREDIETESPORCOMIDAS values (1,6,0.001,'03/03/2018',1,'03/03/2018',1)
-insert into INGREDIETESPORCOMIDAS values (2,1,0.460,'03/03/2018',1,'03/03/2018',1)
-
+USE [master]
+	GO
+	/****** Object:  Database [ALFONSO_DB]    Script Date: 5/5/2019 10:43:21 ******/
+	CREATE DATABASE [ALFONSO_DB]
+	 CONTAINMENT = NONE
+	 ON  PRIMARY 
+	( NAME = N'ALFONSO_DB', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL14.MSSQLSERVER\MSSQL\DATA\ALFONSO_DB.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+	 LOG ON 
+	( NAME = N'ALFONSO_DB_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL14.MSSQLSERVER\MSSQL\DATA\ALFONSO_DB_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+	GO
+	ALTER DATABASE [ALFONSO_DB] SET COMPATIBILITY_LEVEL = 140
+	GO
+	IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+	begin
+	EXEC [ALFONSO_DB].[dbo].[sp_fulltext_database] @action = 'enable'
+	end
+	GO
+	ALTER DATABASE [ALFONSO_DB] SET ANSI_NULL_DEFAULT OFF 
+	GO
+	ALTER DATABASE [ALFONSO_DB] SET ANSI_NULLS OFF 
+	GO
+	ALTER DATABASE [ALFONSO_DB] SET ANSI_PADDING OFF 
+	GO
+	ALTER DATABASE [ALFONSO_DB] SET ANSI_WARNINGS OFF 
+	GO
+	ALTER DATABASE [ALFONSO_DB] SET ARITHABORT OFF 
+	GO
+	ALTER DATABASE [ALFONSO_DB] SET AUTO_CLOSE ON 
+	GO
+	ALTER DATABASE [ALFONSO_DB] SET AUTO_SHRINK OFF 
+	GO
+	ALTER DATABASE [ALFONSO_DB] SET AUTO_UPDATE_STATISTICS ON 
+	GO
+	ALTER DATABASE [ALFONSO_DB] SET CURSOR_CLOSE_ON_COMMIT OFF 
+	GO
+	ALTER DATABASE [ALFONSO_DB] SET CURSOR_DEFAULT  GLOBAL 
+	GO
+	ALTER DATABASE [ALFONSO_DB] SET CONCAT_NULL_YIELDS_NULL OFF 
+	GO
+	ALTER DATABASE [ALFONSO_DB] SET NUMERIC_ROUNDABORT OFF 
+	GO
+	ALTER DATABASE [ALFONSO_DB] SET QUOTED_IDENTIFIER OFF 
+	GO
+	ALTER DATABASE [ALFONSO_DB] SET RECURSIVE_TRIGGERS OFF 
+	GO
+	ALTER DATABASE [ALFONSO_DB] SET  ENABLE_BROKER 
+	GO
+	ALTER DATABASE [ALFONSO_DB] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+	GO
+	ALTER DATABASE [ALFONSO_DB] SET DATE_CORRELATION_OPTIMIZATION OFF 
+	GO
+	ALTER DATABASE [ALFONSO_DB] SET TRUSTWORTHY OFF 
+	GO
+	ALTER DATABASE [ALFONSO_DB] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+	GO
+	ALTER DATABASE [ALFONSO_DB] SET PARAMETERIZATION SIMPLE 
+	GO
+	ALTER DATABASE [ALFONSO_DB] SET READ_COMMITTED_SNAPSHOT OFF 
+	GO
+	ALTER DATABASE [ALFONSO_DB] SET HONOR_BROKER_PRIORITY OFF 
+	GO
+	ALTER DATABASE [ALFONSO_DB] SET RECOVERY SIMPLE 
+	GO
+	ALTER DATABASE [ALFONSO_DB] SET  MULTI_USER 
+	GO
+	ALTER DATABASE [ALFONSO_DB] SET PAGE_VERIFY CHECKSUM  
+	GO
+	ALTER DATABASE [ALFONSO_DB] SET DB_CHAINING OFF 
+	GO
+	ALTER DATABASE [ALFONSO_DB] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+	GO
+	ALTER DATABASE [ALFONSO_DB] SET TARGET_RECOVERY_TIME = 60 SECONDS 
+	GO
+	ALTER DATABASE [ALFONSO_DB] SET DELAYED_DURABILITY = DISABLED 
+	GO
+	ALTER DATABASE [ALFONSO_DB] SET QUERY_STORE = OFF
+	GO
+	USE [ALFONSO_DB]
+	GO
+	/****** Object:  Table [dbo].[COMIDAS]    Script Date: 5/5/2019 10:43:21 ******/
+	SET ANSI_NULLS ON
+	GO
+	SET QUOTED_IDENTIFIER ON
+	GO
+	CREATE TABLE [dbo].[COMIDAS](
+		[Id] [int] IDENTITY(1,1) NOT NULL,
+		[Nombre] [varchar](50) NOT NULL,
+		[Precio] [decimal](12, 3) NOT NULL,
+		[FechaCreacion] [smalldatetime] NOT NULL,
+		[UsuarioCreacion] [int] NOT NULL,
+		[FechaModificacion] [smalldatetime] NOT NULL,
+		[UsuarioModificacion] [int] NOT NULL,
+	PRIMARY KEY CLUSTERED 
+	(
+		[Id] ASC
+	)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+	) ON [PRIMARY]
+	GO
+	/****** Object:  Table [dbo].[INGREDIENTES]    Script Date: 5/5/2019 10:43:22 ******/
+	SET ANSI_NULLS ON
+	GO
+	SET QUOTED_IDENTIFIER ON
+	GO
+	CREATE TABLE [dbo].[INGREDIENTES](
+		[Id] [int] IDENTITY(1,1) NOT NULL,
+		[Nombre] [varchar](50) NOT NULL,
+		[Stockingrediente] [decimal](12, 3) NOT NULL,
+		[Precio] [decimal](12, 3) NOT NULL,
+		[MasterPack] [decimal](12, 3) NOT NULL,
+		[FechaCreacion] [smalldatetime] NOT NULL,
+		[UsuarioCreacion] [int] NOT NULL,
+		[FechaModificacion] [smalldatetime] NOT NULL,
+		[UsuarioModificacion] [int] NOT NULL,
+	PRIMARY KEY CLUSTERED 
+	(
+		[Id] ASC
+	)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+	) ON [PRIMARY]
+	GO
+	/****** Object:  Table [dbo].[INGREDIETESPORCOMIDAS]    Script Date: 5/5/2019 10:43:22 ******/
+	SET ANSI_NULLS ON
+	GO
+	SET QUOTED_IDENTIFIER ON
+	GO
+	CREATE TABLE [dbo].[INGREDIETESPORCOMIDAS](
+		[IdComida] [int] NOT NULL,
+		[IdIngrediente] [int] NOT NULL,
+		[Cantidad] [decimal](12, 3) NOT NULL,
+		[FechaCreacion] [smalldatetime] NOT NULL,
+		[UsuarioCreacion] [int] NOT NULL,
+		[FechaModificacion] [smalldatetime] NOT NULL,
+		[UsuarioModificacion] [int] NOT NULL,
+	PRIMARY KEY CLUSTERED 
+	(
+		[IdComida] ASC,
+		[IdIngrediente] ASC
+	)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+	) ON [PRIMARY]
+	GO
+	/****** Object:  Table [dbo].[TIPODEUSUARIO]    Script Date: 5/5/2019 10:43:22 ******/
+	SET ANSI_NULLS ON
+	GO
+	SET QUOTED_IDENTIFIER ON
+	GO
+	CREATE TABLE [dbo].[TIPODEUSUARIO](
+		[IdTipoUsuario] [int] NOT NULL,
+		[Descripcion] [varchar](50) NOT NULL,
+	PRIMARY KEY CLUSTERED 
+	(
+		[IdTipoUsuario] ASC
+	)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+	) ON [PRIMARY]
+	GO
+	/****** Object:  Table [dbo].[USUARIOS]    Script Date: 5/5/2019 10:43:22 ******/
+	SET ANSI_NULLS ON
+	GO
+	SET QUOTED_IDENTIFIER ON
+	GO
+	CREATE TABLE [dbo].[USUARIOS](
+		[Id] [int] IDENTITY(1,1) NOT NULL,
+		[Usuario] [varchar](50) NOT NULL,
+		[Pass] [varchar](50) NOT NULL,
+		[IdTipoUsuario] [int] NOT NULL,
+	PRIMARY KEY CLUSTERED 
+	(
+		[Id] ASC
+	)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+	) ON [PRIMARY]
+	GO
+	SET IDENTITY_INSERT [dbo].[COMIDAS] ON 
+	GO
+	INSERT [dbo].[COMIDAS] ([Id], [Nombre], [Precio], [FechaCreacion], [UsuarioCreacion], [FechaModificacion], [UsuarioModificacion]) VALUES (1, N'Pizza Mussa', CAST(175.000 AS Decimal(12, 3)), CAST(N'2018-03-03T00:00:00' AS SmallDateTime), 1, CAST(N'2018-03-03T00:00:00' AS SmallDateTime), 1)
+	GO
+	INSERT [dbo].[COMIDAS] ([Id], [Nombre], [Precio], [FechaCreacion], [UsuarioCreacion], [FechaModificacion], [UsuarioModificacion]) VALUES (2, N'Porcion Papas', CAST(85.000 AS Decimal(12, 3)), CAST(N'2018-03-03T00:00:00' AS SmallDateTime), 1, CAST(N'2018-03-03T00:00:00' AS SmallDateTime), 1)
+	GO
+	INSERT [dbo].[COMIDAS] ([Id], [Nombre], [Precio], [FechaCreacion], [UsuarioCreacion], [FechaModificacion], [UsuarioModificacion]) VALUES (4, N'jamon y morron', CAST(220.000 AS Decimal(12, 3)), CAST(N'2019-02-05T00:00:00' AS SmallDateTime), 1, CAST(N'2019-02-05T00:00:00' AS SmallDateTime), 1)
+	GO
+	SET IDENTITY_INSERT [dbo].[COMIDAS] OFF
+	GO
+	SET IDENTITY_INSERT [dbo].[INGREDIENTES] ON 
+	GO
+	INSERT [dbo].[INGREDIENTES] ([Id], [Nombre], [Stockingrediente], [Precio], [MasterPack], [FechaCreacion], [UsuarioCreacion], [FechaModificacion], [UsuarioModificacion]) VALUES (1, N'Papa', CAST(0.000 AS Decimal(12, 3)), CAST(1500.000 AS Decimal(12, 3)), CAST(15.000 AS Decimal(12, 3)), CAST(N'2018-03-03T00:00:00' AS SmallDateTime), 1, CAST(N'2018-03-03T00:00:00' AS SmallDateTime), 1)
+	GO
+	INSERT [dbo].[INGREDIENTES] ([Id], [Nombre], [Stockingrediente], [Precio], [MasterPack], [FechaCreacion], [UsuarioCreacion], [FechaModificacion], [UsuarioModificacion]) VALUES (2, N'Masa', CAST(0.000 AS Decimal(12, 3)), CAST(17.000 AS Decimal(12, 3)), CAST(0.435 AS Decimal(12, 3)), CAST(N'2018-03-03T00:00:00' AS SmallDateTime), 1, CAST(N'2018-03-03T00:00:00' AS SmallDateTime), 1)
+	GO
+	INSERT [dbo].[INGREDIENTES] ([Id], [Nombre], [Stockingrediente], [Precio], [MasterPack], [FechaCreacion], [UsuarioCreacion], [FechaModificacion], [UsuarioModificacion]) VALUES (3, N'Muzzarella', CAST(0.000 AS Decimal(12, 3)), CAST(3500.000 AS Decimal(12, 3)), CAST(25.000 AS Decimal(12, 3)), CAST(N'2018-03-03T00:00:00' AS SmallDateTime), 1, CAST(N'2018-03-03T00:00:00' AS SmallDateTime), 1)
+	GO
+	INSERT [dbo].[INGREDIENTES] ([Id], [Nombre], [Stockingrediente], [Precio], [MasterPack], [FechaCreacion], [UsuarioCreacion], [FechaModificacion], [UsuarioModificacion]) VALUES (4, N'Salsa', CAST(0.000 AS Decimal(12, 3)), CAST(500.000 AS Decimal(12, 3)), CAST(8.000 AS Decimal(12, 3)), CAST(N'2018-03-03T00:00:00' AS SmallDateTime), 1, CAST(N'2018-03-03T00:00:00' AS SmallDateTime), 1)
+	GO
+	INSERT [dbo].[INGREDIENTES] ([Id], [Nombre], [Stockingrediente], [Precio], [MasterPack], [FechaCreacion], [UsuarioCreacion], [FechaModificacion], [UsuarioModificacion]) VALUES (5, N'Aceituna', CAST(0.000 AS Decimal(12, 3)), CAST(250.000 AS Decimal(12, 3)), CAST(12.000 AS Decimal(12, 3)), CAST(N'2018-03-03T00:00:00' AS SmallDateTime), 1, CAST(N'2018-03-03T00:00:00' AS SmallDateTime), 1)
+	GO
+	INSERT [dbo].[INGREDIENTES] ([Id], [Nombre], [Stockingrediente], [Precio], [MasterPack], [FechaCreacion], [UsuarioCreacion], [FechaModificacion], [UsuarioModificacion]) VALUES (6, N'Oregano', CAST(0.000 AS Decimal(12, 3)), CAST(100.000 AS Decimal(12, 3)), CAST(500.000 AS Decimal(12, 3)), CAST(N'2018-03-03T00:00:00' AS SmallDateTime), 1, CAST(N'2018-03-03T00:00:00' AS SmallDateTime), 1)
+	GO
+	INSERT [dbo].[INGREDIENTES] ([Id], [Nombre], [Stockingrediente], [Precio], [MasterPack], [FechaCreacion], [UsuarioCreacion], [FechaModificacion], [UsuarioModificacion]) VALUES (10, N'Hamburguesa', CAST(0.000 AS Decimal(12, 3)), CAST(80.000 AS Decimal(12, 3)), CAST(1589.000 AS Decimal(12, 3)), CAST(N'2019-02-05T00:00:00' AS SmallDateTime), 1, CAST(N'2019-02-05T00:00:00' AS SmallDateTime), 1)
+	GO
+	INSERT [dbo].[INGREDIENTES] ([Id], [Nombre], [Stockingrediente], [Precio], [MasterPack], [FechaCreacion], [UsuarioCreacion], [FechaModificacion], [UsuarioModificacion]) VALUES (11, N'salame', CAST(0.000 AS Decimal(12, 3)), CAST(200.000 AS Decimal(12, 3)), CAST(11.000 AS Decimal(12, 3)), CAST(N'2019-05-04T00:00:00' AS SmallDateTime), 1, CAST(N'2019-05-04T00:00:00' AS SmallDateTime), 1)
+	GO
+	SET IDENTITY_INSERT [dbo].[INGREDIENTES] OFF
+	GO
+	INSERT [dbo].[INGREDIETESPORCOMIDAS] ([IdComida], [IdIngrediente], [Cantidad], [FechaCreacion], [UsuarioCreacion], [FechaModificacion], [UsuarioModificacion]) VALUES (1, 2, CAST(0.435 AS Decimal(12, 3)), CAST(N'2018-03-03T00:00:00' AS SmallDateTime), 1, CAST(N'2018-03-03T00:00:00' AS SmallDateTime), 1)
+	GO
+	INSERT [dbo].[INGREDIETESPORCOMIDAS] ([IdComida], [IdIngrediente], [Cantidad], [FechaCreacion], [UsuarioCreacion], [FechaModificacion], [UsuarioModificacion]) VALUES (1, 3, CAST(0.200 AS Decimal(12, 3)), CAST(N'2018-03-03T00:00:00' AS SmallDateTime), 1, CAST(N'2018-03-03T00:00:00' AS SmallDateTime), 1)
+	GO
+	INSERT [dbo].[INGREDIETESPORCOMIDAS] ([IdComida], [IdIngrediente], [Cantidad], [FechaCreacion], [UsuarioCreacion], [FechaModificacion], [UsuarioModificacion]) VALUES (1, 4, CAST(0.005 AS Decimal(12, 3)), CAST(N'2018-03-03T00:00:00' AS SmallDateTime), 1, CAST(N'2018-03-03T00:00:00' AS SmallDateTime), 1)
+	GO
+	INSERT [dbo].[INGREDIETESPORCOMIDAS] ([IdComida], [IdIngrediente], [Cantidad], [FechaCreacion], [UsuarioCreacion], [FechaModificacion], [UsuarioModificacion]) VALUES (1, 5, CAST(0.010 AS Decimal(12, 3)), CAST(N'2018-03-03T00:00:00' AS SmallDateTime), 1, CAST(N'2018-03-03T00:00:00' AS SmallDateTime), 1)
+	GO
+	INSERT [dbo].[INGREDIETESPORCOMIDAS] ([IdComida], [IdIngrediente], [Cantidad], [FechaCreacion], [UsuarioCreacion], [FechaModificacion], [UsuarioModificacion]) VALUES (1, 6, CAST(0.001 AS Decimal(12, 3)), CAST(N'2018-03-03T00:00:00' AS SmallDateTime), 1, CAST(N'2018-03-03T00:00:00' AS SmallDateTime), 1)
+	GO
+	INSERT [dbo].[INGREDIETESPORCOMIDAS] ([IdComida], [IdIngrediente], [Cantidad], [FechaCreacion], [UsuarioCreacion], [FechaModificacion], [UsuarioModificacion]) VALUES (2, 1, CAST(0.460 AS Decimal(12, 3)), CAST(N'2018-03-03T00:00:00' AS SmallDateTime), 1, CAST(N'2018-03-03T00:00:00' AS SmallDateTime), 1)
+	GO
+	INSERT [dbo].[TIPODEUSUARIO] ([IdTipoUsuario], [Descripcion]) VALUES (1, N'ADMINISTRADOR')
+	GO
+	INSERT [dbo].[TIPODEUSUARIO] ([IdTipoUsuario], [Descripcion]) VALUES (2, N'GERENTE')
+	GO
+	INSERT [dbo].[TIPODEUSUARIO] ([IdTipoUsuario], [Descripcion]) VALUES (3, N'ATENCION PUBLICO')
+	GO
+	SET IDENTITY_INSERT [dbo].[USUARIOS] ON 
+	GO
+	INSERT [dbo].[USUARIOS] ([Id], [Usuario], [Pass], [IdTipoUsuario]) VALUES (1, N'admin', N'admin', 1)
+	GO
+	SET IDENTITY_INSERT [dbo].[USUARIOS] OFF
+	GO
+	ALTER TABLE [dbo].[COMIDAS]  WITH CHECK ADD FOREIGN KEY([UsuarioCreacion])
+	REFERENCES [dbo].[USUARIOS] ([Id])
+	GO
+	ALTER TABLE [dbo].[COMIDAS]  WITH CHECK ADD FOREIGN KEY([UsuarioModificacion])
+	REFERENCES [dbo].[USUARIOS] ([Id])
+	GO
+	ALTER TABLE [dbo].[INGREDIENTES]  WITH CHECK ADD FOREIGN KEY([UsuarioCreacion])
+	REFERENCES [dbo].[USUARIOS] ([Id])
+	GO
+	ALTER TABLE [dbo].[INGREDIENTES]  WITH CHECK ADD FOREIGN KEY([UsuarioModificacion])
+	REFERENCES [dbo].[USUARIOS] ([Id])
+	GO
+	ALTER TABLE [dbo].[INGREDIETESPORCOMIDAS]  WITH CHECK ADD FOREIGN KEY([IdComida])
+	REFERENCES [dbo].[COMIDAS] ([Id])
+	GO
+	ALTER TABLE [dbo].[INGREDIETESPORCOMIDAS]  WITH CHECK ADD FOREIGN KEY([IdIngrediente])
+	REFERENCES [dbo].[INGREDIENTES] ([Id])
+	GO
+	ALTER TABLE [dbo].[INGREDIETESPORCOMIDAS]  WITH CHECK ADD FOREIGN KEY([UsuarioCreacion])
+	REFERENCES [dbo].[USUARIOS] ([Id])
+	GO
+	ALTER TABLE [dbo].[INGREDIETESPORCOMIDAS]  WITH CHECK ADD FOREIGN KEY([UsuarioModificacion])
+	REFERENCES [dbo].[USUARIOS] ([Id])
+	GO
+	ALTER TABLE [dbo].[USUARIOS]  WITH CHECK ADD FOREIGN KEY([IdTipoUsuario])
+	REFERENCES [dbo].[TIPODEUSUARIO] ([IdTipoUsuario])
+	GO
+	USE [master]
+	GO
+	ALTER DATABASE [ALFONSO_DB] SET  READ_WRITE 
+	GO
