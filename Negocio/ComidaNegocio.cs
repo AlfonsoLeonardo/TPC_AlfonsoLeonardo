@@ -65,7 +65,7 @@ namespace Negocio
             {
                 conexion.ConnectionString = "data source=(local); initial catalog=ALFONSO_DB; integrated security=sspi";
                 comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "insert into COMIDAS (Nombre, Precio, FechaCreacion, UsuarioCreacion, FechaModificacion, UsuarioModificacion) values ('" + nuevo.NombreComida + "','" + nuevo.Precio + "','" + nuevo.FechaCreacion + "','" + nuevo.UsuarioCreacion + "','" + nuevo.FechaCreacion + "','" + nuevo.UsuarioCreacion + "')";
+                comando.CommandText = "SET DATEFORMAT 'DMY' insert into COMIDAS (Nombre, Precio, FechaCreacion, UsuarioCreacion, FechaModificacion, UsuarioModificacion) values ('" + nuevo.NombreComida + "','" + nuevo.Precio + "','" + nuevo.FechaCreacion + "','" + nuevo.UsuarioCreacion + "','" + nuevo.FechaCreacion + "','" + nuevo.UsuarioCreacion + "')";
                 comando.Connection = conexion;
                 conexion.Open();
 
@@ -87,7 +87,7 @@ namespace Negocio
             try
             {
 
-                accesoDatos.setearConsulta("update COMIDAS Set Nombre=@Nombre,  MasterPack=@MasterPack, Precio=@Precio=" + modificar.IdComida.ToString());
+                accesoDatos.setearConsulta("SET DATEFORMAT 'DMY' update COMIDAS Set Nombre=@Nombre,  MasterPack=@MasterPack, Precio=@Precio=" + modificar.IdComida.ToString());
                 accesoDatos.Comando.Parameters.Clear();
                 accesoDatos.Comando.Parameters.AddWithValue("@Nombre", modificar.NombreComida);
                 accesoDatos.Comando.Parameters.AddWithValue("@Precio", modificar.NombreComida);

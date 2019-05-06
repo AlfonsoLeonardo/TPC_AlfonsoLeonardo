@@ -94,11 +94,7 @@ namespace AgregarIngrediente
 
                     ing = (Ingrediente)dgvIngredientes.CurrentRow.DataBoundItem;
                    
-                    //textNombreIngrediente.Text = ing.NombreIngrediente;
-                    //textCantidadIngrediente.Text = ing.MasterPack.ToString();
-                    //textPrecioIngrediente.Text = ing.PrecioIngrediente.ToString();
-
-                    
+                                  
                     ingredient.IdIngrediente = ing.IdIngrediente;
                     ingredient.NombreIngrediente = textNombreIngrediente.Text;
                     ingredient.StockIngrediente = ing.StockIngrediente;
@@ -112,6 +108,7 @@ namespace AgregarIngrediente
                     textCantidadIngrediente.Text = "";
                     textPrecioIngrediente.Text = "";
                     cargarGrilla();
+                    estado = false;
 
                 }
             }
