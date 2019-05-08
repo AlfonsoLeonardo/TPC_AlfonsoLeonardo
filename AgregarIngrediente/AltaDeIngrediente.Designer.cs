@@ -37,6 +37,8 @@
             this.AceptarAgregaIngrediente = new System.Windows.Forms.Button();
             this.dgvIngredientes = new System.Windows.Forms.DataGridView();
             this.btnModificar = new System.Windows.Forms.Button();
+            this.cboUnidadmedida = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIngredientes)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,14 +56,14 @@
             this.labelcantidad.AutoSize = true;
             this.labelcantidad.Location = new System.Drawing.Point(33, 102);
             this.labelcantidad.Name = "labelcantidad";
-            this.labelcantidad.Size = new System.Drawing.Size(116, 13);
+            this.labelcantidad.Size = new System.Drawing.Size(52, 13);
             this.labelcantidad.TabIndex = 1;
-            this.labelcantidad.Text = "Cantidad por Caja/Kilo:";
+            this.labelcantidad.Text = "Cantidad:";
             // 
             // labelPrecio
             // 
             this.labelPrecio.AutoSize = true;
-            this.labelPrecio.Location = new System.Drawing.Point(33, 129);
+            this.labelPrecio.Location = new System.Drawing.Point(33, 154);
             this.labelPrecio.Name = "labelPrecio";
             this.labelPrecio.Size = new System.Drawing.Size(40, 13);
             this.labelPrecio.TabIndex = 2;
@@ -69,21 +71,21 @@
             // 
             // textNombreIngrediente
             // 
-            this.textNombreIngrediente.Location = new System.Drawing.Point(156, 76);
+            this.textNombreIngrediente.Location = new System.Drawing.Point(119, 75);
             this.textNombreIngrediente.Name = "textNombreIngrediente";
             this.textNombreIngrediente.Size = new System.Drawing.Size(100, 20);
             this.textNombreIngrediente.TabIndex = 4;
             // 
             // textCantidadIngrediente
             // 
-            this.textCantidadIngrediente.Location = new System.Drawing.Point(156, 101);
+            this.textCantidadIngrediente.Location = new System.Drawing.Point(119, 100);
             this.textCantidadIngrediente.Name = "textCantidadIngrediente";
             this.textCantidadIngrediente.Size = new System.Drawing.Size(100, 20);
             this.textCantidadIngrediente.TabIndex = 5;
             // 
             // textPrecioIngrediente
             // 
-            this.textPrecioIngrediente.Location = new System.Drawing.Point(156, 126);
+            this.textPrecioIngrediente.Location = new System.Drawing.Point(119, 150);
             this.textPrecioIngrediente.Name = "textPrecioIngrediente";
             this.textPrecioIngrediente.Size = new System.Drawing.Size(100, 20);
             this.textPrecioIngrediente.TabIndex = 6;
@@ -119,11 +121,31 @@
             this.btnModificar.UseVisualStyleBackColor = true;
             this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click_1);
             // 
+            // cboUnidadmedida
+            // 
+            this.cboUnidadmedida.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboUnidadmedida.FormattingEnabled = true;
+            this.cboUnidadmedida.Location = new System.Drawing.Point(119, 123);
+            this.cboUnidadmedida.Name = "cboUnidadmedida";
+            this.cboUnidadmedida.Size = new System.Drawing.Size(100, 21);
+            this.cboUnidadmedida.TabIndex = 10;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(33, 127);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(82, 13);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "Unidad Medida:";
+            // 
             // FormIngredientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(898, 450);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.cboUnidadmedida);
             this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.dgvIngredientes);
             this.Controls.Add(this.AceptarAgregaIngrediente);
@@ -153,6 +175,8 @@
         private System.Windows.Forms.Button AceptarAgregaIngrediente;
         private System.Windows.Forms.DataGridView dgvIngredientes;
         private System.Windows.Forms.Button btnModificar;
+        private System.Windows.Forms.ComboBox cboUnidadmedida;
+        private System.Windows.Forms.Label label1;
     }
 }
 

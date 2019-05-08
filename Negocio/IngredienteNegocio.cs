@@ -67,7 +67,7 @@ namespace Negocio
             {
                 conexion.ConnectionString = "data source=(local); initial catalog=ALFONSO_DB; integrated security=sspi";
                 comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "SET DATEFORMAT 'DMY' insert into INGREDIENTES (Nombre, StockIngrediente, MasterPack, Precio, FechaCreacion, UsuarioCreacion, FechaModificacion, UsuarioModificacion) values ('" + nuevo.NombreIngrediente + "','" + nuevo.StockIngrediente + "','" + nuevo.PrecioIngrediente + "','" + nuevo.MasterPack + "','"+nuevo.FechaCreacion+"','"+nuevo.UsuarioCreacion+ "','" + nuevo.FechaCreacion + "','" + nuevo.UsuarioCreacion+  "')";
+                comando.CommandText = "SET DATEFORMAT 'DMY' insert into INGREDIENTES (Nombre, StockIngrediente, UnidadMedida, MasterPack, Precio, FechaCreacion, UsuarioCreacion, FechaModificacion, UsuarioModificacion) values ('" + nuevo.NombreIngrediente + "','" + nuevo.StockIngrediente + "','" + nuevo.UnidadPorIngrediente + "','" + nuevo.PrecioIngrediente + "','" + nuevo.MasterPack + "','"+nuevo.FechaCreacion+"','"+nuevo.UsuarioCreacion+ "','" + nuevo.FechaCreacion + "','" + nuevo.UsuarioCreacion+  "')";
                 comando.Connection = conexion;
                 conexion.Open();
 
@@ -89,11 +89,12 @@ namespace Negocio
             try
             {
 
-                accesoDatos.setearConsulta("SET DATEFORMAT 'DMY' update INGREDIENTES Set Nombre=@Nombre, StockIngrediente=@StockIngrediente, Precio=@PrecioIngrediente, MasterPack=@MasterPack,  FechaModificacion=@FechaModificacion, UsuarioModificacion=@UsuarioModificacion where Id=" + modificar.IdIngrediente.ToString());
+                accesoDatos.setearConsulta("SET DATEFORMAT 'DMY' update INGREDIENTES Set Nombre=@Nombre, StockIngrediente=@StockIngrediente, Precio=@PrecioIngrediente, UnidadMedida=@UnidadMedida, MasterPack=@MasterPack,  FechaModificacion=@FechaModificacion, UsuarioModificacion=@UsuarioModificacion where Id=" + modificar.IdIngrediente.ToString());
                 accesoDatos.Comando.Parameters.Clear();
                 accesoDatos.Comando.Parameters.AddWithValue("@Nombre", modificar.NombreIngrediente);
                 accesoDatos.Comando.Parameters.AddWithValue("@StockIngrediente", modificar.StockIngrediente);
                 accesoDatos.Comando.Parameters.AddWithValue("@PrecioIngrediente", modificar.PrecioIngrediente);
+                accesoDatos.Comando.Parameters.AddWithValue("@UnidadMedida", modificar.UnidadPorIngrediente);
                 accesoDatos.Comando.Parameters.AddWithValue("@MasterPack", modificar.MasterPack);
                 accesoDatos.Comando.Parameters.AddWithValue("@FechaModificacion", modificar.FechaModificacion);
                 accesoDatos.Comando.Parameters.AddWithValue("@UsuarioModificacion", modificar.UsuarioModificacion);

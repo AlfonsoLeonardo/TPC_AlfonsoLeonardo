@@ -40,11 +40,16 @@ namespace AgregarIngrediente
         {
          
           IngredienteNegocio negocio  = new IngredienteNegocio();
+            UnidadMedidaNegocio unidMedi = new UnidadMedidaNegocio();
             try
             {
+                cboUnidadmedida.DataSource = unidMedi.listarUnidadMedida();
+                cboUnidadmedida.DisplayMember = "DescripcionCorta"; //Nombre de la varible a mostrar en pantalla
+                cboUnidadmedida.ValueMember = "IdUnidadMedida";// nobre de la variable del id a mostar
 
                 listaIngredienteLocal = negocio.ListarIngrediente();
                 dgvIngredientes.DataSource = listaIngredienteLocal;
+                
                 dgvIngredientes.Columns[2].Visible = false;
                // dgvIngredientes.Columns[4].Visible = false;
                 dgvIngredientes.Columns[5].Visible = false;
@@ -63,16 +68,21 @@ namespace AgregarIngrediente
         {
             Ingrediente ingrediente = new Ingrediente();
             IngredienteNegocio negocio = new IngredienteNegocio();
+            UnidadDeMedida unidadDeMedida = new UnidadDeMedida();
             try
             {
                 if (estado == false)
                 {
+                    //UnidadDeMedida um;
                     DateTime fecha = DateTime.Today;
-
+                    
                     ingrediente.NombreIngrediente = textNombreIngrediente.Text;
                     ingrediente.StockIngrediente = 0;
                     ingrediente.MasterPack = Convert.ToDecimal(textCantidadIngrediente.Text);
                     ingrediente.PrecioIngrediente = Convert.ToDecimal(textPrecioIngrediente.Text);
+                    unidadDeMedida = (UnidadDeMedida)cboUnidadmedida.SelectedItem;
+                    ingrediente.UnidadPorIngrediente = unidadDeMedida.IdUnidadMedida;
+                     
                     ingrediente.FechaCreacion = fecha.ToLocalTime();
                     ingrediente.UsuarioCreacion = 1;
                     ingrediente.FechaModificacion = fecha.ToLocalTime();
@@ -91,7 +101,7 @@ namespace AgregarIngrediente
                     Ingrediente ingredient = new Ingrediente();
 
                     Ingrediente ing;
-
+                     UnidadDeMedida um;
                     ing = (Ingrediente)dgvIngredientes.CurrentRow.DataBoundItem;
                    
                                   
@@ -99,6 +109,8 @@ namespace AgregarIngrediente
                     ingredient.NombreIngrediente = textNombreIngrediente.Text;
                     ingredient.StockIngrediente = ing.StockIngrediente;
                     ingredient.MasterPack = Convert.ToDecimal(textCantidadIngrediente.Text);
+                    um = (UnidadDeMedida)cboUnidadmedida.SelectedItem;
+                    ingrediente.UnidadPorIngrediente = um.IdUnidadMedida;
                     ingredient.PrecioIngrediente = Convert.ToDecimal(textPrecioIngrediente.Text);
                     ingredient.FechaModificacion = fecha.ToLocalTime();
                     ingredient.UsuarioModificacion = 1;
