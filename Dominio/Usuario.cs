@@ -8,11 +8,17 @@ namespace Dominio
 {
     public class Usuario
     {
-        public int Id { get; set; }
+        public int IdUsuario { get; set; }
         public string NombreUsuario { get; set; }
         public string Pass { get; set; }
         public TipoUsuario Tipo { get; set; }
-        //public List<Permiso> Permisos { get; set; }
+
+        public override string ToString()
+       {
+            return NombreUsuario;
+       }
     }
+
 }
+
 

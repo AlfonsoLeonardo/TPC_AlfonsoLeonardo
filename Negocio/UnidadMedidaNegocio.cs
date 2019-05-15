@@ -8,6 +8,7 @@ using Dominio;
 
 namespace Negocio
 {
+  
     public class UnidadMedidaNegocio
     {
         public List<UnidadDeMedida> listarUnidadMedida()
@@ -17,13 +18,13 @@ namespace Negocio
             UnidadDeMedida uniMed = new UnidadDeMedida();
             try
             {
-                accesoDatos.setearConsulta("Select Id, Descripcioncorta from UNIDADDEMEDIDA");
+                accesoDatos.setearConsulta("Select IdUnidad, Descripcioncorta from UNIDADDEMEDIDA");
                 accesoDatos.abrirConexion();
                 accesoDatos.ejecutarConsulta();
                 while (accesoDatos.Lector.Read())
                 {
                     uniMed = new UnidadDeMedida();
-                    uniMed.IdUnidadMedida = (int)accesoDatos.Lector["Id"];
+                    uniMed.IdUnidad = (int)accesoDatos.Lector["IdUnidad"];
                     uniMed.DescripcionCorta = accesoDatos.Lector["Descripcioncorta"].ToString();
                     listado.Add(uniMed);
                 }

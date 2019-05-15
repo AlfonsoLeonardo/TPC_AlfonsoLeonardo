@@ -15,17 +15,21 @@ namespace Principal
     public partial class frmLogin : Form
     {
 
-        private Usuario usuario;
+        private Usuario usuarioLogueado;
+        public void setusuario(Usuario usuario)
+        {
+            this.usuarioLogueado = usuario;
+        }
 
         public frmLogin()
         {
             InitializeComponent();
         }
 
-        public frmLogin(Usuario us)
+        public frmLogin(Usuario usuario)
         {
             InitializeComponent();
-            usuario = us;
+            usuarioLogueado = usuario;
         }
 
         private void btnCancelar_Click_1(object sender, EventArgs e)
@@ -39,12 +43,13 @@ namespace Principal
             UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
             try
             {
-                usuario.NombreUsuario = txtUsuario.Text.Trim();
-                usuario.Pass = txtPass.Text.Trim();
-                if (usuarioNegocio.validarUsuario(usuario))
+                usuarioLogueado.NombreUsuario = txtUsuario.Text.Trim();
+                usuarioLogueado.Pass = txtPass.Text.Trim();
+                if (usuarioNegocio.validarUsuario(usuarioLogueado))
                 {
 
-                    //frmPrincipal frmPrincipal = new frmPrincipal();
+                    setusuario(usuarioLogueado);
+
                     Close();
                 }
                 else
@@ -60,7 +65,7 @@ namespace Principal
 
         private void frmLogin_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (usuario.Id == 0)
+            if (usuarioLogueado.IdUsuario == 0)
             {
                 Application.Exit();
             }

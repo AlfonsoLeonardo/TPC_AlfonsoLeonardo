@@ -10,6 +10,11 @@ namespace Negocio
 {
     public class UsuarioNegocio
     {
+        private Usuario usuarioLogueado;
+        public void setusuario(Usuario usuario)
+        {
+            this.usuarioLogueado = usuario;
+        }
         public bool validarUsuario(Usuario usuario)
         {
             
@@ -17,7 +22,7 @@ namespace Negocio
             try
             {
                 conexion = new AccesoDatosManager();
-                conexion.setearConsulta("select Id, Usuario, Pass, IdTipoUsuario from USUARIOS Where Usuario=@usuario and Pass=@pass");
+                conexion.setearConsulta("select IdUsuario, Usuario, Pass, IdTipoUsuario from USUARIOS Where Usuario=@usuario and Pass=@pass");
                 conexion.Comando.Parameters.Clear();
                 conexion.Comando.Parameters.AddWithValue("@usuario", usuario.NombreUsuario);
                 conexion.Comando.Parameters.AddWithValue("@pass", usuario.Pass);
@@ -25,7 +30,7 @@ namespace Negocio
                 conexion.ejecutarConsulta();
                 if (conexion.Lector.Read())
                 {
-                    usuario.Id = (int)conexion.Lector["Id"];
+                    usuario.IdUsuario = (int)conexion.Lector["IdUsuario"];
                     usuario.NombreUsuario = (string)conexion.Lector["Usuario"];
                     usuario.Pass = (string)conexion.Lector["Pass"];
                     usuario.Tipo = new TipoUsuario();

@@ -13,38 +13,18 @@ namespace Principal
 {
     public partial class frmPrincipal : Form
     {
+        public void setusuario(Usuario usuario)
+        {
+            this.usuarioLogueado = usuario;
+        }
+
         private Usuario usuarioLogueado;
             
-        public Usuario UsuarioLogueado
-        {
-            get { return usuarioLogueado; }
-        }
+  
         public frmPrincipal()
         {
             InitializeComponent();
         }
-      /*  private void frmPrincipal_Load(object sender, EventArgs e)
-        {
-            
-            try
-            {
-               usuarioLogueado = new Usuario();
-                frmLogin login = new frmLogin(usuarioLogueado);
-                login.ShowDialog();
-
-                if (usuarioLogueado.Tipo.Id == TipoUsuario.ADMINISTRADOR)
-                {
-                    
-                  
-                }
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-        }*/
-
         private void btnAbm_Click(object sender, EventArgs e)
         {
             frmABMmenu aBMmenu = new frmABMmenu();
@@ -53,7 +33,7 @@ namespace Principal
 
         private void frmPrincipal_Load_1(object sender, EventArgs e)
         {
-          /*  try
+            try
             {
                 usuarioLogueado = new Usuario();
                 frmLogin login = new frmLogin(usuarioLogueado);
@@ -61,14 +41,14 @@ namespace Principal
 
                 if (usuarioLogueado.Tipo.Id == TipoUsuario.ADMINISTRADOR)
                 {
-                    // mnuPropiedades.Enabled = false;
+                   
                 }
 
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
-            }*/
+            }
         }
     }
 }

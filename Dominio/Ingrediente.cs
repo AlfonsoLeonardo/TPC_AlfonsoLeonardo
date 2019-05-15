@@ -11,13 +11,13 @@ namespace Dominio
         public int IdIngrediente { get; set; }
         public string NombreIngrediente { get; set; }
         public decimal StockIngrediente { get; set; }
-        public int UnidadPorIngrediente { get; set; }
+        public UnidadDeMedida UnidadPorIngrediente { get; set; }
         public decimal MasterPack { get; set; }
         public decimal PrecioIngrediente { get; set; }
         public DateTime FechaCreacion { get; set; }
-        public int UsuarioCreacion { get; set; }
+        public Usuario UsuarioCreacion { get; set; }
         public DateTime FechaModificacion { get; set; }
-        public int UsuarioModificacion { get; set; }
+        public Usuario UsuarioModificacion { get; set; }
        
       
     }

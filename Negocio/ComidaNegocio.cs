@@ -12,6 +12,11 @@ namespace Negocio
 {
     public class ComidaNegocio
     {
+        private Usuario usuarioLogueado;
+        public void setusuario(Usuario usuario)
+        {
+            this.usuarioLogueado = usuario;
+        }
         public List<Comida> ListarComida()
         {
             SqlConnection conexion = new SqlConnection();

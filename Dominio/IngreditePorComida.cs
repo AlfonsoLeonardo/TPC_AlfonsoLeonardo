@@ -8,11 +8,11 @@ namespace Dominio
 {
     public class IngreditePorComida
     {
-        public Ingrediente ingrediente { set; get; }
+        public List<Ingrediente> ingrediente { set; get; }
         public DateTime FechaCreacion { get; set; }
-        public string UsuarioCreacion { get; set; }
+        public Usuario UsuarioCreacion { get; set; }
         public DateTime FechaModificacion { get; set; }
-        public string UsuarioModificacion { get; set; }
+        public Usuario UsuarioModificacion { get; set; }
         public decimal Cantidad { set; get; }
 
     }

@@ -8,8 +8,13 @@ namespace Dominio
 {
     public class UnidadDeMedida
     {
-        public int IdUnidadMedida { get; set; }
+        public int IdUnidad { get; set; }
         public string DescripcionCorta { get; set; }
         public string DescripcionLarga { get; set; }
+
+        public override string ToString()
+        {
+            return DescripcionCorta;
+        }
     }
 }

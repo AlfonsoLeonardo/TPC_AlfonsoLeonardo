@@ -14,9 +14,18 @@ using Negocio;
 
 namespace AgregarIngrediente
 {
+   
+
     public partial class FormIngredientes : Form
     {
-        bool estado = false;
+        private Usuario usuarioLogueado;
+        public void setusuario(Usuario usuario)
+        {
+            this.usuarioLogueado = usuario;
+        }
+
+                bool estado = false;
+        
    
         private List<Ingrediente> listaIngredienteLocal;
         public FormIngredientes()
@@ -45,18 +54,18 @@ namespace AgregarIngrediente
             {
                 cboUnidadmedida.DataSource = unidMedi.listarUnidadMedida();
                 cboUnidadmedida.DisplayMember = "DescripcionCorta"; //Nombre de la varible a mostrar en pantalla
-                cboUnidadmedida.ValueMember = "IdUnidadMedida";// nobre de la variable del id a mostar
+                cboUnidadmedida.ValueMember = "IdUnidad";// nobre de la variable del id a mostar
 
                 listaIngredienteLocal = negocio.ListarIngrediente();
                 dgvIngredientes.DataSource = listaIngredienteLocal;
-                
+                /*
                 dgvIngredientes.Columns[2].Visible = false;
-               // dgvIngredientes.Columns[4].Visible = false;
+                dgvIngredientes.Columns[4].Visible = false;
                 dgvIngredientes.Columns[5].Visible = false;
                 dgvIngredientes.Columns[6].Visible = false;
                 dgvIngredientes.Columns[7].Visible = false;
                 dgvIngredientes.Columns[8].Visible = false;
-              
+              */
 
             }
             catch (Exception ex)
@@ -73,21 +82,16 @@ namespace AgregarIngrediente
             {
                 if (estado == false)
                 {
-                    //UnidadDeMedida um;
                     DateTime fecha = DateTime.Today;
-                    
                     ingrediente.NombreIngrediente = textNombreIngrediente.Text;
                     ingrediente.StockIngrediente = 0;
                     ingrediente.MasterPack = Convert.ToDecimal(textCantidadIngrediente.Text);
                     ingrediente.PrecioIngrediente = Convert.ToDecimal(textPrecioIngrediente.Text);
-                    unidadDeMedida = (UnidadDeMedida)cboUnidadmedida.SelectedItem;
-                    ingrediente.UnidadPorIngrediente = unidadDeMedida.IdUnidadMedida;
-                     
+                    ingrediente.UnidadPorIngrediente =(UnidadDeMedida) cboUnidadmedida.SelectedItem;
                     ingrediente.FechaCreacion = fecha.ToLocalTime();
-                    ingrediente.UsuarioCreacion = 1;
+                    ingrediente.UsuarioCreacion = this.usuarioLogueado;
                     ingrediente.FechaModificacion = fecha.ToLocalTime();
-                    ingrediente.UsuarioModificacion = 1;
-
+                    ingrediente.UsuarioModificacion = this.usuarioLogueado;
                     negocio.agregarIngrediente(ingrediente);
                     textNombreIngrediente.Text = "";
                     textCantidadIngrediente.Text = "";
@@ -107,13 +111,11 @@ namespace AgregarIngrediente
                                   
                     ingredient.IdIngrediente = ing.IdIngrediente;
                     ingredient.NombreIngrediente = textNombreIngrediente.Text;
-                    ingredient.StockIngrediente = ing.StockIngrediente;
                     ingredient.MasterPack = Convert.ToDecimal(textCantidadIngrediente.Text);
-                    um = (UnidadDeMedida)cboUnidadmedida.SelectedItem;
-                    ingrediente.UnidadPorIngrediente = um.IdUnidadMedida;
+                    cboUnidadmedida.SelectedValue = ing.UnidadPorIngrediente.IdUnidad;
                     ingredient.PrecioIngrediente = Convert.ToDecimal(textPrecioIngrediente.Text);
                     ingredient.FechaModificacion = fecha.ToLocalTime();
-                    ingredient.UsuarioModificacion = 1;
+                    ingredient.UsuarioModificacion = this.usuarioLogueado;
 
                     negocio.modificarIngrediente(ingredient);
                     textNombreIngrediente.Text = "";
@@ -154,14 +156,12 @@ namespace AgregarIngrediente
                 textNombreIngrediente.Text = ing.NombreIngrediente;
                 textCantidadIngrediente.Text = ing.MasterPack.ToString();
                 textPrecioIngrediente.Text = ing.PrecioIngrediente.ToString();
-
-
-
+                cboUnidadmedida.Text = ing.UnidadPorIngrediente.DescripcionCorta;
+                 
                 estado = true;
 
 
-                //ingredienteNegocio.modificarIngrediente(ing);
-               // cargarGrilla();
+           
 
                 
             }

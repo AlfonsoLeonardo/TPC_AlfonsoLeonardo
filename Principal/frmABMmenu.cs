@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Dominio;
 using AgregarIngrediente;
 
 
@@ -14,6 +15,13 @@ namespace Principal
 {
     public partial class frmABMmenu : Form
     {
+        public void setusuario(Usuario usuario)
+        {
+            this.usuarioLogueado = usuario;
+        }
+
+        private Usuario usuarioLogueado;
+
         public frmABMmenu()
         {
             InitializeComponent();

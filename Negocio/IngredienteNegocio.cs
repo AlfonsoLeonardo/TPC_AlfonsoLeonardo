@@ -13,33 +13,45 @@ namespace Negocio
 {
     public class IngredienteNegocio
     {
+        private Usuario usuarioLogueado;
+        public void setusuario(Usuario usuario)
+        {
+            this.usuarioLogueado = usuario;
+        }
         public List<Ingrediente> ListarIngrediente()
         {
-            SqlConnection conexion = new SqlConnection();
-            SqlCommand comando = new SqlCommand();
-            SqlDataReader Lector;
+            
             List<Ingrediente> listado = new List<Ingrediente>();
-            //AccesoDatosManager accesoDatos = new AccesoDatosManager();
+            AccesoDatosManager accesoDatos = new AccesoDatosManager();
             Ingrediente Ingre = new Ingrediente();
             try
             {
-                conexion.ConnectionString = AccesoDatosManager.cadenaConexion;
-                comando.CommandType = System.Data.CommandType.Text;
-                //accesoDatos.setearConsulta( 
-                comando.CommandText = ("select Id, Nombre, StockIngrediente, MasterPack, Precio From INGREDIENTES");
-                comando.Connection = conexion;
-                conexion.Open();
-                Lector = comando.ExecuteReader();
-                //accesoDatos.abrirConexion();
-                // accesoDatos.ejecutarConsulta();
-                while (Lector.Read())
+                accesoDatos.setearConsulta("select  i.Idingrediente, i.NombreIngrediente, i.PrecioIngrediente, u.Descripcioncorta,i.MasterPack,us.Usuario, i.FechaCreacion ,us2.Usuario as UserMod, i.FechaModificacion from INGREDIENTES as i inner join UNIDADDEMEDIDA as u on u.IdUnidad =i.UnidadMedida inner join USUARIOS as us on  us.IdUsuario=i.UsuarioCreacion inner join usuarios as us2 on us2.IdUsuario=i.UsuarioModificacion");
+                accesoDatos.abrirConexion();
+                accesoDatos.ejecutarConsulta();
+
+                while (accesoDatos.Lector.Read())
                 {
                     Ingre = new Ingrediente();
-                    Ingre.IdIngrediente = (int)Lector["Id"];
-                    Ingre.NombreIngrediente = Lector["Nombre"].ToString();
-                    Ingre.StockIngrediente = (decimal)Lector["StockIngrediente"];
-                    Ingre.MasterPack = (decimal)Lector["MasterPack"];
-                    Ingre.PrecioIngrediente = (decimal)Lector["Precio"];
+                    Ingre.IdIngrediente = (int)accesoDatos.Lector["IdIngrediente"];
+                    Ingre.NombreIngrediente = accesoDatos.Lector["NombreIngrediente"].ToString();
+                    Ingre.PrecioIngrediente = (decimal)accesoDatos.Lector["PrecioIngrediente"];
+                    Ingre.MasterPack = (decimal)accesoDatos.Lector["MasterPack"];
+                    Ingre.UnidadPorIngrediente = new UnidadDeMedida();
+                    Ingre.UnidadPorIngrediente.IdUnidad = (int)accesoDatos.Lector["IdIngrediente"];
+                    Ingre.UnidadPorIngrediente.DescripcionCorta = accesoDatos.Lector["Descripcioncorta"].ToString();
+                  
+                    Ingre.UsuarioCreacion = new Usuario();
+                    Ingre.UsuarioCreacion.IdUsuario= (int)accesoDatos.Lector["IdIngrediente"];
+                    Ingre.UsuarioCreacion.NombreUsuario= accesoDatos.Lector["Usuario"].ToString();
+                    Ingre.FechaCreacion = (DateTime)accesoDatos.Lector["FechaCreacion"];
+                    Ingre.UsuarioModificacion = new Usuario();
+                    Ingre.UsuarioModificacion.IdUsuario = (int)accesoDatos.Lector["IdIngrediente"];
+                    Ingre.UsuarioModificacion.NombreUsuario = accesoDatos.Lector["usm"].ToString();
+                  
+                     Ingre.FechaModificacion = (DateTime)accesoDatos.Lector["FechaModificacion"];
+              
+                     
                     listado.Add(Ingre);
                 }
 
@@ -53,8 +65,8 @@ namespace Negocio
             }
             finally
             {
-                conexion.Close();
-                //accesoDatos.cerrarConexion();
+                accesoDatos.cerrarConexion();
+                
             }
         }
 
@@ -67,7 +79,7 @@ namespace Negocio
             {
                 conexion.ConnectionString = "data source=(local); initial catalog=ALFONSO_DB; integrated security=sspi";
                 comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "SET DATEFORMAT 'DMY' insert into INGREDIENTES (Nombre, StockIngrediente, UnidadMedida, MasterPack, Precio, FechaCreacion, UsuarioCreacion, FechaModificacion, UsuarioModificacion) values ('" + nuevo.NombreIngrediente + "','" + nuevo.StockIngrediente + "','" + nuevo.UnidadPorIngrediente + "','" + nuevo.PrecioIngrediente + "','" + nuevo.MasterPack + "','"+nuevo.FechaCreacion+"','"+nuevo.UsuarioCreacion+ "','" + nuevo.FechaCreacion + "','" + nuevo.UsuarioCreacion+  "')";
+                comando.CommandText = "SET DATEFORMAT 'DMY' insert into INGREDIENTES (Nombre, StockIngrediente, UnidadMedida, MasterPack, Precio, FechaCreacion, UsuarioCreacion, FechaModificacion, UsuarioModificacion) values ('" + nuevo.NombreIngrediente + "','" + nuevo.StockIngrediente + "','" + nuevo.UnidadPorIngrediente.IdUnidad + "','" + nuevo.PrecioIngrediente + "','" + nuevo.MasterPack + "','"+nuevo.FechaCreacion+"','"+nuevo.UsuarioCreacion.IdUsuario+ "','" + nuevo.FechaCreacion + "','" + nuevo.UsuarioCreacion.IdUsuario+  "')";
                 comando.Connection = conexion;
                 conexion.Open();
 
@@ -94,10 +106,10 @@ namespace Negocio
                 accesoDatos.Comando.Parameters.AddWithValue("@Nombre", modificar.NombreIngrediente);
                 accesoDatos.Comando.Parameters.AddWithValue("@StockIngrediente", modificar.StockIngrediente);
                 accesoDatos.Comando.Parameters.AddWithValue("@PrecioIngrediente", modificar.PrecioIngrediente);
-                accesoDatos.Comando.Parameters.AddWithValue("@UnidadMedida", modificar.UnidadPorIngrediente);
+                accesoDatos.Comando.Parameters.AddWithValue("@UnidadMedida", modificar.UnidadPorIngrediente.IdUnidad);
                 accesoDatos.Comando.Parameters.AddWithValue("@MasterPack", modificar.MasterPack);
                 accesoDatos.Comando.Parameters.AddWithValue("@FechaModificacion", modificar.FechaModificacion);
-                accesoDatos.Comando.Parameters.AddWithValue("@UsuarioModificacion", modificar.UsuarioModificacion);
+                accesoDatos.Comando.Parameters.AddWithValue("@UsuarioModificacion", modificar.UsuarioModificacion.IdUsuario);
 
 
                 accesoDatos.abrirConexion();

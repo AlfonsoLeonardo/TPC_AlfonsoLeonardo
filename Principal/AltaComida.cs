@@ -15,6 +15,7 @@ namespace Principal
 {
     public partial class AltaComida : Form
     {
+        private Usuario Usuario;
         private List<Comida> listaComidaLocal;
         public AltaComida()
         {
@@ -61,9 +62,9 @@ namespace Principal
                 comida.NombreComida = textComida.Text;
                 comida.Precio= Convert.ToDecimal(textcomidaprecio.Text);
                 comida.FechaCreacion = fecha.ToLocalTime();
-                comida.UsuarioCreacion = 1;
+                comida.UsuarioCreacion = this.Usuario;
                 comida.FechaModificacion = fecha.ToLocalTime();
-                comida.UsuarioModificacion = 1;
+                comida.UsuarioModificacion = this.Usuario;
                 DeleteAllsc();
 
                 negocio.agregarcomida(comida);

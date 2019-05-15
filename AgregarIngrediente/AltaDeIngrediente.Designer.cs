@@ -92,7 +92,7 @@
             // 
             // AceptarAgregaIngrediente
             // 
-            this.AceptarAgregaIngrediente.Location = new System.Drawing.Point(45, 212);
+            this.AceptarAgregaIngrediente.Location = new System.Drawing.Point(135, 209);
             this.AceptarAgregaIngrediente.Name = "AceptarAgregaIngrediente";
             this.AceptarAgregaIngrediente.Size = new System.Drawing.Size(75, 23);
             this.AceptarAgregaIngrediente.TabIndex = 7;
@@ -113,7 +113,7 @@
             // 
             // btnModificar
             // 
-            this.btnModificar.Location = new System.Drawing.Point(100, 252);
+            this.btnModificar.Location = new System.Drawing.Point(619, 291);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(75, 23);
             this.btnModificar.TabIndex = 9;
