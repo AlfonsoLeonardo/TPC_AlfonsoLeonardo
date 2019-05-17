@@ -61,6 +61,7 @@
             this.btnUsuario.TabIndex = 2;
             this.btnUsuario.Text = "Usuarios";
             this.btnUsuario.UseVisualStyleBackColor = true;
+            this.btnUsuario.Click += new System.EventHandler(this.btnUsuario_Click);
             // 
             // frmABMmenu
             // 

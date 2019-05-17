@@ -10,16 +10,14 @@ using System.Windows.Forms;
 using Dominio;
 using Negocio;
 
+
 namespace Principal
 {
     public partial class frmLogin : Form
     {
 
         private Usuario usuarioLogueado;
-        public void setusuario(Usuario usuario)
-        {
-            this.usuarioLogueado = usuario;
-        }
+     
 
         public frmLogin()
         {
@@ -32,11 +30,7 @@ namespace Principal
             usuarioLogueado = usuario;
         }
 
-        private void btnCancelar_Click_1(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-       
+
         private void btnIngresar_Click_1(object sender, EventArgs e)
         {
 
@@ -48,7 +42,7 @@ namespace Principal
                 if (usuarioNegocio.validarUsuario(usuarioLogueado))
                 {
 
-                    setusuario(usuarioLogueado);
+                    
 
                     Close();
                 }
@@ -69,6 +63,11 @@ namespace Principal
             {
                 Application.Exit();
             }
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

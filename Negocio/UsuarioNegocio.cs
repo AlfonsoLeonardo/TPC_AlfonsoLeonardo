@@ -35,6 +35,8 @@ namespace Negocio
                     usuario.Pass = (string)conexion.Lector["Pass"];
                     usuario.Tipo = new TipoUsuario();
                     usuario.Tipo.Id = (int)conexion.Lector["IdTipoUsuario"];
+
+                    setusuario(usuario);
                     return true;
                 }
                 else

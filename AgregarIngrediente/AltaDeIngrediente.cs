@@ -18,12 +18,13 @@ namespace AgregarIngrediente
 
     public partial class FormIngredientes : Form
     {
+        
         private Usuario usuarioLogueado;
         public void setusuario(Usuario usuario)
         {
             this.usuarioLogueado = usuario;
         }
-
+       
                 bool estado = false;
         
    
@@ -31,6 +32,7 @@ namespace AgregarIngrediente
         public FormIngredientes()
         {
             InitializeComponent();
+           
         }
         private void DeleteAlls()
         {
@@ -55,18 +57,9 @@ namespace AgregarIngrediente
                 cboUnidadmedida.DataSource = unidMedi.listarUnidadMedida();
                 cboUnidadmedida.DisplayMember = "DescripcionCorta"; //Nombre de la varible a mostrar en pantalla
                 cboUnidadmedida.ValueMember = "IdUnidad";// nobre de la variable del id a mostar
-
                 listaIngredienteLocal = negocio.ListarIngrediente();
                 dgvIngredientes.DataSource = listaIngredienteLocal;
-                /*
                 dgvIngredientes.Columns[2].Visible = false;
-                dgvIngredientes.Columns[4].Visible = false;
-                dgvIngredientes.Columns[5].Visible = false;
-                dgvIngredientes.Columns[6].Visible = false;
-                dgvIngredientes.Columns[7].Visible = false;
-                dgvIngredientes.Columns[8].Visible = false;
-              */
-
             }
             catch (Exception ex)
             {
@@ -89,9 +82,9 @@ namespace AgregarIngrediente
                     ingrediente.PrecioIngrediente = Convert.ToDecimal(textPrecioIngrediente.Text);
                     ingrediente.UnidadPorIngrediente =(UnidadDeMedida) cboUnidadmedida.SelectedItem;
                     ingrediente.FechaCreacion = fecha.ToLocalTime();
-                    ingrediente.UsuarioCreacion = this.usuarioLogueado;
+                    //ingrediente.UsuarioCreacion = this.usuarioLogueado;
                     ingrediente.FechaModificacion = fecha.ToLocalTime();
-                    ingrediente.UsuarioModificacion = this.usuarioLogueado;
+                    //ingrediente.UsuarioModificacion = this.usuarioLogueado;
                     negocio.agregarIngrediente(ingrediente);
                     textNombreIngrediente.Text = "";
                     textCantidadIngrediente.Text = "";
@@ -112,7 +105,7 @@ namespace AgregarIngrediente
                     ingredient.IdIngrediente = ing.IdIngrediente;
                     ingredient.NombreIngrediente = textNombreIngrediente.Text;
                     ingredient.MasterPack = Convert.ToDecimal(textCantidadIngrediente.Text);
-                    cboUnidadmedida.SelectedValue = ing.UnidadPorIngrediente.IdUnidad;
+                    ingredient.UnidadPorIngrediente = (UnidadDeMedida)cboUnidadmedida.SelectedItem;
                     ingredient.PrecioIngrediente = Convert.ToDecimal(textPrecioIngrediente.Text);
                     ingredient.FechaModificacion = fecha.ToLocalTime();
                     ingredient.UsuarioModificacion = this.usuarioLogueado;
@@ -121,8 +114,10 @@ namespace AgregarIngrediente
                     textNombreIngrediente.Text = "";
                     textCantidadIngrediente.Text = "";
                     textPrecioIngrediente.Text = "";
+
                     cargarGrilla();
                     estado = false;
+
 
                 }
             }
@@ -140,6 +135,7 @@ namespace AgregarIngrediente
 
         private void FormIngredientes_Load(object sender, EventArgs e)
         {
+            textNombreIngrediente.CharacterCasing = CharacterCasing.Upper;
             cargarGrilla();
         }
 
@@ -175,5 +171,41 @@ namespace AgregarIngrediente
                 MessageBox.Show(ex.ToString());
             }
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            DeleteAlls();
+            estado = false;
+            cargarGrilla();
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            
+            IngredienteNegocio negocio = new IngredienteNegocio();
+
+            Ingrediente ing;
+
+             ing = (Ingrediente)dgvIngredientes.CurrentRow.DataBoundItem;
+
+            
+            DialogResult result = MessageBox.Show("Reamente desea eliminar?", "Eliminar", MessageBoxButtons.YesNo);
+
+            if (result == DialogResult.Yes)
+            {
+                negocio.eliminarIngrediente(ing);
+                DeleteAlls();
+                cargarGrilla();
+            }
+            else if (result == DialogResult.No)
+            {
+            }
+           
+
+
+
+        }
+
+
     }
 }

@@ -14,10 +14,7 @@ namespace Negocio
     public class IngredienteNegocio
     {
         private Usuario usuarioLogueado;
-        public void setusuario(Usuario usuario)
-        {
-            this.usuarioLogueado = usuario;
-        }
+    
         public List<Ingrediente> ListarIngrediente()
         {
             
@@ -47,7 +44,7 @@ namespace Negocio
                     Ingre.FechaCreacion = (DateTime)accesoDatos.Lector["FechaCreacion"];
                     Ingre.UsuarioModificacion = new Usuario();
                     Ingre.UsuarioModificacion.IdUsuario = (int)accesoDatos.Lector["IdIngrediente"];
-                    Ingre.UsuarioModificacion.NombreUsuario = accesoDatos.Lector["usm"].ToString();
+                    Ingre.UsuarioModificacion.NombreUsuario = accesoDatos.Lector["UserMod"].ToString();
                   
                      Ingre.FechaModificacion = (DateTime)accesoDatos.Lector["FechaModificacion"];
               
@@ -79,7 +76,7 @@ namespace Negocio
             {
                 conexion.ConnectionString = "data source=(local); initial catalog=ALFONSO_DB; integrated security=sspi";
                 comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "SET DATEFORMAT 'DMY' insert into INGREDIENTES (Nombre, StockIngrediente, UnidadMedida, MasterPack, Precio, FechaCreacion, UsuarioCreacion, FechaModificacion, UsuarioModificacion) values ('" + nuevo.NombreIngrediente + "','" + nuevo.StockIngrediente + "','" + nuevo.UnidadPorIngrediente.IdUnidad + "','" + nuevo.PrecioIngrediente + "','" + nuevo.MasterPack + "','"+nuevo.FechaCreacion+"','"+nuevo.UsuarioCreacion.IdUsuario+ "','" + nuevo.FechaCreacion + "','" + nuevo.UsuarioCreacion.IdUsuario+  "')";
+                comando.CommandText = "SET DATEFORMAT 'DMY' insert into INGREDIENTES (NombreIngrediente, StockIngrediente, UnidadMedida, MasterPack, PrecioIngrediente, FechaCreacion, UsuarioCreacion, FechaModificacion, UsuarioModificacion) values ('" + nuevo.NombreIngrediente + "','" + nuevo.StockIngrediente + "','" + nuevo.UnidadPorIngrediente.IdUnidad + "','" + nuevo.PrecioIngrediente + "','" + nuevo.MasterPack + "','"+nuevo.FechaCreacion+"','"+/*nuevo.UsuarioCreacion.IdUsuario*/1+ "','" + nuevo.FechaCreacion + "','" + /*nuevo.UsuarioCreacion.IdUsuario*/1+  "')";
                 comando.Connection = conexion;
                 conexion.Open();
 
@@ -123,6 +120,27 @@ namespace Negocio
             finally
             {
                 accesoDatos.cerrarConexion();
+            }
+        }
+        public void eliminarIngrediente(Ingrediente nuevo)
+        {
+             AccesoDatosManager accesoDatos = new AccesoDatosManager();
+            
+            try
+            {
+                accesoDatos.setearConsulta("DELETE FROM INGREDIENTES WHERE IdIngrediente=" + nuevo.IdIngrediente);
+                accesoDatos.abrirConexion();
+                accesoDatos.ejecutarConsulta();
+                
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                accesoDatos.cerrarConexion();
+
             }
         }
     }

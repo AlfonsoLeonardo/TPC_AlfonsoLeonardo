@@ -22,9 +22,10 @@ namespace Principal
 
         private Usuario usuarioLogueado;
 
-        public frmABMmenu()
+        public frmABMmenu(Usuario usuario)
         {
             InitializeComponent();
+            setusuario(usuario);
         }
 
         private void btnAltaingrediente_Click(object sender, EventArgs e)
@@ -39,6 +40,11 @@ namespace Principal
         {
             AltaComida altaComida = new AltaComida();
             altaComida.ShowDialog();
+        }
+
+        private void btnUsuario_Click(object sender, EventArgs e)
+        {
+
         }
     }
     }

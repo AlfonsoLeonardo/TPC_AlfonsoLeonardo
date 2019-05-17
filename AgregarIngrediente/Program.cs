@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Negocio;
 
 namespace AgregarIngrediente
 {
     static class Program
     {
+       
         /// <summary>
         /// Punto de entrada principal para la aplicación.
         /// </summary>
