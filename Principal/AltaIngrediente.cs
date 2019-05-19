@@ -8,49 +8,42 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
-using AgregarIngrediente;
 using Dominio;
 using Negocio;
+using AccesoDatos;
 
-namespace AgregarIngrediente
+namespace Principal
 {
-   
-
-    public partial class FormIngredientes : Form
+    public partial class AltaIngrediente : Form
     {
-        
+        public AltaIngrediente()
+        {
+            InitializeComponent();
+        }
+
         private Usuario usuarioLogueado;
         public void setusuario(Usuario usuario)
         {
             this.usuarioLogueado = usuario;
         }
-       
-                bool estado = false;
-        
-   
+
+        bool estado = false;
+
+
         private List<Ingrediente> listaIngredienteLocal;
-        public FormIngredientes()
-        {
-            InitializeComponent();
-           
-        }
+
         private void DeleteAlls()
         {
             textNombreIngrediente.Text = "";
             textCantidadIngrediente.Text = "";
             textPrecioIngrediente.Text = "";
         }
-        private void Form1_Load(object sender, EventArgs e)
-        {
 
-            cargarGrilla();
-          
-        }       
 
         private void cargarGrilla()
         {
-         
-          IngredienteNegocio negocio  = new IngredienteNegocio();
+
+            IngredienteNegocio negocio = new IngredienteNegocio();
             UnidadMedidaNegocio unidMedi = new UnidadMedidaNegocio();
             try
             {
@@ -60,13 +53,23 @@ namespace AgregarIngrediente
                 listaIngredienteLocal = negocio.ListarIngrediente();
                 dgvIngredientes.DataSource = listaIngredienteLocal;
                 dgvIngredientes.Columns[2].Visible = false;
+                dgvIngredientes.Columns[10].Visible = false;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
         }
-        private void AceptarAgregaIngrediente_Click(object sender, EventArgs e)
+
+
+        private void AltaIngrediente_Load(object sender, EventArgs e)
+        {
+            textNombreIngrediente.CharacterCasing = CharacterCasing.Upper;
+            cargarGrilla();
+
+        }
+
+        private void AceptarAgregaIngrediente_Click_1(object sender, EventArgs e)
         {
             Ingrediente ingrediente = new Ingrediente();
             IngredienteNegocio negocio = new IngredienteNegocio();
@@ -76,15 +79,16 @@ namespace AgregarIngrediente
                 if (estado == false)
                 {
                     DateTime fecha = DateTime.Today;
-                    ingrediente.NombreIngrediente = textNombreIngrediente.Text;
-                    ingrediente.StockIngrediente = 0;
-                    ingrediente.MasterPack = Convert.ToDecimal(textCantidadIngrediente.Text);
-                    ingrediente.PrecioIngrediente = Convert.ToDecimal(textPrecioIngrediente.Text);
-                    ingrediente.UnidadPorIngrediente =(UnidadDeMedida) cboUnidadmedida.SelectedItem;
-                    ingrediente.FechaCreacion = fecha.ToLocalTime();
+                    ingrediente.Nombre = textNombreIngrediente.Text;
+                    ingrediente.Stock = 0;
+                    ingrediente.Master = Convert.ToDecimal(textCantidadIngrediente.Text);
+                    ingrediente.Precio = Convert.ToDecimal(textPrecioIngrediente.Text);
+                    ingrediente.UM = (UnidadDeMedida)cboUnidadmedida.SelectedItem;
+                    ingrediente.F_Add = fecha.ToLocalTime();
                     //ingrediente.UsuarioCreacion = this.usuarioLogueado;
-                    ingrediente.FechaModificacion = fecha.ToLocalTime();
+                    ingrediente.F_Mod = fecha.ToLocalTime();
                     //ingrediente.UsuarioModificacion = this.usuarioLogueado;
+                    ingrediente.estado = true;
                     negocio.agregarIngrediente(ingrediente);
                     textNombreIngrediente.Text = "";
                     textCantidadIngrediente.Text = "";
@@ -98,18 +102,18 @@ namespace AgregarIngrediente
                     Ingrediente ingredient = new Ingrediente();
 
                     Ingrediente ing;
-                     UnidadDeMedida um;
+                    
                     ing = (Ingrediente)dgvIngredientes.CurrentRow.DataBoundItem;
-                   
-                                  
-                    ingredient.IdIngrediente = ing.IdIngrediente;
-                    ingredient.NombreIngrediente = textNombreIngrediente.Text;
-                    ingredient.MasterPack = Convert.ToDecimal(textCantidadIngrediente.Text);
-                    ingredient.UnidadPorIngrediente = (UnidadDeMedida)cboUnidadmedida.SelectedItem;
-                    ingredient.PrecioIngrediente = Convert.ToDecimal(textPrecioIngrediente.Text);
-                    ingredient.FechaModificacion = fecha.ToLocalTime();
-                    ingredient.UsuarioModificacion = this.usuarioLogueado;
 
+
+                    ingredient.Id = ing.Id;
+                    ingredient.Nombre = textNombreIngrediente.Text;
+                    ingredient.Master = Convert.ToDecimal(textCantidadIngrediente.Text);
+                    ingredient.UM = (UnidadDeMedida)cboUnidadmedida.SelectedItem;
+                    ingredient.Precio = Convert.ToDecimal(textPrecioIngrediente.Text);
+                    ingredient.F_Mod = fecha.ToLocalTime();
+                    ingredient.UserMod = this.usuarioLogueado;
+                    ingredient.estado = true;
                     negocio.modificarIngrediente(ingredient);
                     textNombreIngrediente.Text = "";
                     textCantidadIngrediente.Text = "";
@@ -117,7 +121,7 @@ namespace AgregarIngrediente
 
                     cargarGrilla();
                     estado = false;
-
+                    dgvIngredientes.Enabled = true;
 
                 }
             }
@@ -127,39 +131,59 @@ namespace AgregarIngrediente
             }
         }
 
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void btnCancelar_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void FormIngredientes_Load(object sender, EventArgs e)
-        {
-            textNombreIngrediente.CharacterCasing = CharacterCasing.Upper;
+            DeleteAlls();
+            estado = false;
+            dgvIngredientes.Enabled = true;
             cargarGrilla();
         }
 
-        private void btnModificar_Click_1(object sender, EventArgs e)
+        private void btnEliminar_Click_1(object sender, EventArgs e)
         {
-            
+
+            IngredienteNegocio negocio = new IngredienteNegocio();
+
+            Ingrediente ing;
+
+            ing = (Ingrediente)dgvIngredientes.CurrentRow.DataBoundItem;
+
+
+            DialogResult result = MessageBox.Show("Reamente desea eliminar?", "Eliminar", MessageBoxButtons.YesNo);
+
+            if (result == DialogResult.Yes)
+            {
+                negocio.eliminarIngrediente(ing);
+                DeleteAlls();
+                cargarGrilla();
+            }
+            else if (result == DialogResult.No)
+            {
+            }
+
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
             try
             {
                 IngredienteNegocio ingredienteNegocio = new IngredienteNegocio();
-               
+
                 Ingrediente ing;
 
                 ing = (Ingrediente)dgvIngredientes.CurrentRow.DataBoundItem;
-                textNombreIngrediente.Text = ing.NombreIngrediente;
-                textCantidadIngrediente.Text = ing.MasterPack.ToString();
-                textPrecioIngrediente.Text = ing.PrecioIngrediente.ToString();
-                cboUnidadmedida.Text = ing.UnidadPorIngrediente.DescripcionCorta;
-                 
+                textNombreIngrediente.Text = ing.Nombre;
+                textCantidadIngrediente.Text = ing.Master.ToString();
+                textPrecioIngrediente.Text = ing.Precio.ToString();
+                cboUnidadmedida.Text = ing.UM.DescripcionCorta;
+                dgvIngredientes.Enabled = false;
+
                 estado = true;
 
 
-           
 
-                
+
+
             }
             catch (InvalidCastException ex)
             {
@@ -172,40 +196,23 @@ namespace AgregarIngrediente
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void textBusqueda_TextChanged_1(object sender, EventArgs e)
         {
-            DeleteAlls();
-            estado = false;
-            cargarGrilla();
-        }
-
-        private void btnEliminar_Click(object sender, EventArgs e)
-        {
-            
-            IngredienteNegocio negocio = new IngredienteNegocio();
-
-            Ingrediente ing;
-
-             ing = (Ingrediente)dgvIngredientes.CurrentRow.DataBoundItem;
-
-            
-            DialogResult result = MessageBox.Show("Reamente desea eliminar?", "Eliminar", MessageBoxButtons.YesNo);
-
-            if (result == DialogResult.Yes)
+            if (textBusqueda.Text == "")
             {
-                negocio.eliminarIngrediente(ing);
-                DeleteAlls();
-                cargarGrilla();
+                dgvIngredientes.DataSource = listaIngredienteLocal;
             }
-            else if (result == DialogResult.No)
+            else
             {
+                if (textBusqueda.Text.Length >= 1)
+                {
+                    List<Ingrediente> lista;
+                    lista = listaIngredienteLocal.FindAll(X => X.Nombre.Contains(textBusqueda.Text.ToUpper()));
+                    dgvIngredientes.DataSource = lista;
+                }
             }
-           
-
-
-
         }
-
-
     }
 }
+
+

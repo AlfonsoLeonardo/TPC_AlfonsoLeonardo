@@ -12,6 +12,7 @@ namespace Dominio
         public string NombreUsuario { get; set; }
         public string Pass { get; set; }
         public TipoUsuario Tipo { get; set; }
+        public bool Estado { get; set; }
 
         public override string ToString()
        {

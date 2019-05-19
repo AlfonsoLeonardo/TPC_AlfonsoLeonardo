@@ -96,6 +96,7 @@
             // 
             this.dgvlistacomida.AllowUserToAddRows = false;
             this.dgvlistacomida.AllowUserToDeleteRows = false;
+            this.dgvlistacomida.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.dgvlistacomida.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvlistacomida.Location = new System.Drawing.Point(384, 37);
             this.dgvlistacomida.Name = "dgvlistacomida";
@@ -127,6 +128,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.ClientSize = new System.Drawing.Size(1084, 573);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnEliminarComida);
@@ -137,6 +139,7 @@
             this.Controls.Add(this.comida);
             this.Controls.Add(this.btnmodificarcomida);
             this.Controls.Add(this.btnagregarcomida);
+            this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "AltaComida";
             this.Text = "AltaComida";

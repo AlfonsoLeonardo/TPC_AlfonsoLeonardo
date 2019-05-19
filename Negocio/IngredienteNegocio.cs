@@ -23,30 +23,30 @@ namespace Negocio
             Ingrediente Ingre = new Ingrediente();
             try
             {
-                accesoDatos.setearConsulta("select  i.Idingrediente, i.NombreIngrediente, i.PrecioIngrediente, u.Descripcioncorta,i.MasterPack,us.Usuario, i.FechaCreacion ,us2.Usuario as UserMod, i.FechaModificacion from INGREDIENTES as i inner join UNIDADDEMEDIDA as u on u.IdUnidad =i.UnidadMedida inner join USUARIOS as us on  us.IdUsuario=i.UsuarioCreacion inner join usuarios as us2 on us2.IdUsuario=i.UsuarioModificacion");
+                accesoDatos.setearConsulta("select  i.Idingrediente , i.NombreIngrediente, i.PrecioIngrediente, u.Descripcioncorta,i.MasterPack,us.Usuario, i.FechaCreacion ,us2.Usuario as UserMod, i.FechaModificacion from INGREDIENTES as i inner join UNIDADDEMEDIDA as u on u.IdUnidad =i.UnidadMedida inner join USUARIOS as us on  us.IdUsuario=i.UsuarioCreacion inner join usuarios as us2 on us2.IdUsuario=i.UsuarioModificacion where i.Estado=1 ");
                 accesoDatos.abrirConexion();
                 accesoDatos.ejecutarConsulta();
 
                 while (accesoDatos.Lector.Read())
                 {
                     Ingre = new Ingrediente();
-                    Ingre.IdIngrediente = (int)accesoDatos.Lector["IdIngrediente"];
-                    Ingre.NombreIngrediente = accesoDatos.Lector["NombreIngrediente"].ToString();
-                    Ingre.PrecioIngrediente = (decimal)accesoDatos.Lector["PrecioIngrediente"];
-                    Ingre.MasterPack = (decimal)accesoDatos.Lector["MasterPack"];
-                    Ingre.UnidadPorIngrediente = new UnidadDeMedida();
-                    Ingre.UnidadPorIngrediente.IdUnidad = (int)accesoDatos.Lector["IdIngrediente"];
-                    Ingre.UnidadPorIngrediente.DescripcionCorta = accesoDatos.Lector["Descripcioncorta"].ToString();
+                    Ingre.Id = (int)accesoDatos.Lector["Idingrediente"];
+                    Ingre.Nombre = accesoDatos.Lector["NombreIngrediente"].ToString();
+                    Ingre.Precio = (decimal)accesoDatos.Lector["PrecioIngrediente"];
+                    Ingre.Master = (decimal)accesoDatos.Lector["MasterPack"];
+                    Ingre.UM = new UnidadDeMedida();
+                    Ingre.UM.IdUnidad = (int)accesoDatos.Lector["IdIngrediente"];
+                    Ingre.UM.DescripcionCorta = accesoDatos.Lector["Descripcioncorta"].ToString();
                   
-                    Ingre.UsuarioCreacion = new Usuario();
-                    Ingre.UsuarioCreacion.IdUsuario= (int)accesoDatos.Lector["IdIngrediente"];
-                    Ingre.UsuarioCreacion.NombreUsuario= accesoDatos.Lector["Usuario"].ToString();
-                    Ingre.FechaCreacion = (DateTime)accesoDatos.Lector["FechaCreacion"];
-                    Ingre.UsuarioModificacion = new Usuario();
-                    Ingre.UsuarioModificacion.IdUsuario = (int)accesoDatos.Lector["IdIngrediente"];
-                    Ingre.UsuarioModificacion.NombreUsuario = accesoDatos.Lector["UserMod"].ToString();
+                    Ingre.UserAdd = new Usuario();
+                    Ingre.UserAdd.IdUsuario= (int)accesoDatos.Lector["IdIngrediente"];
+                    Ingre.UserAdd.NombreUsuario= accesoDatos.Lector["Usuario"].ToString();
+                    Ingre.F_Add = (DateTime)accesoDatos.Lector["FechaCreacion"];
+                    Ingre.UserMod = new Usuario();
+                    Ingre.UserMod.IdUsuario = (int)accesoDatos.Lector["IdIngrediente"];
+                    Ingre.UserMod.NombreUsuario = accesoDatos.Lector["UserMod"].ToString();
                   
-                     Ingre.FechaModificacion = (DateTime)accesoDatos.Lector["FechaModificacion"];
+                    Ingre.F_Mod = (DateTime)accesoDatos.Lector["FechaModificacion"];
               
                      
                     listado.Add(Ingre);
@@ -76,7 +76,7 @@ namespace Negocio
             {
                 conexion.ConnectionString = "data source=(local); initial catalog=ALFONSO_DB; integrated security=sspi";
                 comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "SET DATEFORMAT 'DMY' insert into INGREDIENTES (NombreIngrediente, StockIngrediente, UnidadMedida, MasterPack, PrecioIngrediente, FechaCreacion, UsuarioCreacion, FechaModificacion, UsuarioModificacion) values ('" + nuevo.NombreIngrediente + "','" + nuevo.StockIngrediente + "','" + nuevo.UnidadPorIngrediente.IdUnidad + "','" + nuevo.PrecioIngrediente + "','" + nuevo.MasterPack + "','"+nuevo.FechaCreacion+"','"+/*nuevo.UsuarioCreacion.IdUsuario*/1+ "','" + nuevo.FechaCreacion + "','" + /*nuevo.UsuarioCreacion.IdUsuario*/1+  "')";
+                comando.CommandText = "SET DATEFORMAT 'DMY' insert into INGREDIENTES (NombreIngrediente, StockIngrediente, UnidadMedida, MasterPack, PrecioIngrediente, FechaCreacion, UsuarioCreacion, FechaModificacion, UsuarioModificacion, Estado) values ('" + nuevo.Nombre + "','" + nuevo.Stock + "','" + nuevo.UM.IdUnidad + "','" + nuevo.Precio + "','" + nuevo.Master + "','"+nuevo.F_Add+"','"+/*nuevo.UsuarioCreacion.IdUsuario*/1+ "','" + nuevo.F_Add + "','" + /*nuevo.UsuarioCreacion.IdUsuario*/1+ "','" + nuevo.estado+ "')";
                 comando.Connection = conexion;
                 conexion.Open();
 
@@ -98,15 +98,15 @@ namespace Negocio
             try
             {
 
-                accesoDatos.setearConsulta("SET DATEFORMAT 'DMY' update INGREDIENTES Set Nombre=@Nombre, StockIngrediente=@StockIngrediente, Precio=@PrecioIngrediente, UnidadMedida=@UnidadMedida, MasterPack=@MasterPack,  FechaModificacion=@FechaModificacion, UsuarioModificacion=@UsuarioModificacion where Id=" + modificar.IdIngrediente.ToString());
+                accesoDatos.setearConsulta("SET DATEFORMAT 'DMY' update INGREDIENTES Set NombreIngrediente=@Nombre, StockIngrediente=@StockIngrediente, PrecioIngrediente=@PrecioIngrediente, UnidadMedida=@UnidadMedida, MasterPack=@MasterPack,  FechaModificacion=@FechaModificacion, UsuarioModificacion=@UsuarioModificacion where IdIngrediente=" + modificar.Id);
                 accesoDatos.Comando.Parameters.Clear();
-                accesoDatos.Comando.Parameters.AddWithValue("@Nombre", modificar.NombreIngrediente);
-                accesoDatos.Comando.Parameters.AddWithValue("@StockIngrediente", modificar.StockIngrediente);
-                accesoDatos.Comando.Parameters.AddWithValue("@PrecioIngrediente", modificar.PrecioIngrediente);
-                accesoDatos.Comando.Parameters.AddWithValue("@UnidadMedida", modificar.UnidadPorIngrediente.IdUnidad);
-                accesoDatos.Comando.Parameters.AddWithValue("@MasterPack", modificar.MasterPack);
-                accesoDatos.Comando.Parameters.AddWithValue("@FechaModificacion", modificar.FechaModificacion);
-                accesoDatos.Comando.Parameters.AddWithValue("@UsuarioModificacion", modificar.UsuarioModificacion.IdUsuario);
+                accesoDatos.Comando.Parameters.AddWithValue("@Nombre", modificar.Nombre);
+                accesoDatos.Comando.Parameters.AddWithValue("@StockIngrediente", modificar.Stock);
+                accesoDatos.Comando.Parameters.AddWithValue("@PrecioIngrediente", modificar.Precio);
+                accesoDatos.Comando.Parameters.AddWithValue("@UnidadMedida", modificar.UM.IdUnidad);
+                accesoDatos.Comando.Parameters.AddWithValue("@MasterPack", modificar.Master);
+                accesoDatos.Comando.Parameters.AddWithValue("@FechaModificacion", modificar.F_Mod);
+                accesoDatos.Comando.Parameters.AddWithValue("@UsuarioModificacion", 1);
 
 
                 accesoDatos.abrirConexion();
@@ -128,7 +128,10 @@ namespace Negocio
             
             try
             {
-                accesoDatos.setearConsulta("DELETE FROM INGREDIENTES WHERE IdIngrediente=" + nuevo.IdIngrediente);
+                accesoDatos.setearConsulta("update INGREDIENTES Set Estado = @Estado where IdIngrediente = " + nuevo.Id);
+      
+                accesoDatos.Comando.Parameters.Clear();
+                accesoDatos.Comando.Parameters.AddWithValue("@Estado", false);
                 accesoDatos.abrirConexion();
                 accesoDatos.ejecutarConsulta();
                 

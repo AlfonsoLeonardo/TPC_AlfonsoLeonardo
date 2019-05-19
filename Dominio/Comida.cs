@@ -8,16 +8,13 @@ namespace Dominio
 {
     public class Comida
     {
-        public int IdComida { get; set; }
-        public string NombreComida { get; set; }
+        public int Id { get; set; }
+        public string Nombre { get; set; }
         public decimal Precio { get; set; }
-        public DateTime FechaCreacion { get; set; }
-        public Usuario UsuarioCreacion { get; set; }
-        public DateTime FechaModificacion { get; set; }
-        public Usuario UsuarioModificacion { get; set; }
-        //public List<IngreditePorComida> ingreditePorComidas { get; set; }
-      
-
-
+        public DateTime F_Add { get; set; }
+        public Usuario UserAdd { get; set; }
+        public DateTime F_Mod { get; set; }
+        public Usuario UserMod { get; set; }
+        public bool Estado { get; set; }
     }
 }

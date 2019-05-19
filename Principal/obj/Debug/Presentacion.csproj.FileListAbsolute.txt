@@ -1,5 +1,4 @@
 C:\Users\alfon\source\repos\TPC_AlfonsoLeonardo\Principal\obj\Debug\Presentacion.csprojAssemblyReference.cache
-C:\Users\alfon\source\repos\TPC_AlfonsoLeonardo\Principal\obj\Debug\Principal.frmABMmenu.resources
 C:\Users\alfon\source\repos\TPC_AlfonsoLeonardo\Principal\obj\Debug\Principal.frmLogin.resources
 C:\Users\alfon\source\repos\TPC_AlfonsoLeonardo\Principal\obj\Debug\Principal.frmPrincipal.resources
 C:\Users\alfon\source\repos\TPC_AlfonsoLeonardo\Principal\obj\Debug\Principal.Properties.Resources.resources
@@ -9,15 +8,13 @@ C:\Users\alfon\source\repos\TPC_AlfonsoLeonardo\Principal\bin\Debug\Principal.ex
 C:\Users\alfon\source\repos\TPC_AlfonsoLeonardo\Principal\bin\Debug\Principal.exe
 C:\Users\alfon\source\repos\TPC_AlfonsoLeonardo\Principal\bin\Debug\Principal.pdb
 C:\Users\alfon\source\repos\TPC_AlfonsoLeonardo\Principal\bin\Debug\AccesoDatos.dll
-C:\Users\alfon\source\repos\TPC_AlfonsoLeonardo\Principal\bin\Debug\AgregarIngrediente.exe
 C:\Users\alfon\source\repos\TPC_AlfonsoLeonardo\Principal\bin\Debug\Dominio.dll
 C:\Users\alfon\source\repos\TPC_AlfonsoLeonardo\Principal\bin\Debug\Negocio.dll
 C:\Users\alfon\source\repos\TPC_AlfonsoLeonardo\Principal\bin\Debug\AccesoDatos.pdb
-C:\Users\alfon\source\repos\TPC_AlfonsoLeonardo\Principal\bin\Debug\AgregarIngrediente.pdb
-C:\Users\alfon\source\repos\TPC_AlfonsoLeonardo\Principal\bin\Debug\AgregarIngrediente.exe.config
 C:\Users\alfon\source\repos\TPC_AlfonsoLeonardo\Principal\bin\Debug\Dominio.pdb
 C:\Users\alfon\source\repos\TPC_AlfonsoLeonardo\Principal\bin\Debug\Negocio.pdb
 C:\Users\alfon\source\repos\TPC_AlfonsoLeonardo\Principal\obj\Debug\Presentacion.csproj.CopyComplete
 C:\Users\alfon\source\repos\TPC_AlfonsoLeonardo\Principal\obj\Debug\Principal.exe
 C:\Users\alfon\source\repos\TPC_AlfonsoLeonardo\Principal\obj\Debug\Principal.pdb
 C:\Users\alfon\source\repos\TPC_AlfonsoLeonardo\Principal\obj\Debug\Principal.AltaComida.resources
+C:\Users\alfon\source\repos\TPC_AlfonsoLeonardo\Principal\obj\Debug\Principal.AltaIngrediente.resources

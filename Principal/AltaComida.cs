@@ -65,12 +65,13 @@ namespace Principal
                 {
                     DateTime fecha = DateTime.Today;
 
-                    comida.NombreComida = textComida.Text;
+                    comida.Nombre = textComida.Text;
                     comida.Precio = Convert.ToDecimal(textcomidaprecio.Text);
-                    comida.FechaCreacion = fecha.ToLocalTime();
-                    comida.UsuarioCreacion = this.Usuario;
-                    comida.FechaModificacion = fecha.ToLocalTime();
-                    comida.UsuarioModificacion = this.Usuario;
+                    comida.Estado = true;
+                    comida.F_Add = fecha.ToLocalTime();
+                    comida.UserAdd = this.Usuario;
+                    comida.F_Mod = fecha.ToLocalTime();
+                    comida.UserMod = this.Usuario;
                     DeleteAllsc();
 
                     negocio.agregarcomida(comida);
@@ -89,11 +90,12 @@ namespace Principal
                 ComidaNegocio negocio = new ComidaNegocio();
                 Comida comi;
                 comi = (Comida)dgvlistacomida.CurrentRow.DataBoundItem;
-                comida.IdComida = comi.IdComida;
-                comida.NombreComida = textComida.Text;
+                comida.Id = comi.Id;
+                comida.Nombre = textComida.Text;
                 comida.Precio = Convert.ToDecimal(textcomidaprecio.Text);
-                comida.FechaModificacion = fecha.ToLocalTime();
-                comida.UsuarioModificacion = this.Usuario;
+                comida.Estado = true;
+                comida.F_Mod = fecha.ToLocalTime();
+                comida.UserMod = this.Usuario;
                 negocio.modificarComida(comida);
                 estado = true;
                 DeleteAllsc();
@@ -135,7 +137,7 @@ namespace Principal
 
             comida = (Comida)dgvlistacomida.CurrentRow.DataBoundItem;
 
-            textComida.Text = comida.NombreComida.ToString();
+            textComida.Text = comida.Nombre.ToString();
             textcomidaprecio.Text = comida.Precio.ToString();
             estado = true;
 

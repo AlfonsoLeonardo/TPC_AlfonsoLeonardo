@@ -33,8 +33,8 @@ namespace Negocio
                 while (accesoDatos.Lector.Read())
                 {
                     Comi= new Comida();
-                    Comi.IdComida=(int)accesoDatos.Lector["IdComida"];
-                    Comi.NombreComida = accesoDatos.Lector["NombreComida"].ToString();
+                    Comi.Id=(int)accesoDatos.Lector["IdComida"];
+                    Comi.Nombre = accesoDatos.Lector["NombreComida"].ToString();
                
                     Comi.Precio = (decimal)accesoDatos.Lector["PrecioComida"];
                     listado.Add(Comi);
@@ -63,7 +63,7 @@ namespace Negocio
             {
                 conexion.ConnectionString = "data source=(local); initial catalog=ALFONSO_DB; integrated security=sspi";
                 comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "SET DATEFORMAT 'DMY' insert into COMIDAS (NombreComida, PrecioComida, FechaCreacion, UsuarioCreacion, FechaModificacion, UsuarioModificacion) values ('" + nuevo.NombreComida + "','" + nuevo.Precio + "','" + nuevo.FechaCreacion + "','" + /*nuevo.UsuarioCreacion*/1 + "','" + nuevo.FechaCreacion + "','" + /*nuevo.UsuarioCreacion*/1 + "')";
+                comando.CommandText = "SET DATEFORMAT 'DMY' insert into COMIDAS (NombreComida, PrecioComida, FechaCreacion, UsuarioCreacion, FechaModificacion, UsuarioModificacion) values ('" + nuevo.Nombre + "','" + nuevo.Precio + "','" + nuevo.F_Add + "','" + /*nuevo.UsuarioCreacion*/1 + "','" + nuevo.F_Add + "','" + /*nuevo.UsuarioCreacion*/1 + "')";
                 comando.Connection = conexion;
                 conexion.Open();
 
@@ -85,10 +85,10 @@ namespace Negocio
             try
             {
 
-                accesoDatos.setearConsulta("SET DATEFORMAT 'DMY' update COMIDAS Set NombreComida=@Nombre,  PrecioComida=@Precio=" + modificar.IdComida.ToString());
+                accesoDatos.setearConsulta("SET DATEFORMAT 'DMY' update COMIDAS Set NombreComida=@Nombre,  PrecioComida=@Precio=" + modificar.Id.ToString());
                 accesoDatos.Comando.Parameters.Clear();
-                accesoDatos.Comando.Parameters.AddWithValue("@Nombre", modificar.NombreComida);
-                accesoDatos.Comando.Parameters.AddWithValue("@Precio", modificar.NombreComida);
+                accesoDatos.Comando.Parameters.AddWithValue("@Nombre", modificar.Nombre);
+                accesoDatos.Comando.Parameters.AddWithValue("@Precio", modificar.Nombre);
                 accesoDatos.abrirConexion();
                 accesoDatos.ejecutarAccion();
 
@@ -108,7 +108,7 @@ namespace Negocio
 
             try
             {
-                accesoDatos.setearConsulta("DELETE FROM COMIDAS WHERE IdComida=" + nuevo.IdComida);
+                accesoDatos.setearConsulta("DELETE FROM COMIDAS WHERE IdComida=" + nuevo.Id);
                 accesoDatos.abrirConexion();
                 accesoDatos.ejecutarConsulta();
 

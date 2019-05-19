@@ -52,11 +52,11 @@
     <Compile Include="AltaComida.Designer.cs">
       <DependentUpon>AltaComida.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmABMmenu.cs">
+    <Compile Include="AltaIngrediente.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmABMmenu.Designer.cs">
-      <DependentUpon>frmABMmenu.cs</DependentUpon>
+    <Compile Include="AltaIngrediente.Designer.cs">
+      <DependentUpon>AltaIngrediente.cs</DependentUpon>
     </Compile>
     <Compile Include="frmLogin.cs">
       <SubType>Form</SubType>
@@ -75,8 +75,8 @@
     <EmbeddedResource Include="AltaComida.resx">
       <DependentUpon>AltaComida.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmABMmenu.resx">
-      <DependentUpon>frmABMmenu.cs</DependentUpon>
+    <EmbeddedResource Include="AltaIngrediente.resx">
+      <DependentUpon>AltaIngrediente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
@@ -110,10 +110,6 @@
     <ProjectReference Include="..\AccesoDatos\AccesoDatos.csproj">
       <Project>{2b957cbc-945a-432c-a8f0-bcff8a4cfde6}</Project>
       <Name>AccesoDatos</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AgregarIngrediente\AgregarIngrediente.csproj">
-      <Project>{10867998-7f37-42b5-ab17-d8d98a42be80}</Project>
-      <Name>AgregarIngrediente</Name>
     </ProjectReference>
     <ProjectReference Include="..\Dominio\Dominio.csproj">
       <Project>{1dc1ebda-93e0-4c22-99ae-fb157aa8f329}</Project>

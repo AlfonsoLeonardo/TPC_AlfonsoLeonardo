@@ -8,17 +8,18 @@ namespace Dominio
 {
     public class Ingrediente
     {
-        public int IdIngrediente { get; set; }
-        public string NombreIngrediente { get; set; }
-        public decimal StockIngrediente { get; set; }
-        public UnidadDeMedida UnidadPorIngrediente { get; set; }
-        public decimal MasterPack { get; set; }
-        public decimal PrecioIngrediente { get; set; }
-        public DateTime FechaCreacion { get; set; }
-        public Usuario UsuarioCreacion { get; set; }
-        public DateTime FechaModificacion { get; set; }
-        public Usuario UsuarioModificacion { get; set; }
-       
-      
+        public int Id { get; set; }
+        public string Nombre { get; set; }
+        public decimal Stock { get; set; }
+        public decimal Master { get; set; }
+        public UnidadDeMedida UM { get; set; }
+        public decimal Precio { get; set; }
+        public DateTime F_Add { get; set; }
+        public Usuario UserAdd { get; set; }
+        public DateTime F_Mod { get; set; }
+        public Usuario UserMod { get; set; }
+        public bool estado { get; set; }
+
+
     }
 }

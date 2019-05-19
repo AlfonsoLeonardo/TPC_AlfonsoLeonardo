@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using Dominio;
-using AgregarIngrediente;
+
 
 namespace Principal
 {
@@ -94,7 +94,7 @@ namespace Principal
         private void btnIngre_Click(object sender, EventArgs e)
         {
             SubMenuABM.Visible = false;
-            AbrirFormHijo(new FormIngredientes());
+            AbrirFormHijo(new AltaIngrediente());
         }
 
         private void btnComid_Click(object sender, EventArgs e)
