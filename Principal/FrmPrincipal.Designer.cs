@@ -38,6 +38,7 @@
             this.btnMaximizar = new System.Windows.Forms.PictureBox();
             this.btnCerrar = new System.Windows.Forms.PictureBox();
             this.panelmenu = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.SubMenuABM = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
@@ -49,15 +50,14 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panelcontenedor = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pnBarraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnRestaurar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BtnMinimizar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMaximizar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCerrar)).BeginInit();
             this.panelmenu.SuspendLayout();
-            this.SubMenuABM.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.SubMenuABM.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnAbm
@@ -73,7 +73,7 @@
             this.btnAbm.Location = new System.Drawing.Point(9, 424);
             this.btnAbm.Name = "btnAbm";
             this.btnAbm.Size = new System.Drawing.Size(188, 38);
-            this.btnAbm.TabIndex = 1;
+            this.btnAbm.TabIndex = 100;
             this.btnAbm.Text = "ABM";
             this.btnAbm.UseVisualStyleBackColor = false;
             this.btnAbm.Click += new System.EventHandler(this.btnAbm_Click);
@@ -89,7 +89,7 @@
             this.btnTomaDePedido.Location = new System.Drawing.Point(9, 161);
             this.btnTomaDePedido.Name = "btnTomaDePedido";
             this.btnTomaDePedido.Size = new System.Drawing.Size(191, 38);
-            this.btnTomaDePedido.TabIndex = 2;
+            this.btnTomaDePedido.TabIndex = 155;
             this.btnTomaDePedido.Text = "Toma De Pedidos";
             this.btnTomaDePedido.UseVisualStyleBackColor = false;
             // 
@@ -104,7 +104,7 @@
             this.btnReporte.Location = new System.Drawing.Point(0, 265);
             this.btnReporte.Name = "btnReporte";
             this.btnReporte.Size = new System.Drawing.Size(200, 38);
-            this.btnReporte.TabIndex = 4;
+            this.btnReporte.TabIndex = 150;
             this.btnReporte.Text = "Reportes";
             this.btnReporte.UseVisualStyleBackColor = false;
             // 
@@ -192,6 +192,16 @@
             this.panelmenu.Size = new System.Drawing.Size(200, 612);
             this.panelmenu.TabIndex = 7;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(200, 155);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 6;
+            this.pictureBox1.TabStop = false;
+            // 
             // SubMenuABM
             // 
             this.SubMenuABM.Controls.Add(this.panel4);
@@ -236,7 +246,7 @@
             this.btnUser.Location = new System.Drawing.Point(12, 82);
             this.btnUser.Name = "btnUser";
             this.btnUser.Size = new System.Drawing.Size(160, 32);
-            this.btnUser.TabIndex = 7;
+            this.btnUser.TabIndex = 103;
             this.btnUser.Text = "Usuario";
             this.btnUser.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnUser.UseVisualStyleBackColor = false;
@@ -255,7 +265,7 @@
             this.btnComid.Location = new System.Drawing.Point(12, 45);
             this.btnComid.Name = "btnComid";
             this.btnComid.Size = new System.Drawing.Size(160, 32);
-            this.btnComid.TabIndex = 5;
+            this.btnComid.TabIndex = 102;
             this.btnComid.Text = "Comida";
             this.btnComid.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnComid.UseVisualStyleBackColor = false;
@@ -282,7 +292,7 @@
             this.btnIngre.Location = new System.Drawing.Point(12, -1);
             this.btnIngre.Name = "btnIngre";
             this.btnIngre.Size = new System.Drawing.Size(160, 41);
-            this.btnIngre.TabIndex = 3;
+            this.btnIngre.TabIndex = 101;
             this.btnIngre.Text = "Ingredientes";
             this.btnIngre.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnIngre.UseVisualStyleBackColor = false;
@@ -322,16 +332,6 @@
             this.panelcontenedor.Size = new System.Drawing.Size(1100, 612);
             this.panelcontenedor.TabIndex = 8;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(200, 155);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 6;
-            this.pictureBox1.TabStop = false;
-            // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -353,8 +353,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnMaximizar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCerrar)).EndInit();
             this.panelmenu.ResumeLayout(false);
-            this.SubMenuABM.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.SubMenuABM.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

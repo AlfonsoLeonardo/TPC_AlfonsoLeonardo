@@ -31,7 +31,7 @@ namespace Principal
 
         private void frmPrincipal_Load_1(object sender, EventArgs e)
         {
-           /* try
+            try
             {
                 usuarioLogueado = new Usuario();
                 frmLogin login = new frmLogin(usuarioLogueado);
@@ -46,7 +46,7 @@ namespace Principal
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
-            }*/
+            }
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)
@@ -94,7 +94,7 @@ namespace Principal
         private void btnIngre_Click(object sender, EventArgs e)
         {
             SubMenuABM.Visible = false;
-            AbrirFormHijo(new AltaIngrediente());
+            AbrirFormHijo(new AltaIngrediente(usuarioLogueado));
         }
 
         private void btnComid_Click(object sender, EventArgs e)

@@ -1,4 +1,7 @@
-﻿namespace Principal
+﻿using System.Drawing;
+using System.Windows.Forms;
+
+namespace Principal
 {
     partial class AltaIngrediente
     {
@@ -28,11 +31,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle31 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle33 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle34 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle35 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle36 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle37 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle38 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle39 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle40 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lBusqueda = new System.Windows.Forms.Label();
             this.textBusqueda = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -52,11 +55,21 @@
             this.labelPrecio = new System.Windows.Forms.Label();
             this.labelcantidad = new System.Windows.Forms.Label();
             this.labelnombre = new System.Windows.Forms.Label();
+            this.lIngredienteexiste = new System.Windows.Forms.Label();
+            this.lTxtvacioNombre = new System.Windows.Forms.Label();
+            this.ltxtprecioingrediente = new System.Windows.Forms.Label();
+            this.ltxtcantidadIngrediente = new System.Windows.Forms.Label();
+            this.pnNombreing = new System.Windows.Forms.Panel();
+            this.pnPrecioing = new System.Windows.Forms.Panel();
+            this.pnCantidading = new System.Windows.Forms.Panel();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIngredientes)).BeginInit();
+            this.pnNombreing.SuspendLayout();
+            this.pnPrecioing.SuspendLayout();
+            this.pnCantidading.SuspendLayout();
             this.SuspendLayout();
             // 
             // lBusqueda
@@ -76,7 +89,7 @@
             this.textBusqueda.Location = new System.Drawing.Point(516, 46);
             this.textBusqueda.Name = "textBusqueda";
             this.textBusqueda.Size = new System.Drawing.Size(147, 29);
-            this.textBusqueda.TabIndex = 33;
+            this.textBusqueda.TabIndex = 7;
             this.textBusqueda.TextChanged += new System.EventHandler(this.textBusqueda_TextChanged_1);
             // 
             // panel3
@@ -99,7 +112,7 @@
             this.btnEliminar.Location = new System.Drawing.Point(-2, -2);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(113, 55);
-            this.btnEliminar.TabIndex = 14;
+            this.btnEliminar.TabIndex = 9;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click_1);
@@ -124,7 +137,7 @@
             this.btnModificar.Location = new System.Drawing.Point(-2, -2);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(113, 55);
-            this.btnModificar.TabIndex = 9;
+            this.btnModificar.TabIndex = 10;
             this.btnModificar.Text = "Modificar";
             this.btnModificar.UseVisualStyleBackColor = true;
             this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
@@ -150,7 +163,7 @@
             this.btnCancelar.Location = new System.Drawing.Point(-2, -2);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(113, 55);
-            this.btnCancelar.TabIndex = 13;
+            this.btnCancelar.TabIndex = 6;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
@@ -176,7 +189,7 @@
             this.AceptarAgregaIngrediente.Location = new System.Drawing.Point(-2, -2);
             this.AceptarAgregaIngrediente.Name = "AceptarAgregaIngrediente";
             this.AceptarAgregaIngrediente.Size = new System.Drawing.Size(113, 55);
-            this.AceptarAgregaIngrediente.TabIndex = 7;
+            this.AceptarAgregaIngrediente.TabIndex = 5;
             this.AceptarAgregaIngrediente.Text = "Ingresar";
             this.AceptarAgregaIngrediente.UseVisualStyleBackColor = true;
             this.AceptarAgregaIngrediente.Click += new System.EventHandler(this.AceptarAgregaIngrediente_Click_1);
@@ -186,7 +199,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(33, 206);
+            this.label1.Location = new System.Drawing.Point(33, 297);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(177, 25);
             this.label1.TabIndex = 28;
@@ -197,10 +210,11 @@
             this.cboUnidadmedida.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboUnidadmedida.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboUnidadmedida.FormattingEnabled = true;
-            this.cboUnidadmedida.Location = new System.Drawing.Point(225, 201);
+            this.cboUnidadmedida.ItemHeight = 24;
+            this.cboUnidadmedida.Location = new System.Drawing.Point(242, 292);
             this.cboUnidadmedida.Name = "cboUnidadmedida";
             this.cboUnidadmedida.Size = new System.Drawing.Size(68, 32);
-            this.cboUnidadmedida.TabIndex = 27;
+            this.cboUnidadmedida.TabIndex = 2;
             // 
             // dgvIngredientes
             // 
@@ -208,90 +222,93 @@
             this.dgvIngredientes.AllowUserToDeleteRows = false;
             this.dgvIngredientes.AllowUserToResizeColumns = false;
             this.dgvIngredientes.AllowUserToResizeRows = false;
-            dataGridViewCellStyle31.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-            dataGridViewCellStyle31.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle31.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle31.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle31.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvIngredientes.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle31;
+            dataGridViewCellStyle36.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle36.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle36.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle36.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle36.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvIngredientes.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle36;
             this.dgvIngredientes.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.dgvIngredientes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
             this.dgvIngredientes.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.dgvIngredientes.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvIngredientes.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
-            dataGridViewCellStyle32.BackColor = System.Drawing.Color.Maroon;
-            dataGridViewCellStyle32.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle32.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle32.SelectionBackColor = System.Drawing.Color.Red;
-            dataGridViewCellStyle32.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle32.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvIngredientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle32;
+            dataGridViewCellStyle37.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
+            dataGridViewCellStyle37.BackColor = System.Drawing.Color.Maroon;
+            dataGridViewCellStyle37.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle37.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle37.SelectionBackColor = System.Drawing.Color.Red;
+            dataGridViewCellStyle37.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle37.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvIngredientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle37;
             this.dgvIngredientes.ColumnHeadersHeight = 20;
             this.dgvIngredientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle33.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-            dataGridViewCellStyle33.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            dataGridViewCellStyle33.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle33.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle33.SelectionBackColor = System.Drawing.Color.Red;
-            dataGridViewCellStyle33.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle33.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvIngredientes.DefaultCellStyle = dataGridViewCellStyle33;
+            dataGridViewCellStyle38.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle38.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            dataGridViewCellStyle38.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle38.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle38.SelectionBackColor = System.Drawing.Color.Red;
+            dataGridViewCellStyle38.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle38.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvIngredientes.DefaultCellStyle = dataGridViewCellStyle38;
             this.dgvIngredientes.EnableHeadersVisualStyles = false;
             this.dgvIngredientes.GridColor = System.Drawing.Color.White;
             this.dgvIngredientes.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.dgvIngredientes.Location = new System.Drawing.Point(343, 126);
+            this.dgvIngredientes.Location = new System.Drawing.Point(343, 129);
             this.dgvIngredientes.MultiSelect = false;
             this.dgvIngredientes.Name = "dgvIngredientes";
             this.dgvIngredientes.ReadOnly = true;
             this.dgvIngredientes.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle34.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-            dataGridViewCellStyle34.BackColor = System.Drawing.Color.Red;
-            dataGridViewCellStyle34.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle34.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle34.SelectionBackColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle34.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle34.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvIngredientes.RowHeadersDefaultCellStyle = dataGridViewCellStyle34;
+            dataGridViewCellStyle39.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle39.BackColor = System.Drawing.Color.Red;
+            dataGridViewCellStyle39.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle39.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle39.SelectionBackColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle39.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle39.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvIngredientes.RowHeadersDefaultCellStyle = dataGridViewCellStyle39;
             this.dgvIngredientes.RowHeadersVisible = false;
             this.dgvIngredientes.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle35.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-            this.dgvIngredientes.RowsDefaultCellStyle = dataGridViewCellStyle35;
+            dataGridViewCellStyle40.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            this.dgvIngredientes.RowsDefaultCellStyle = dataGridViewCellStyle40;
             this.dgvIngredientes.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
             this.dgvIngredientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvIngredientes.Size = new System.Drawing.Size(708, 365);
-            this.dgvIngredientes.TabIndex = 26;
+            this.dgvIngredientes.TabIndex = 8;
             // 
             // textPrecioIngrediente
             // 
             this.textPrecioIngrediente.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textPrecioIngrediente.Location = new System.Drawing.Point(146, 249);
+            this.textPrecioIngrediente.Location = new System.Drawing.Point(4, 3);
             this.textPrecioIngrediente.Name = "textPrecioIngrediente";
             this.textPrecioIngrediente.Size = new System.Drawing.Size(147, 29);
-            this.textPrecioIngrediente.TabIndex = 25;
+            this.textPrecioIngrediente.TabIndex = 4;
+            this.textPrecioIngrediente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textPrecioIngrediente_KeyPress);
             // 
             // textCantidadIngrediente
             // 
             this.textCantidadIngrediente.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textCantidadIngrediente.Location = new System.Drawing.Point(146, 166);
+            this.textCantidadIngrediente.Location = new System.Drawing.Point(4, 3);
             this.textCantidadIngrediente.Name = "textCantidadIngrediente";
-            this.textCantidadIngrediente.Size = new System.Drawing.Size(147, 29);
-            this.textCantidadIngrediente.TabIndex = 24;
+            this.textCantidadIngrediente.Size = new System.Drawing.Size(143, 29);
+            this.textCantidadIngrediente.TabIndex = 2;
+            this.textCantidadIngrediente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textCantidadIngrediente_KeyPress);
             // 
             // textNombreIngrediente
             // 
+            this.textNombreIngrediente.BackColor = System.Drawing.Color.White;
             this.textNombreIngrediente.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textNombreIngrediente.Location = new System.Drawing.Point(146, 126);
+            this.textNombreIngrediente.Location = new System.Drawing.Point(3, 3);
             this.textNombreIngrediente.Name = "textNombreIngrediente";
-            this.textNombreIngrediente.Size = new System.Drawing.Size(147, 29);
-            this.textNombreIngrediente.TabIndex = 23;
+            this.textNombreIngrediente.Size = new System.Drawing.Size(164, 29);
+            this.textNombreIngrediente.TabIndex = 1;
             // 
             // labelPrecio
             // 
             this.labelPrecio.AutoSize = true;
             this.labelPrecio.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelPrecio.ForeColor = System.Drawing.Color.White;
-            this.labelPrecio.Location = new System.Drawing.Point(33, 253);
+            this.labelPrecio.Location = new System.Drawing.Point(33, 218);
             this.labelPrecio.Name = "labelPrecio";
             this.labelPrecio.Size = new System.Drawing.Size(81, 25);
             this.labelPrecio.TabIndex = 22;
@@ -302,7 +319,7 @@
             this.labelcantidad.AutoSize = true;
             this.labelcantidad.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelcantidad.ForeColor = System.Drawing.Color.White;
-            this.labelcantidad.Location = new System.Drawing.Point(33, 169);
+            this.labelcantidad.Location = new System.Drawing.Point(33, 136);
             this.labelcantidad.Name = "labelcantidad";
             this.labelcantidad.Size = new System.Drawing.Size(114, 25);
             this.labelcantidad.TabIndex = 21;
@@ -313,18 +330,104 @@
             this.labelnombre.AutoSize = true;
             this.labelnombre.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelnombre.ForeColor = System.Drawing.Color.White;
-            this.labelnombre.Location = new System.Drawing.Point(33, 128);
+            this.labelnombre.Location = new System.Drawing.Point(33, 71);
             this.labelnombre.Name = "labelnombre";
             this.labelnombre.Size = new System.Drawing.Size(101, 25);
             this.labelnombre.TabIndex = 20;
             this.labelnombre.Text = "Nombre:";
+            // 
+            // lIngredienteexiste
+            // 
+            this.lIngredienteexiste.AutoSize = true;
+            this.lIngredienteexiste.BackColor = System.Drawing.Color.Red;
+            this.lIngredienteexiste.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lIngredienteexiste.ForeColor = System.Drawing.Color.White;
+            this.lIngredienteexiste.Location = new System.Drawing.Point(180, 102);
+            this.lIngredienteexiste.Name = "lIngredienteexiste";
+            this.lIngredienteexiste.Size = new System.Drawing.Size(130, 13);
+            this.lIngredienteexiste.TabIndex = 35;
+            this.lIngredienteexiste.Text = "*Ingrediente ya existe";
+            this.lIngredienteexiste.Visible = false;
+            // 
+            // lTxtvacioNombre
+            // 
+            this.lTxtvacioNombre.AutoSize = true;
+            this.lTxtvacioNombre.BackColor = System.Drawing.Color.Red;
+            this.lTxtvacioNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lTxtvacioNombre.ForeColor = System.Drawing.Color.White;
+            this.lTxtvacioNombre.Location = new System.Drawing.Point(96, 102);
+            this.lTxtvacioNombre.Name = "lTxtvacioNombre";
+            this.lTxtvacioNombre.Size = new System.Drawing.Size(214, 13);
+            this.lTxtvacioNombre.TabIndex = 36;
+            this.lTxtvacioNombre.Text = "*Debe ingresar al menos un caracter";
+            this.lTxtvacioNombre.Visible = false;
+            // 
+            // ltxtprecioingrediente
+            // 
+            this.ltxtprecioingrediente.AutoSize = true;
+            this.ltxtprecioingrediente.BackColor = System.Drawing.Color.Red;
+            this.ltxtprecioingrediente.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ltxtprecioingrediente.ForeColor = System.Drawing.Color.White;
+            this.ltxtprecioingrediente.Location = new System.Drawing.Point(79, 247);
+            this.ltxtprecioingrediente.Name = "ltxtprecioingrediente";
+            this.ltxtprecioingrediente.Size = new System.Drawing.Size(231, 13);
+            this.ltxtprecioingrediente.TabIndex = 38;
+            this.ltxtprecioingrediente.Text = "*Debe ingresar un numero mayor a cero";
+            this.ltxtprecioingrediente.Visible = false;
+            // 
+            // ltxtcantidadIngrediente
+            // 
+            this.ltxtcantidadIngrediente.AutoSize = true;
+            this.ltxtcantidadIngrediente.BackColor = System.Drawing.Color.Red;
+            this.ltxtcantidadIngrediente.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ltxtcantidadIngrediente.ForeColor = System.Drawing.Color.White;
+            this.ltxtcantidadIngrediente.Location = new System.Drawing.Point(79, 167);
+            this.ltxtcantidadIngrediente.Name = "ltxtcantidadIngrediente";
+            this.ltxtcantidadIngrediente.Size = new System.Drawing.Size(231, 13);
+            this.ltxtcantidadIngrediente.TabIndex = 39;
+            this.ltxtcantidadIngrediente.Text = "*Debe ingresar un numero mayor a cero";
+            this.ltxtcantidadIngrediente.Visible = false;
+            // 
+            // pnNombreing
+            // 
+            this.pnNombreing.BackColor = System.Drawing.Color.Black;
+            this.pnNombreing.Controls.Add(this.textNombreIngrediente);
+            this.pnNombreing.Location = new System.Drawing.Point(140, 63);
+            this.pnNombreing.Name = "pnNombreing";
+            this.pnNombreing.Size = new System.Drawing.Size(170, 36);
+            this.pnNombreing.TabIndex = 40;
+            // 
+            // pnPrecioing
+            // 
+            this.pnPrecioing.BackColor = System.Drawing.Color.Black;
+            this.pnPrecioing.Controls.Add(this.textPrecioIngrediente);
+            this.pnPrecioing.Location = new System.Drawing.Point(156, 208);
+            this.pnPrecioing.Name = "pnPrecioing";
+            this.pnPrecioing.Size = new System.Drawing.Size(154, 36);
+            this.pnPrecioing.TabIndex = 0;
+            // 
+            // pnCantidading
+            // 
+            this.pnCantidading.BackColor = System.Drawing.Color.Black;
+            this.pnCantidading.Controls.Add(this.textCantidadIngrediente);
+            this.pnCantidading.Location = new System.Drawing.Point(159, 128);
+            this.pnCantidading.Name = "pnCantidading";
+            this.pnCantidading.Size = new System.Drawing.Size(151, 36);
+            this.pnCantidading.TabIndex = 0;
             // 
             // AltaIngrediente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.ClientSize = new System.Drawing.Size(1084, 613);
+            this.ClientSize = new System.Drawing.Size(1084, 618);
+            this.Controls.Add(this.pnCantidading);
+            this.Controls.Add(this.pnPrecioing);
+            this.Controls.Add(this.pnNombreing);
+            this.Controls.Add(this.ltxtcantidadIngrediente);
+            this.Controls.Add(this.ltxtprecioingrediente);
+            this.Controls.Add(this.lTxtvacioNombre);
+            this.Controls.Add(this.lIngredienteexiste);
             this.Controls.Add(this.lBusqueda);
             this.Controls.Add(this.textBusqueda);
             this.Controls.Add(this.panel3);
@@ -334,9 +437,6 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cboUnidadmedida);
             this.Controls.Add(this.dgvIngredientes);
-            this.Controls.Add(this.textPrecioIngrediente);
-            this.Controls.Add(this.textCantidadIngrediente);
-            this.Controls.Add(this.textNombreIngrediente);
             this.Controls.Add(this.labelPrecio);
             this.Controls.Add(this.labelcantidad);
             this.Controls.Add(this.labelnombre);
@@ -349,6 +449,12 @@
             this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvIngredientes)).EndInit();
+            this.pnNombreing.ResumeLayout(false);
+            this.pnNombreing.PerformLayout();
+            this.pnPrecioing.ResumeLayout(false);
+            this.pnPrecioing.PerformLayout();
+            this.pnCantidading.ResumeLayout(false);
+            this.pnCantidading.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -375,5 +481,12 @@
         private System.Windows.Forms.Label labelPrecio;
         private System.Windows.Forms.Label labelcantidad;
         private System.Windows.Forms.Label labelnombre;
+        private System.Windows.Forms.Label lIngredienteexiste;
+        private System.Windows.Forms.Label lTxtvacioNombre;
+        private System.Windows.Forms.Label ltxtprecioingrediente;
+        private System.Windows.Forms.Label ltxtcantidadIngrediente;
+        private Panel pnNombreing;
+        private Panel pnPrecioing;
+        private Panel pnCantidading;
     }
 }

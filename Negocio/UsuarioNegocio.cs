@@ -10,11 +10,7 @@ namespace Negocio
 {
     public class UsuarioNegocio
     {
-        private Usuario usuarioLogueado;
-        public void setusuario(Usuario usuario)
-        {
-            this.usuarioLogueado = usuario;
-        }
+      
         public bool validarUsuario(Usuario usuario)
         {
             
@@ -36,7 +32,7 @@ namespace Negocio
                     usuario.Tipo = new TipoUsuario();
                     usuario.Tipo.Id = (int)conexion.Lector["IdTipoUsuario"];
 
-                    setusuario(usuario);
+                    
                     return true;
                 }
                 else

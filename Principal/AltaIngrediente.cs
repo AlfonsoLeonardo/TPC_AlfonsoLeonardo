@@ -16,18 +16,19 @@ namespace Principal
 {
     public partial class AltaIngrediente : Form
     {
-        public AltaIngrediente()
+        public AltaIngrediente(Usuario usuario)
         {
             InitializeComponent();
+            setusuario(usuario);
         }
-
+        bool estado = false;
         private Usuario usuarioLogueado;
         public void setusuario(Usuario usuario)
         {
             this.usuarioLogueado = usuario;
         }
 
-        bool estado = false;
+        
 
 
         private List<Ingrediente> listaIngredienteLocal;
@@ -38,7 +39,6 @@ namespace Principal
             textCantidadIngrediente.Text = "";
             textPrecioIngrediente.Text = "";
         }
-
 
         private void cargarGrilla()
         {
@@ -61,12 +61,11 @@ namespace Principal
             }
         }
 
-
         private void AltaIngrediente_Load(object sender, EventArgs e)
         {
             textNombreIngrediente.CharacterCasing = CharacterCasing.Upper;
             cargarGrilla();
-
+            textNombreIngrediente.Focus();
         }
 
         private void AceptarAgregaIngrediente_Click_1(object sender, EventArgs e)
@@ -76,20 +75,85 @@ namespace Principal
             UnidadDeMedida unidadDeMedida = new UnidadDeMedida();
             try
             {
+
+                if (textNombreIngrediente.Text.Trim() == string.Empty)
+                {
+
+                    lTxtvacioNombre.Visible = true;
+                    
+                    pnNombreing.BackColor = System.Drawing.Color.Red;
+                    dgvIngredientes.Enabled = false;
+                    return;
+
+                }
+                else
+                {
+                    lTxtvacioNombre.Visible = false;
+                    
+                    pnNombreing.BackColor = System.Drawing.Color.Black;
+                    dgvIngredientes.Enabled = true;
+
+                }
+                if (textCantidadIngrediente.Text.Trim() == string.Empty|| Convert.ToDecimal(textCantidadIngrediente.Text)<1)
+                {
+                    ltxtcantidadIngrediente.Visible = true;
+                    pnCantidading.BackColor = System.Drawing.Color.Red;
+                    dgvIngredientes.Enabled = true;
+                    return;
+                }
+                else
+                {
+                    ltxtcantidadIngrediente.Visible = false;
+                    pnCantidading.BackColor = System.Drawing.Color.Black;
+                    dgvIngredientes.Enabled = true;
+                }
+
+                if (textPrecioIngrediente.Text.Trim() == string.Empty ||( Convert.ToDecimal(textPrecioIngrediente.Text)) < 1)
+                {
+                    ltxtprecioingrediente.Visible = true;
+                    pnPrecioing.BackColor = System.Drawing.Color.Red;
+                    dgvIngredientes.Enabled = true;
+                    return;
+                }
+                else
+                {
+                    ltxtprecioingrediente.Visible = false;
+                    pnPrecioing.BackColor = System.Drawing.Color.Black;
+                    dgvIngredientes.Enabled = true;
+                }
+
                 if (estado == false)
                 {
+                   
                     DateTime fecha = DateTime.Today;
                     ingrediente.Nombre = textNombreIngrediente.Text;
                     ingrediente.Stock = 0;
                     ingrediente.Master = Convert.ToDecimal(textCantidadIngrediente.Text);
                     ingrediente.Precio = Convert.ToDecimal(textPrecioIngrediente.Text);
                     ingrediente.UM = (UnidadDeMedida)cboUnidadmedida.SelectedItem;
-                    ingrediente.F_Add = fecha.ToLocalTime();
-                    //ingrediente.UsuarioCreacion = this.usuarioLogueado;
                     ingrediente.F_Mod = fecha.ToLocalTime();
-                    //ingrediente.UsuarioModificacion = this.usuarioLogueado;
-                    ingrediente.estado = true;
-                    negocio.agregarIngrediente(ingrediente);
+                    ingrediente.UserMod = this.usuarioLogueado;
+                    ingrediente.F_Add = fecha.ToLocalTime();
+                    ingrediente.UserAdd = this.usuarioLogueado;
+                    if (negocio.validarIngrediente(ingrediente))
+                    {
+                        lIngredienteexiste.Visible = true;
+                        pnNombreing.BackColor = System.Drawing.Color.Red;
+                        dgvIngredientes.Enabled = false;
+                        return;
+                    }
+                    else
+                    {
+
+                        lIngredienteexiste.Visible = false;
+                        pnNombreing.BackColor = System.Drawing.Color.Black;
+                        dgvIngredientes.Enabled = true;
+
+                    }
+
+                    //ingrediente.estado = true;
+
+                    //negocio.agregarIngrediente(ingrediente);
                     textNombreIngrediente.Text = "";
                     textCantidadIngrediente.Text = "";
                     textPrecioIngrediente.Text = "";
@@ -100,12 +164,7 @@ namespace Principal
                     DateTime fecha = DateTime.Today;
                     IngredienteNegocio ingredienteNegocio = new IngredienteNegocio();
                     Ingrediente ingredient = new Ingrediente();
-
-                    Ingrediente ing;
-                    
-                    ing = (Ingrediente)dgvIngredientes.CurrentRow.DataBoundItem;
-
-
+                    Ingrediente ing = (Ingrediente)dgvIngredientes.CurrentRow.DataBoundItem;
                     ingredient.Id = ing.Id;
                     ingredient.Nombre = textNombreIngrediente.Text;
                     ingredient.Master = Convert.ToDecimal(textCantidadIngrediente.Text);
@@ -118,11 +177,9 @@ namespace Principal
                     textNombreIngrediente.Text = "";
                     textCantidadIngrediente.Text = "";
                     textPrecioIngrediente.Text = "";
-
                     cargarGrilla();
                     estado = false;
                     dgvIngredientes.Enabled = true;
-
                 }
             }
             catch (Exception ex)
@@ -167,6 +224,7 @@ namespace Principal
         {
             try
             {
+                
                 IngredienteNegocio ingredienteNegocio = new IngredienteNegocio();
 
                 Ingrediente ing;
@@ -210,6 +268,43 @@ namespace Principal
                     lista = listaIngredienteLocal.FindAll(X => X.Nombre.Contains(textBusqueda.Text.ToUpper()));
                     dgvIngredientes.DataSource = lista;
                 }
+            }
+        }
+
+        private void textCantidadIngrediente_KeyPress(object sender, KeyPressEventArgs e)
+        {
+           
+            if ((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8 && e.KeyChar != 13&&e.KeyChar!='.')
+            {
+                e.Handled = true;
+                ltxtcantidadIngrediente.Visible = true;
+                pnCantidading.BackColor = System.Drawing.Color.Red;
+            }
+            
+            else 
+            {
+                ltxtcantidadIngrediente.Visible = false;
+                pnCantidading.BackColor = System.Drawing.Color.Black;
+                 textCantidadIngrediente.Focus();
+            }
+        }
+
+        private void textPrecioIngrediente_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            
+            if ((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8 && e.KeyChar != 13 && e.KeyChar != '.')
+            {
+                e.Handled = true;
+                ltxtprecioingrediente.Visible = true;
+                pnPrecioing.BackColor = System.Drawing.Color.Red;
+            }
+         
+            else 
+            {
+                ltxtprecioingrediente.Visible = false;
+                pnPrecioing.BackColor = System.Drawing.Color.Black;
+
+                textPrecioIngrediente.Focus();
             }
         }
     }

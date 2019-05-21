@@ -66,8 +66,6 @@ namespace Negocio
                 
             }
         }
-
-
         public void agregarIngrediente(Ingrediente nuevo)
         {
             SqlConnection conexion = new SqlConnection();
@@ -76,12 +74,10 @@ namespace Negocio
             {
                 conexion.ConnectionString = "data source=(local); initial catalog=ALFONSO_DB; integrated security=sspi";
                 comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "SET DATEFORMAT 'DMY' insert into INGREDIENTES (NombreIngrediente, StockIngrediente, UnidadMedida, MasterPack, PrecioIngrediente, FechaCreacion, UsuarioCreacion, FechaModificacion, UsuarioModificacion, Estado) values ('" + nuevo.Nombre + "','" + nuevo.Stock + "','" + nuevo.UM.IdUnidad + "','" + nuevo.Precio + "','" + nuevo.Master + "','"+nuevo.F_Add+"','"+/*nuevo.UsuarioCreacion.IdUsuario*/1+ "','" + nuevo.F_Add + "','" + /*nuevo.UsuarioCreacion.IdUsuario*/1+ "','" + nuevo.estado+ "')";
+                comando.CommandText = "SET DATEFORMAT 'DMY' insert into INGREDIENTES (NombreIngrediente, StockIngrediente, UnidadMedida, MasterPack, PrecioIngrediente, FechaCreacion, UsuarioCreacion, FechaModificacion, UsuarioModificacion, Estado) values ('" + nuevo.Nombre + "','" + nuevo.Stock + "','" + nuevo.UM.IdUnidad + "','" + nuevo.Precio + "','" + nuevo.Master + "','"+nuevo.F_Add+"','"+nuevo.UserAdd.IdUsuario+ "','" + nuevo.F_Add + "','" +nuevo.UserMod.IdUsuario+ "','" + nuevo.estado+ "')";
                 comando.Connection = conexion;
                 conexion.Open();
-
                 comando.ExecuteNonQuery();
-
             }
             catch (Exception ex)
             {
@@ -98,7 +94,7 @@ namespace Negocio
             try
             {
 
-                accesoDatos.setearConsulta("SET DATEFORMAT 'DMY' update INGREDIENTES Set NombreIngrediente=@Nombre, StockIngrediente=@StockIngrediente, PrecioIngrediente=@PrecioIngrediente, UnidadMedida=@UnidadMedida, MasterPack=@MasterPack,  FechaModificacion=@FechaModificacion, UsuarioModificacion=@UsuarioModificacion where IdIngrediente=" + modificar.Id);
+                accesoDatos.setearConsulta("SET DATEFORMAT 'DMY' update INGREDIENTES Set NombreIngrediente=@Nombre, StockIngrediente=@StockIngrediente, PrecioIngrediente=@PrecioIngrediente, UnidadMedida=@UnidadMedida, MasterPack=@MasterPack,  FechaModificacion=@FechaModificacion, UsuarioModificacion=@UsuarioModificacion, Estado=@Estado where IdIngrediente=" + modificar.Id);
                 accesoDatos.Comando.Parameters.Clear();
                 accesoDatos.Comando.Parameters.AddWithValue("@Nombre", modificar.Nombre);
                 accesoDatos.Comando.Parameters.AddWithValue("@StockIngrediente", modificar.Stock);
@@ -106,8 +102,8 @@ namespace Negocio
                 accesoDatos.Comando.Parameters.AddWithValue("@UnidadMedida", modificar.UM.IdUnidad);
                 accesoDatos.Comando.Parameters.AddWithValue("@MasterPack", modificar.Master);
                 accesoDatos.Comando.Parameters.AddWithValue("@FechaModificacion", modificar.F_Mod);
-                accesoDatos.Comando.Parameters.AddWithValue("@UsuarioModificacion", 1);
-
+                accesoDatos.Comando.Parameters.AddWithValue("@UsuarioModificacion", modificar.UserMod.IdUsuario);
+                accesoDatos.Comando.Parameters.AddWithValue("@Estado", modificar.estado);
 
                 accesoDatos.abrirConexion();
                 accesoDatos.ejecutarAccion();
@@ -144,6 +140,47 @@ namespace Negocio
             {
                 accesoDatos.cerrarConexion();
 
+            }
+        }
+        public bool validarIngrediente(Ingrediente nuevo)
+        {
+
+            AccesoDatosManager conexion;
+            try
+            {
+                conexion = new AccesoDatosManager();
+                conexion.setearConsulta("select IdIngrediente, Estado, NombreIngrediente from INGREDIENTES Where NombreIngrediente=@Nombre");
+                conexion.Comando.Parameters.Clear();
+                conexion.Comando.Parameters.AddWithValue("@Nombre", nuevo.Nombre);
+             
+                conexion.abrirConexion();
+                conexion.ejecutarConsulta();
+                if (conexion.Lector.Read())
+                {
+                    
+                    nuevo.estado = (bool)conexion.Lector["Estado"];
+                    if (false == nuevo.estado)
+                    {
+                        // nuevo.Id = (int)conexion.Lector["IdIngrediente"];
+                        nuevo.Id = (int)conexion.Lector["IdIngrediente"];
+                        nuevo.estado = true;
+                        modificarIngrediente(nuevo);
+                        return false;
+                        
+                    }
+                     return true;
+                }
+                else
+                {
+                    nuevo.estado = true;
+                    agregarIngrediente(nuevo);
+
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
     }
