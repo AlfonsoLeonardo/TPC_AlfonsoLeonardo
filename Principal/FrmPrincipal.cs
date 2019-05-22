@@ -17,8 +17,12 @@ namespace Principal
     {
       
         private Usuario usuarioLogueado;
-            
-  
+
+        public Usuario UsuarioLogueado
+        {
+            get { return usuarioLogueado; }
+        }
+   
         public frmPrincipal()
         {
             InitializeComponent();
@@ -39,9 +43,10 @@ namespace Principal
 
                 if (usuarioLogueado.Tipo.Id == TipoUsuario.ADMINISTRADOR)
                 {
-                   
+                    btnAbm.Visible = true;
+                    pnABM.Visible = true;
                 }
-
+                lUsernombre.Text = "Usuario: "+ usuarioLogueado.Apellido.ToString()+" "+usuarioLogueado.Nombre.ToString();
             }
             catch (Exception ex)
             {
@@ -86,39 +91,56 @@ namespace Principal
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
 
-        private void panel4_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void btnIngre_Click(object sender, EventArgs e)
         {
             SubMenuABM.Visible = false;
-            AbrirFormHijo(new AltaIngrediente(usuarioLogueado));
+            AbrirFormHijo<AltaIngrediente>();
         }
 
         private void btnComid_Click(object sender, EventArgs e)
         {
             SubMenuABM.Visible = false;
-            AbrirFormHijo(new AltaComida());
+            AbrirFormHijo<AltaComida>();
         }
 
         private void btnUser_Click(object sender, EventArgs e)
         {
             SubMenuABM.Visible = false;
+            AbrirFormHijo<AltaUsuario>();
         }
 
-        private void AbrirFormHijo(object formhija)
+        private void AbrirFormHijo<Forms>() where Forms : Form, new()
         {
+            Form formulario;
+            formulario = panelcontenedor.Controls.OfType<Forms>().FirstOrDefault();
 
-            if (this.panelcontenedor.Controls.Count > 0)
-                this.panelcontenedor.Controls.RemoveAt(0);
-            Form fh =  formhija as Form;
-            fh.TopLevel = false;
-            fh.Dock = DockStyle.Fill;
-            this.panelcontenedor.Controls.Add(fh);
-            this.panelcontenedor.Tag = fh;
-            fh.Show();
+            //si el formulario/instancia no existe, creamos nueva instancia y mostramos
+            if (formulario == null)
+            {
+                formulario = new Forms();
+                formulario.TopLevel = false;
+                //formulario.FormBorderStyle = FormBorderStyle.None;
+                //formulario.Dock = DockStyle.Fill;
+                panelcontenedor.Controls.Add(formulario);
+                panelcontenedor.Tag = formulario;
+                formulario.Show();
+
+                formulario.BringToFront();
+                // formulario.FormClosed += new FormClosedEventHandler(CloseForms);               
+            }
+            else
+            {
+
+                //si la Formulario/instancia existe, lo traemos a frente
+                formulario.BringToFront();
+
+                //Si la instancia esta minimizada mostramos
+                if (formulario.WindowState == FormWindowState.Minimized)
+                {
+                    formulario.WindowState = FormWindowState.Normal;
+                }
+
+            }
         }
     }
 }

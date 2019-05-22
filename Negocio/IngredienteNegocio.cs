@@ -40,11 +40,11 @@ namespace Negocio
                   
                     Ingre.UserAdd = new Usuario();
                     Ingre.UserAdd.IdUsuario= (int)accesoDatos.Lector["IdIngrediente"];
-                    Ingre.UserAdd.NombreUsuario= accesoDatos.Lector["Usuario"].ToString();
+                    Ingre.UserAdd.User= accesoDatos.Lector["Usuario"].ToString();
                     Ingre.F_Add = (DateTime)accesoDatos.Lector["FechaCreacion"];
                     Ingre.UserMod = new Usuario();
                     Ingre.UserMod.IdUsuario = (int)accesoDatos.Lector["IdIngrediente"];
-                    Ingre.UserMod.NombreUsuario = accesoDatos.Lector["UserMod"].ToString();
+                    Ingre.UserMod.User = accesoDatos.Lector["UserMod"].ToString();
                   
                     Ingre.F_Mod = (DateTime)accesoDatos.Lector["FechaModificacion"];
               

@@ -37,7 +37,7 @@ namespace Principal
             UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
             try
             {
-                usuarioLogueado.NombreUsuario = txtUsuario.Text.Trim();
+                usuarioLogueado.User = txtUsuario.Text.Trim();
                 usuarioLogueado.Pass = txtPass.Text.Trim();
                 if (usuarioNegocio.validarUsuario(usuarioLogueado))
                 {

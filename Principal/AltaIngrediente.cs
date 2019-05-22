@@ -16,21 +16,13 @@ namespace Principal
 {
     public partial class AltaIngrediente : Form
     {
-        public AltaIngrediente(Usuario usuario)
+        public AltaIngrediente()
         {
             InitializeComponent();
-            setusuario(usuario);
         }
+
         bool estado = false;
-        private Usuario usuarioLogueado;
-        public void setusuario(Usuario usuario)
-        {
-            this.usuarioLogueado = usuario;
-        }
-
-        
-
-
+    
         private List<Ingrediente> listaIngredienteLocal;
 
         private void DeleteAlls()
@@ -132,9 +124,9 @@ namespace Principal
                     ingrediente.Precio = Convert.ToDecimal(textPrecioIngrediente.Text);
                     ingrediente.UM = (UnidadDeMedida)cboUnidadmedida.SelectedItem;
                     ingrediente.F_Mod = fecha.ToLocalTime();
-                    ingrediente.UserMod = this.usuarioLogueado;
+                    ingrediente.UserMod = Usuario.UsuarioLogin;
                     ingrediente.F_Add = fecha.ToLocalTime();
-                    ingrediente.UserAdd = this.usuarioLogueado;
+                    ingrediente.UserAdd = Usuario.UsuarioLogin;
                     if (negocio.validarIngrediente(ingrediente))
                     {
                         lIngredienteexiste.Visible = true;
@@ -171,7 +163,7 @@ namespace Principal
                     ingredient.UM = (UnidadDeMedida)cboUnidadmedida.SelectedItem;
                     ingredient.Precio = Convert.ToDecimal(textPrecioIngrediente.Text);
                     ingredient.F_Mod = fecha.ToLocalTime();
-                    ingredient.UserMod = this.usuarioLogueado;
+                    ingredient.UserMod = Usuario.UsuarioLogin;
                     ingredient.estado = true;
                     negocio.modificarIngrediente(ingredient);
                     textNombreIngrediente.Text = "";
@@ -192,6 +184,12 @@ namespace Principal
         {
             DeleteAlls();
             estado = false;
+            lTxtvacioNombre.Visible = false;
+            pnNombreing.BackColor = System.Drawing.Color.Black;
+            ltxtcantidadIngrediente.Visible = false;
+            pnCantidading.BackColor = System.Drawing.Color.Black;
+            ltxtprecioingrediente.Visible = false;
+            pnPrecioing.BackColor = System.Drawing.Color.Black;
             dgvIngredientes.Enabled = true;
             cargarGrilla();
         }

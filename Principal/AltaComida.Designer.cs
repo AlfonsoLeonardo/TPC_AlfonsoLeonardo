@@ -28,6 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnagregarcomida = new System.Windows.Forms.Button();
             this.btnmodificarcomida = new System.Windows.Forms.Button();
             this.comida = new System.Windows.Forms.Label();
@@ -37,14 +42,37 @@
             this.dgvlistacomida = new System.Windows.Forms.DataGridView();
             this.btnEliminarComida = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.pnNombrecomida = new System.Windows.Forms.Panel();
+            this.pnPreciocomida = new System.Windows.Forms.Panel();
+            this.lComidaNombre = new System.Windows.Forms.Label();
+            this.lComidaexiste = new System.Windows.Forms.Label();
+            this.lComidapecio = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.lBusquedacomi = new System.Windows.Forms.Label();
+            this.textBusquedacomida = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvlistacomida)).BeginInit();
+            this.pnNombrecomida.SuspendLayout();
+            this.pnPreciocomida.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.panel3.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnagregarcomida
             // 
-            this.btnagregarcomida.Location = new System.Drawing.Point(230, 207);
+            this.btnagregarcomida.FlatAppearance.BorderSize = 0;
+            this.btnagregarcomida.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Red;
+            this.btnagregarcomida.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
+            this.btnagregarcomida.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnagregarcomida.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold);
+            this.btnagregarcomida.ForeColor = System.Drawing.Color.White;
+            this.btnagregarcomida.Location = new System.Drawing.Point(-1, -2);
             this.btnagregarcomida.Name = "btnagregarcomida";
-            this.btnagregarcomida.Size = new System.Drawing.Size(75, 23);
+            this.btnagregarcomida.Size = new System.Drawing.Size(113, 55);
             this.btnagregarcomida.TabIndex = 0;
             this.btnagregarcomida.Text = "Agregar";
             this.btnagregarcomida.UseVisualStyleBackColor = true;
@@ -52,9 +80,15 @@
             // 
             // btnmodificarcomida
             // 
-            this.btnmodificarcomida.Location = new System.Drawing.Point(590, 287);
+            this.btnmodificarcomida.FlatAppearance.BorderSize = 0;
+            this.btnmodificarcomida.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Red;
+            this.btnmodificarcomida.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
+            this.btnmodificarcomida.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnmodificarcomida.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold);
+            this.btnmodificarcomida.ForeColor = System.Drawing.Color.White;
+            this.btnmodificarcomida.Location = new System.Drawing.Point(-2, -2);
             this.btnmodificarcomida.Name = "btnmodificarcomida";
-            this.btnmodificarcomida.Size = new System.Drawing.Size(75, 23);
+            this.btnmodificarcomida.Size = new System.Drawing.Size(113, 55);
             this.btnmodificarcomida.TabIndex = 1;
             this.btnmodificarcomida.Text = "Modificar";
             this.btnmodificarcomida.UseVisualStyleBackColor = true;
@@ -63,52 +97,113 @@
             // comida
             // 
             this.comida.AutoSize = true;
-            this.comida.Location = new System.Drawing.Point(102, 62);
+            this.comida.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold);
+            this.comida.ForeColor = System.Drawing.Color.White;
+            this.comida.Location = new System.Drawing.Point(36, 130);
             this.comida.Name = "comida";
-            this.comida.Size = new System.Drawing.Size(45, 13);
+            this.comida.Size = new System.Drawing.Size(100, 25);
             this.comida.TabIndex = 2;
             this.comida.Text = "Comida:";
             // 
             // preciocomida
             // 
             this.preciocomida.AutoSize = true;
-            this.preciocomida.Location = new System.Drawing.Point(102, 104);
+            this.preciocomida.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold);
+            this.preciocomida.ForeColor = System.Drawing.Color.White;
+            this.preciocomida.Location = new System.Drawing.Point(39, 186);
             this.preciocomida.Name = "preciocomida";
-            this.preciocomida.Size = new System.Drawing.Size(40, 13);
+            this.preciocomida.Size = new System.Drawing.Size(81, 25);
             this.preciocomida.TabIndex = 3;
             this.preciocomida.Text = "Precio:";
             // 
             // textComida
             // 
-            this.textComida.Location = new System.Drawing.Point(164, 62);
+            this.textComida.Font = new System.Drawing.Font("Century Gothic", 14F);
+            this.textComida.Location = new System.Drawing.Point(3, 3);
             this.textComida.Name = "textComida";
-            this.textComida.Size = new System.Drawing.Size(100, 20);
+            this.textComida.Size = new System.Drawing.Size(164, 30);
             this.textComida.TabIndex = 4;
             // 
             // textcomidaprecio
             // 
-            this.textcomidaprecio.Location = new System.Drawing.Point(164, 101);
+            this.textcomidaprecio.Font = new System.Drawing.Font("Century Gothic", 14F);
+            this.textcomidaprecio.Location = new System.Drawing.Point(3, 3);
             this.textcomidaprecio.Name = "textcomidaprecio";
-            this.textcomidaprecio.Size = new System.Drawing.Size(100, 20);
+            this.textcomidaprecio.Size = new System.Drawing.Size(164, 30);
             this.textcomidaprecio.TabIndex = 5;
+            this.textcomidaprecio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textcomidaprecio_KeyPress);
             // 
             // dgvlistacomida
             // 
             this.dgvlistacomida.AllowUserToAddRows = false;
             this.dgvlistacomida.AllowUserToDeleteRows = false;
+            this.dgvlistacomida.AllowUserToResizeColumns = false;
+            this.dgvlistacomida.AllowUserToResizeRows = false;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvlistacomida.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle16;
+            this.dgvlistacomida.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.dgvlistacomida.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dgvlistacomida.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.dgvlistacomida.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvlistacomida.Location = new System.Drawing.Point(384, 37);
+            this.dgvlistacomida.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvlistacomida.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle17.BackColor = System.Drawing.Color.Maroon;
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle17.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.Red;
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvlistacomida.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
+            this.dgvlistacomida.ColumnHeadersHeight = 20;
+            this.dgvlistacomida.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle18.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.Red;
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvlistacomida.DefaultCellStyle = dataGridViewCellStyle18;
+            this.dgvlistacomida.EnableHeadersVisualStyles = false;
+            this.dgvlistacomida.GridColor = System.Drawing.Color.White;
+            this.dgvlistacomida.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.dgvlistacomida.Location = new System.Drawing.Point(364, 87);
+            this.dgvlistacomida.MultiSelect = false;
             this.dgvlistacomida.Name = "dgvlistacomida";
             this.dgvlistacomida.ReadOnly = true;
-            this.dgvlistacomida.Size = new System.Drawing.Size(372, 224);
-            this.dgvlistacomida.TabIndex = 6;
+            this.dgvlistacomida.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle19.BackColor = System.Drawing.Color.Red;
+            dataGridViewCellStyle19.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvlistacomida.RowHeadersDefaultCellStyle = dataGridViewCellStyle19;
+            this.dgvlistacomida.RowHeadersVisible = false;
+            this.dgvlistacomida.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            this.dgvlistacomida.RowsDefaultCellStyle = dataGridViewCellStyle20;
+            this.dgvlistacomida.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
+            this.dgvlistacomida.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvlistacomida.Size = new System.Drawing.Size(708, 365);
+            this.dgvlistacomida.TabIndex = 8;
             // 
             // btnEliminarComida
             // 
-            this.btnEliminarComida.Location = new System.Drawing.Point(428, 287);
+            this.btnEliminarComida.FlatAppearance.BorderSize = 0;
+            this.btnEliminarComida.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Red;
+            this.btnEliminarComida.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
+            this.btnEliminarComida.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEliminarComida.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold);
+            this.btnEliminarComida.ForeColor = System.Drawing.Color.White;
+            this.btnEliminarComida.Location = new System.Drawing.Point(-2, -2);
             this.btnEliminarComida.Name = "btnEliminarComida";
-            this.btnEliminarComida.Size = new System.Drawing.Size(75, 23);
+            this.btnEliminarComida.Size = new System.Drawing.Size(113, 55);
             this.btnEliminarComida.TabIndex = 7;
             this.btnEliminarComida.Text = "Eliminar";
             this.btnEliminarComida.UseVisualStyleBackColor = true;
@@ -116,13 +211,135 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(128, 207);
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Red;
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold);
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(-2, -2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(113, 55);
             this.button1.TabIndex = 8;
             this.button1.Text = "Cancelar";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // pnNombrecomida
+            // 
+            this.pnNombrecomida.BackColor = System.Drawing.Color.Black;
+            this.pnNombrecomida.Controls.Add(this.textComida);
+            this.pnNombrecomida.Location = new System.Drawing.Point(136, 119);
+            this.pnNombrecomida.Name = "pnNombrecomida";
+            this.pnNombrecomida.Size = new System.Drawing.Size(170, 36);
+            this.pnNombrecomida.TabIndex = 41;
+            // 
+            // pnPreciocomida
+            // 
+            this.pnPreciocomida.BackColor = System.Drawing.Color.Black;
+            this.pnPreciocomida.Controls.Add(this.textcomidaprecio);
+            this.pnPreciocomida.Location = new System.Drawing.Point(139, 175);
+            this.pnPreciocomida.Name = "pnPreciocomida";
+            this.pnPreciocomida.Size = new System.Drawing.Size(170, 36);
+            this.pnPreciocomida.TabIndex = 42;
+            // 
+            // lComidaNombre
+            // 
+            this.lComidaNombre.AutoSize = true;
+            this.lComidaNombre.BackColor = System.Drawing.Color.Red;
+            this.lComidaNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lComidaNombre.ForeColor = System.Drawing.Color.White;
+            this.lComidaNombre.Location = new System.Drawing.Point(92, 158);
+            this.lComidaNombre.Name = "lComidaNombre";
+            this.lComidaNombre.Size = new System.Drawing.Size(214, 13);
+            this.lComidaNombre.TabIndex = 44;
+            this.lComidaNombre.Text = "*Debe ingresar al menos un caracter";
+            this.lComidaNombre.Visible = false;
+            // 
+            // lComidaexiste
+            // 
+            this.lComidaexiste.AutoSize = true;
+            this.lComidaexiste.BackColor = System.Drawing.Color.Red;
+            this.lComidaexiste.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lComidaexiste.ForeColor = System.Drawing.Color.White;
+            this.lComidaexiste.Location = new System.Drawing.Point(176, 158);
+            this.lComidaexiste.Name = "lComidaexiste";
+            this.lComidaexiste.Size = new System.Drawing.Size(130, 13);
+            this.lComidaexiste.TabIndex = 43;
+            this.lComidaexiste.Text = "*Ingrediente ya existe";
+            this.lComidaexiste.Visible = false;
+            // 
+            // lComidapecio
+            // 
+            this.lComidapecio.AutoSize = true;
+            this.lComidapecio.BackColor = System.Drawing.Color.Red;
+            this.lComidapecio.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lComidapecio.ForeColor = System.Drawing.Color.White;
+            this.lComidapecio.Location = new System.Drawing.Point(75, 214);
+            this.lComidapecio.Name = "lComidapecio";
+            this.lComidapecio.Size = new System.Drawing.Size(231, 13);
+            this.lComidapecio.TabIndex = 45;
+            this.lComidapecio.Text = "*Debe ingresar un numero mayor a cero";
+            this.lComidapecio.Visible = false;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel2.Controls.Add(this.button1);
+            this.panel2.Location = new System.Drawing.Point(53, 297);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(113, 55);
+            this.panel2.TabIndex = 47;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel1.Controls.Add(this.btnagregarcomida);
+            this.panel1.Location = new System.Drawing.Point(195, 297);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(113, 55);
+            this.panel1.TabIndex = 46;
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel3.Controls.Add(this.btnEliminarComida);
+            this.panel3.Location = new System.Drawing.Point(522, 458);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(113, 55);
+            this.panel3.TabIndex = 49;
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel4.Controls.Add(this.btnmodificarcomida);
+            this.panel4.Location = new System.Drawing.Point(664, 458);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(113, 55);
+            this.panel4.TabIndex = 48;
+            // 
+            // lBusquedacomi
+            // 
+            this.lBusquedacomi.AutoSize = true;
+            this.lBusquedacomi.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lBusquedacomi.ForeColor = System.Drawing.Color.White;
+            this.lBusquedacomi.Location = new System.Drawing.Point(400, 54);
+            this.lBusquedacomi.Name = "lBusquedacomi";
+            this.lBusquedacomi.Size = new System.Drawing.Size(120, 25);
+            this.lBusquedacomi.TabIndex = 51;
+            this.lBusquedacomi.Text = "Busqueda:";
+            // 
+            // textBusquedacomida
+            // 
+            this.textBusquedacomida.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBusquedacomida.Location = new System.Drawing.Point(531, 52);
+            this.textBusquedacomida.Name = "textBusquedacomida";
+            this.textBusquedacomida.Size = new System.Drawing.Size(147, 29);
+            this.textBusquedacomida.TabIndex = 50;
             // 
             // AltaComida
             // 
@@ -130,21 +347,34 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.ClientSize = new System.Drawing.Size(1084, 573);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.btnEliminarComida);
+            this.Controls.Add(this.lBusquedacomi);
+            this.Controls.Add(this.textBusquedacomida);
+            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.panel4);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.lComidapecio);
+            this.Controls.Add(this.lComidaNombre);
+            this.Controls.Add(this.lComidaexiste);
+            this.Controls.Add(this.pnPreciocomida);
+            this.Controls.Add(this.pnNombrecomida);
             this.Controls.Add(this.dgvlistacomida);
-            this.Controls.Add(this.textcomidaprecio);
-            this.Controls.Add(this.textComida);
             this.Controls.Add(this.preciocomida);
             this.Controls.Add(this.comida);
-            this.Controls.Add(this.btnmodificarcomida);
-            this.Controls.Add(this.btnagregarcomida);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "AltaComida";
             this.Text = "AltaComida";
             this.Load += new System.EventHandler(this.AltaComida_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvlistacomida)).EndInit();
+            this.pnNombrecomida.ResumeLayout(false);
+            this.pnNombrecomida.PerformLayout();
+            this.pnPreciocomida.ResumeLayout(false);
+            this.pnPreciocomida.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -161,5 +391,16 @@
         private System.Windows.Forms.DataGridView dgvlistacomida;
         private System.Windows.Forms.Button btnEliminarComida;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Panel pnNombrecomida;
+        private System.Windows.Forms.Panel pnPreciocomida;
+        private System.Windows.Forms.Label lComidaNombre;
+        private System.Windows.Forms.Label lComidaexiste;
+        private System.Windows.Forms.Label lComidapecio;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Label lBusquedacomi;
+        private System.Windows.Forms.TextBox textBusquedacomida;
     }
 }

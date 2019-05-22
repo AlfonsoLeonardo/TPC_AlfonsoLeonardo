@@ -15,28 +15,23 @@ namespace Principal
 {
     public partial class AltaComida : Form
     {
-
-       bool estado = false;
-        private Usuario Usuario;
+        bool estado = false;
         private List<Comida> listaComidaLocal;
         public AltaComida()
         {
-           
-            InitializeComponent();
+            InitializeComponent(); 
         }
         private void DeleteAllsc()
         {
             textComida.Text = "";
             textcomidaprecio.Text="";
-         
         }
         private void AltaComida_Load(object sender, EventArgs e)
         {
             textComida.CharacterCasing = CharacterCasing.Upper;
+            textComida.Focus();
             cargarGrillacomida();
         }
-
-
         private void cargarGrillacomida()
         {
 
@@ -54,9 +49,40 @@ namespace Principal
                 MessageBox.Show(ex.ToString());
             }
         }
-
         private void btnagregarcomida_Click(object sender, EventArgs e)
         {
+            if (textComida.Text.Trim() == string.Empty)
+            {
+
+                lComidaNombre.Visible = true;
+
+                pnNombrecomida.BackColor = System.Drawing.Color.Red;
+                dgvlistacomida.Enabled = false;
+                return;
+
+            }
+            else
+            {
+                lComidaNombre.Visible = false;
+
+                pnNombrecomida.BackColor = System.Drawing.Color.Black;
+                dgvlistacomida.Enabled = true;
+
+            }
+            if (textcomidaprecio.Text.Trim() == string.Empty || (Convert.ToDecimal(textcomidaprecio.Text)) < 1)
+            {
+                lComidapecio.Visible = true;
+                pnPreciocomida.BackColor = System.Drawing.Color.Red;
+                dgvlistacomida.Enabled = true;
+                return;
+            }
+            else
+            {
+                lComidapecio.Visible = false;
+                pnPreciocomida.BackColor = System.Drawing.Color.Black;
+                dgvlistacomida.Enabled = true;
+            }
+
 
             if (estado == false) {
                 Comida comida = new Comida();
@@ -69,9 +95,9 @@ namespace Principal
                     comida.Precio = Convert.ToDecimal(textcomidaprecio.Text);
                     comida.Estado = true;
                     comida.F_Add = fecha.ToLocalTime();
-                    comida.UserAdd = this.Usuario;
+                    comida.UserAdd = Usuario.UsuarioLogin;
                     comida.F_Mod = fecha.ToLocalTime();
-                    comida.UserMod = this.Usuario;
+                    comida.UserMod = Usuario.UsuarioLogin;
                     DeleteAllsc();
 
                     negocio.agregarcomida(comida);
@@ -95,13 +121,12 @@ namespace Principal
                 comida.Precio = Convert.ToDecimal(textcomidaprecio.Text);
                 comida.Estado = true;
                 comida.F_Mod = fecha.ToLocalTime();
-                comida.UserMod = this.Usuario;
+                comida.UserMod = Usuario.UsuarioLogin;
                 negocio.modificarComida(comida);
                 estado = true;
                 DeleteAllsc();
             }
         }
-
         private void btnEliminarComida_Click(object sender, EventArgs e)
         {
             ComidaNegocio comidaNegocio = new ComidaNegocio();
@@ -127,7 +152,6 @@ namespace Principal
             }
 
         }
-
         private void btnmodificarcomida_Click(object sender, EventArgs e)
         {
             ComidaNegocio comidaNegocio = new ComidaNegocio();
@@ -142,12 +166,28 @@ namespace Principal
             estado = true;
 
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             DeleteAllsc();
             estado = false;
             cargarGrillacomida();
+        }
+
+        private void textcomidaprecio_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8 && e.KeyChar != 13 && e.KeyChar != '.')
+            {
+                e.Handled = true;
+                lComidapecio.Visible = true;
+                pnPreciocomida.BackColor = System.Drawing.Color.Red;
+            }
+
+            else
+            {
+                lComidapecio.Visible = false;
+                pnPreciocomida.BackColor = System.Drawing.Color.Black;
+                textcomidaprecio.Focus();
+            }
         }
     }
 }

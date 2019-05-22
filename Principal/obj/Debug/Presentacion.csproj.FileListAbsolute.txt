@@ -18,3 +18,5 @@ C:\Users\alfon\source\repos\TPC_AlfonsoLeonardo\Principal\obj\Debug\Presentacion
 C:\Users\alfon\source\repos\TPC_AlfonsoLeonardo\Principal\obj\Debug\Presentacion.csproj.CopyComplete
 C:\Users\alfon\source\repos\TPC_AlfonsoLeonardo\Principal\obj\Debug\Principal.exe
 C:\Users\alfon\source\repos\TPC_AlfonsoLeonardo\Principal\obj\Debug\Principal.pdb
+C:\Users\alfon\source\repos\TPC_AlfonsoLeonardo\Principal\obj\Debug\Principal.AltaUsuario.resources
+C:\Users\alfon\source\repos\TPC_AlfonsoLeonardo\Principal\obj\Debug\Principal.IngredientePorComida.resources
