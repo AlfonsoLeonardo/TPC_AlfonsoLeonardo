@@ -25,6 +25,12 @@ namespace Principal
         {
             textComida.Text = "";
             textcomidaprecio.Text="";
+            lComidaexiste.Visible = false;
+            pnNombrecomida.BackColor = System.Drawing.Color.Black;
+            pnPreciocomida.BackColor = System.Drawing.Color.Black;
+            lComidapecio.Visible = false;
+            dgvlistacomida.Enabled = true;
+            lComidaNombre.Visible = false;
         }
         private void AltaComida_Load(object sender, EventArgs e)
         {
@@ -41,8 +47,9 @@ namespace Principal
 
                 listaComidaLocal = negocio.ListarComida();
                 dgvlistacomida.DataSource = listaComidaLocal;
-               
-            
+                dgvlistacomida.Columns[7].Visible = false;
+
+
             }
             catch (Exception ex)
             {
@@ -93,15 +100,24 @@ namespace Principal
 
                     comida.Nombre = textComida.Text;
                     comida.Precio = Convert.ToDecimal(textcomidaprecio.Text);
-                    comida.Estado = true;
                     comida.F_Add = fecha.ToLocalTime();
                     comida.UserAdd = Usuario.UsuarioLogin;
                     comida.F_Mod = fecha.ToLocalTime();
                     comida.UserMod = Usuario.UsuarioLogin;
+                    if (negocio.validarComida(comida))
+                    {
+                        lComidaexiste.Visible = true;
+                        pnNombrecomida.BackColor = System.Drawing.Color.Red;
+                        dgvlistacomida.Enabled = false;
+                        return;
+                    }
+                    else
+                    {
+                        lComidaexiste.Visible = false;
+                        pnNombrecomida.BackColor = System.Drawing.Color.Black;
+                        dgvlistacomida.Enabled = true;
+                    }
                     DeleteAllsc();
-
-                    negocio.agregarcomida(comida);
-
                     cargarGrillacomida();
                 }
                 catch (Exception ex)

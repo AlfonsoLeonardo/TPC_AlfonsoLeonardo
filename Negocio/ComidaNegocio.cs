@@ -12,30 +12,26 @@ namespace Negocio
 {
     public class ComidaNegocio
     {
-        private Usuario usuarioLogueado;
-        public void setusuario(Usuario usuario)
-        {
-            this.usuarioLogueado = usuario;
-        }
+
         public List<Comida> ListarComida()
         {
-           
+
             List<Comida> listado = new List<Comida>();
             AccesoDatosManager accesoDatos = new AccesoDatosManager();
             Comida Comi = new Comida();
             try
             {
-                
-                accesoDatos.setearConsulta("select IdComida, NombreComida, PrecioComida From COMIDAS");
+
+                accesoDatos.setearConsulta("select IdComida, NombreComida, PrecioComida From COMIDAS where Estado=1");
                 accesoDatos.abrirConexion();
                 accesoDatos.ejecutarConsulta();
-               ;
+                ;
                 while (accesoDatos.Lector.Read())
                 {
-                    Comi= new Comida();
-                    Comi.Id=(int)accesoDatos.Lector["IdComida"];
+                    Comi = new Comida();
+                    Comi.Id = (int)accesoDatos.Lector["IdComida"];
                     Comi.Nombre = accesoDatos.Lector["NombreComida"].ToString();
-               
+
                     Comi.Precio = (decimal)accesoDatos.Lector["PrecioComida"];
                     listado.Add(Comi);
                 }
@@ -50,7 +46,7 @@ namespace Negocio
             }
             finally
             {
-               accesoDatos.cerrarConexion();
+                accesoDatos.cerrarConexion();
             }
         }
 
@@ -63,7 +59,7 @@ namespace Negocio
             {
                 conexion.ConnectionString = "data source=(local); initial catalog=ALFONSO_DB; integrated security=sspi";
                 comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "SET DATEFORMAT 'DMY' insert into COMIDAS (NombreComida, PrecioComida, FechaCreacion, UsuarioCreacion, FechaModificacion, UsuarioModificacion) values ('" + nuevo.Nombre + "','" + nuevo.Precio + "','" + nuevo.F_Add + "','" + /*nuevo.UsuarioCreacion*/1 + "','" + nuevo.F_Add + "','" + /*nuevo.UsuarioCreacion*/1 + "')";
+                comando.CommandText = "SET DATEFORMAT 'DMY' insert into COMIDAS (NombreComida, PrecioComida, FechaCreacion, UsuarioCreacion, FechaModificacion, UsuarioModificacion, Estado) values ('" + nuevo.Nombre + "','" + nuevo.Precio + "','" + nuevo.F_Add + "','" + nuevo.UserAdd.IdUsuario + "','" + nuevo.F_Add + "','" + nuevo.UserMod.IdUsuario + "','" + nuevo.Estado + "')";
                 comando.Connection = conexion;
                 conexion.Open();
 
@@ -89,6 +85,9 @@ namespace Negocio
                 accesoDatos.Comando.Parameters.Clear();
                 accesoDatos.Comando.Parameters.AddWithValue("@Nombre", modificar.Nombre);
                 accesoDatos.Comando.Parameters.AddWithValue("@Precio", modificar.Nombre);
+                accesoDatos.Comando.Parameters.AddWithValue("@FechaModificacion", modificar.F_Mod);
+                accesoDatos.Comando.Parameters.AddWithValue("@UsuarioModificacion", modificar.UserMod.IdUsuario);
+                accesoDatos.Comando.Parameters.AddWithValue("@Estado", modificar.Estado);
                 accesoDatos.abrirConexion();
                 accesoDatos.ejecutarAccion();
 
@@ -108,7 +107,10 @@ namespace Negocio
 
             try
             {
-                accesoDatos.setearConsulta("DELETE FROM COMIDAS WHERE IdComida=" + nuevo.Id);
+                accesoDatos.setearConsulta("update COMIDAS Set Estado=@Estado where IdComida =" + nuevo.Id);
+
+                accesoDatos.Comando.Parameters.Clear();
+                accesoDatos.Comando.Parameters.AddWithValue("@Estado", false);
                 accesoDatos.abrirConexion();
                 accesoDatos.ejecutarConsulta();
 
@@ -123,6 +125,48 @@ namespace Negocio
 
             }
         }
-    }
-}
+        public bool validarComida(Comida nuevo)
+        {
 
+            AccesoDatosManager conexion;
+            try
+            {
+                conexion = new AccesoDatosManager();
+                conexion.setearConsulta("select IdComida, Estado, NombreComida from COMIDAS Where NombreComida=@Nombre");
+                conexion.Comando.Parameters.Clear();
+                conexion.Comando.Parameters.AddWithValue("@Nombre", nuevo.Nombre);
+
+                conexion.abrirConexion();
+                conexion.ejecutarConsulta();
+                if (conexion.Lector.Read())
+                {
+
+                    nuevo.Estado = (bool)conexion.Lector["Estado"];
+                    if (false == nuevo.Estado)
+                    {
+
+                        nuevo.Id = (int)conexion.Lector["IdComida"];
+                        nuevo.Estado = true;
+                        modificarComida(nuevo);
+                        return false;
+
+                    }
+                    return true;
+                }
+                else
+                {
+                    nuevo.Estado = true;
+                    agregarcomida(nuevo);
+
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+    }
+
+}

@@ -30,6 +30,15 @@ namespace Principal
             textNombreIngrediente.Text = "";
             textCantidadIngrediente.Text = "";
             textPrecioIngrediente.Text = "";
+            ltxtcantidadIngrediente.Visible = false;
+            ltxtprecioingrediente.Visible = false;
+            lTxtvacioNombre.Visible = false;
+            pnCantidading.BackColor = System.Drawing.Color.Black;
+            pnNombreing.BackColor = System.Drawing.Color.Black;
+            pnPrecioing.BackColor = System.Drawing.Color.Black;
+            
+            dgvIngredientes.Enabled = true;
+           
         }
 
         private void cargarGrilla()
@@ -143,12 +152,7 @@ namespace Principal
 
                     }
 
-                    //ingrediente.estado = true;
-
-                    //negocio.agregarIngrediente(ingrediente);
-                    textNombreIngrediente.Text = "";
-                    textCantidadIngrediente.Text = "";
-                    textPrecioIngrediente.Text = "";
+                    DeleteAlls();
                     cargarGrilla();
                 }
                 if (estado == true)
