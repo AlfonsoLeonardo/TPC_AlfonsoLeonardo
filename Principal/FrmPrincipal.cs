@@ -29,8 +29,26 @@ namespace Principal
         }
         private void btnAbm_Click(object sender, EventArgs e)
         {
-            SubMenuABM.Visible = true;
-          
+
+            if (SubMenuABM.Visible == false)
+            {
+                SubMenuABM.Visible = true;
+                btnTomaDePedido.Location = new Point(0,SubMenuABM.Location.Y+SubMenuABM.Height+5);
+                pntomadepedido.Location = new Point(0, SubMenuABM.Location.Y + SubMenuABM.Height+5);
+                pnReporte.Location = new Point(0, btnTomaDePedido.Location.Y + btnTomaDePedido.Height+5);
+                btnReporte.Location = new Point(0, btnTomaDePedido.Location.Y + btnTomaDePedido.Height+5);
+            }
+            else
+            {
+                SubMenuABM.Visible = false;
+                btnTomaDePedido.Location = new Point(0, btnAbm.Location.Y + btnAbm.Height + 5);
+                pntomadepedido.Location = new Point(0, btnAbm.Location.Y + btnAbm.Height + 5);
+                pnReporte.Location = new Point(0, btnTomaDePedido.Location.Y + btnTomaDePedido.Height + 5);
+                btnReporte.Location = new Point(0, btnTomaDePedido.Location.Y + btnTomaDePedido.Height + 5);
+            }
+
+
+
         }
 
         private void frmPrincipal_Load_1(object sender, EventArgs e)
@@ -93,19 +111,33 @@ namespace Principal
 
         private void btnIngre_Click(object sender, EventArgs e)
         {
+            
             SubMenuABM.Visible = false;
+            btnTomaDePedido.Location = new Point(0, btnAbm.Location.Y + btnAbm.Height + 5);
+            pntomadepedido.Location = new Point(0, btnAbm.Location.Y + btnAbm.Height + 5);
+            pnReporte.Location = new Point(0, btnTomaDePedido.Location.Y + btnTomaDePedido.Height + 5);
+            btnReporte.Location = new Point(0, btnTomaDePedido.Location.Y + btnTomaDePedido.Height + 5);
             AbrirFormHijo<AltaIngrediente>();
         }
 
         private void btnComid_Click(object sender, EventArgs e)
         {
+            
             SubMenuABM.Visible = false;
+            btnTomaDePedido.Location = new Point(0, btnAbm.Location.Y + btnAbm.Height + 5);
+            pntomadepedido.Location = new Point(0, btnAbm.Location.Y + btnAbm.Height + 5);
+            pnReporte.Location = new Point(0, btnTomaDePedido.Location.Y + btnTomaDePedido.Height + 5);
+            btnReporte.Location = new Point(0, btnTomaDePedido.Location.Y + btnTomaDePedido.Height + 5);
             AbrirFormHijo<AltaComida>();
         }
 
         private void btnUser_Click(object sender, EventArgs e)
         {
             SubMenuABM.Visible = false;
+            btnTomaDePedido.Location = new Point(0, btnAbm.Location.Y + btnAbm.Height + 5);
+            pntomadepedido.Location = new Point(0, btnAbm.Location.Y + btnAbm.Height + 5);
+            pnReporte.Location = new Point(0, btnTomaDePedido.Location.Y + btnTomaDePedido.Height + 5);
+            btnReporte.Location = new Point(0, btnTomaDePedido.Location.Y + btnTomaDePedido.Height + 5);
             AbrirFormHijo<AltaUsuario>();
         }
 
@@ -141,6 +173,16 @@ namespace Principal
                 }
 
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            SubMenuABM.Visible = false;
+            btnTomaDePedido.Location = new Point(0, btnAbm.Location.Y + btnAbm.Height + 5);
+            pntomadepedido.Location = new Point(0, btnAbm.Location.Y + btnAbm.Height + 5);
+            pnReporte.Location = new Point(0, btnTomaDePedido.Location.Y + btnTomaDePedido.Height + 5);
+            btnReporte.Location = new Point(0, btnTomaDePedido.Location.Y + btnTomaDePedido.Height + 5);
+            AbrirFormHijo<IngredientePorComida>();
         }
     }
 }

@@ -22,17 +22,26 @@ namespace Negocio
             try
             {
 
-                accesoDatos.setearConsulta("select IdComida, NombreComida, PrecioComida From COMIDAS where Estado=1");
+                accesoDatos.setearConsulta("select * from DCOMIDAS");
                 accesoDatos.abrirConexion();
                 accesoDatos.ejecutarConsulta();
-                ;
+              
                 while (accesoDatos.Lector.Read())
                 {
                     Comi = new Comida();
                     Comi.Id = (int)accesoDatos.Lector["IdComida"];
                     Comi.Nombre = accesoDatos.Lector["NombreComida"].ToString();
-
                     Comi.Precio = (decimal)accesoDatos.Lector["PrecioComida"];
+
+                    Comi.UserAdd = new Usuario();
+                    Comi.UserAdd.IdUsuario = (int)accesoDatos.Lector["IdComida"];
+                    Comi.UserAdd.User = accesoDatos.Lector["Usuario"].ToString();
+                    Comi.F_Add = (DateTime)accesoDatos.Lector["FechaCreacion"];
+                    Comi.UserMod = new Usuario();
+                    Comi.UserMod.IdUsuario = (int)accesoDatos.Lector["IdComida"];
+                    Comi.UserMod.User = accesoDatos.Lector["UserMod"].ToString();
+                    Comi.F_Mod = (DateTime)accesoDatos.Lector["FechaModificacion"];
+
                     listado.Add(Comi);
                 }
 
@@ -49,9 +58,7 @@ namespace Negocio
                 accesoDatos.cerrarConexion();
             }
         }
-
-
-        public void agregarcomida(Comida nuevo)
+        public void agregarComida(Comida nuevo)
         {
             SqlConnection conexion = new SqlConnection();
             SqlCommand comando = new SqlCommand();
@@ -81,10 +88,10 @@ namespace Negocio
             try
             {
 
-                accesoDatos.setearConsulta("SET DATEFORMAT 'DMY' update COMIDAS Set NombreComida=@Nombre,  PrecioComida=@Precio=" + modificar.Id.ToString());
+                accesoDatos.setearConsulta("SET DATEFORMAT 'DMY' update COMIDAS Set NombreComida=@Nombre,  PrecioComida=@Precio,  FechaModificacion=@FechaModificacion, UsuarioModificacion=@UsuarioModificacion, Estado=@Estado where IdComida=" + modificar.Id);
                 accesoDatos.Comando.Parameters.Clear();
                 accesoDatos.Comando.Parameters.AddWithValue("@Nombre", modificar.Nombre);
-                accesoDatos.Comando.Parameters.AddWithValue("@Precio", modificar.Nombre);
+                accesoDatos.Comando.Parameters.AddWithValue("@Precio", modificar.Precio);
                 accesoDatos.Comando.Parameters.AddWithValue("@FechaModificacion", modificar.F_Mod);
                 accesoDatos.Comando.Parameters.AddWithValue("@UsuarioModificacion", modificar.UserMod.IdUsuario);
                 accesoDatos.Comando.Parameters.AddWithValue("@Estado", modificar.Estado);
@@ -156,7 +163,7 @@ namespace Negocio
                 else
                 {
                     nuevo.Estado = true;
-                    agregarcomida(nuevo);
+                    agregarComida(nuevo);
 
                     return false;
                 }

@@ -10,13 +10,13 @@ C:\Users\alfon\source\repos\TPC_AlfonsoLeonardo\Principal\bin\Debug\Negocio.pdb
 C:\Users\alfon\source\repos\TPC_AlfonsoLeonardo\Principal\obj\Debug\Presentacion.csprojAssemblyReference.cache
 C:\Users\alfon\source\repos\TPC_AlfonsoLeonardo\Principal\obj\Debug\Principal.AltaComida.resources
 C:\Users\alfon\source\repos\TPC_AlfonsoLeonardo\Principal\obj\Debug\Principal.AltaIngrediente.resources
+C:\Users\alfon\source\repos\TPC_AlfonsoLeonardo\Principal\obj\Debug\Principal.AltaUsuario.resources
 C:\Users\alfon\source\repos\TPC_AlfonsoLeonardo\Principal\obj\Debug\Principal.frmLogin.resources
 C:\Users\alfon\source\repos\TPC_AlfonsoLeonardo\Principal\obj\Debug\Principal.frmPrincipal.resources
+C:\Users\alfon\source\repos\TPC_AlfonsoLeonardo\Principal\obj\Debug\Principal.IngredientePorComida.resources
 C:\Users\alfon\source\repos\TPC_AlfonsoLeonardo\Principal\obj\Debug\Principal.Properties.Resources.resources
 C:\Users\alfon\source\repos\TPC_AlfonsoLeonardo\Principal\obj\Debug\Presentacion.csproj.GenerateResource.cache
 C:\Users\alfon\source\repos\TPC_AlfonsoLeonardo\Principal\obj\Debug\Presentacion.csproj.CoreCompileInputs.cache
 C:\Users\alfon\source\repos\TPC_AlfonsoLeonardo\Principal\obj\Debug\Presentacion.csproj.CopyComplete
 C:\Users\alfon\source\repos\TPC_AlfonsoLeonardo\Principal\obj\Debug\Principal.exe
 C:\Users\alfon\source\repos\TPC_AlfonsoLeonardo\Principal\obj\Debug\Principal.pdb
-C:\Users\alfon\source\repos\TPC_AlfonsoLeonardo\Principal\obj\Debug\Principal.AltaUsuario.resources
-C:\Users\alfon\source\repos\TPC_AlfonsoLeonardo\Principal\obj\Debug\Principal.IngredientePorComida.resources

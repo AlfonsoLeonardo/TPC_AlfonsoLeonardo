@@ -13,7 +13,7 @@ namespace Negocio
 {
     public class IngredienteNegocio
     {
-        private Usuario usuarioLogueado;
+        
     
         public List<Ingrediente> ListarIngrediente()
         {
@@ -23,7 +23,7 @@ namespace Negocio
             Ingrediente Ingre = new Ingrediente();
             try
             {
-                accesoDatos.setearConsulta("select  i.Idingrediente , i.NombreIngrediente, i.PrecioIngrediente, u.Descripcioncorta,i.MasterPack,us.Usuario, i.FechaCreacion ,us2.Usuario as UserMod, i.FechaModificacion from INGREDIENTES as i inner join UNIDADDEMEDIDA as u on u.IdUnidad =i.UnidadMedida inner join USUARIOS as us on  us.IdUsuario=i.UsuarioCreacion inner join usuarios as us2 on us2.IdUsuario=i.UsuarioModificacion where i.Estado=1 ");
+               accesoDatos.setearConsulta("select* from  DINGREDIENTES");
                 accesoDatos.abrirConexion();
                 accesoDatos.ejecutarConsulta();
 
@@ -45,7 +45,6 @@ namespace Negocio
                     Ingre.UserMod = new Usuario();
                     Ingre.UserMod.IdUsuario = (int)accesoDatos.Lector["IdIngrediente"];
                     Ingre.UserMod.User = accesoDatos.Lector["UserMod"].ToString();
-                  
                     Ingre.F_Mod = (DateTime)accesoDatos.Lector["FechaModificacion"];
               
                      

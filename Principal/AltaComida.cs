@@ -139,8 +139,9 @@ namespace Principal
                 comida.F_Mod = fecha.ToLocalTime();
                 comida.UserMod = Usuario.UsuarioLogin;
                 negocio.modificarComida(comida);
-                estado = true;
+                estado = false;
                 DeleteAllsc();
+                cargarGrillacomida();
             }
         }
         private void btnEliminarComida_Click(object sender, EventArgs e)
@@ -203,6 +204,23 @@ namespace Principal
                 lComidapecio.Visible = false;
                 pnPreciocomida.BackColor = System.Drawing.Color.Black;
                 textcomidaprecio.Focus();
+            }
+        }
+
+        private void textBusquedacomida_TextChanged(object sender, EventArgs e)
+        {
+            if (textBusquedacomida.Text == "")
+            {
+                dgvlistacomida.DataSource = listaComidaLocal;
+            }
+            else
+            {
+                if (textBusquedacomida.Text.Length >= 1)
+                {
+                    List<Comida> lista;
+                    lista = listaComidaLocal.FindAll(X => X.Nombre.Contains(textBusquedacomida.Text.ToUpper()));
+                    dgvlistacomida.DataSource = lista;
+                }
             }
         }
     }

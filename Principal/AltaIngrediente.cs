@@ -173,8 +173,9 @@ namespace Principal
                     textNombreIngrediente.Text = "";
                     textCantidadIngrediente.Text = "";
                     textPrecioIngrediente.Text = "";
-                    cargarGrilla();
                     estado = false;
+                    cargarGrilla();
+                    
                     dgvIngredientes.Enabled = true;
                 }
             }
