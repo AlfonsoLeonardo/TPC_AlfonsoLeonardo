@@ -6,16 +6,19 @@ using System.Threading.Tasks;
 
 namespace Dominio
 {
-    public class Comida
+   public class TipoComida
     {
         public int Id { get; set; }
         public string Nombre { get; set; }
-        public decimal Precio { get; set; }
-        public TipoComida TC { get; set; }
         public DateTime F_Add { get; set; }
         public Usuario UserAdd { get; set; }
         public DateTime F_Mod { get; set; }
         public Usuario UserMod { get; set; }
         public bool Estado { get; set; }
+
+        public override string ToString()
+        {
+            return Nombre;
+        }
     }
 }

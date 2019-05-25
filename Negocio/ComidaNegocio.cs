@@ -19,6 +19,7 @@ namespace Negocio
             List<Comida> listado = new List<Comida>();
             AccesoDatosManager accesoDatos = new AccesoDatosManager();
             Comida Comi = new Comida();
+            TipoComida tipoComida = new TipoComida();
             try
             {
 
@@ -32,7 +33,9 @@ namespace Negocio
                     Comi.Id = (int)accesoDatos.Lector["IdComida"];
                     Comi.Nombre = accesoDatos.Lector["NombreComida"].ToString();
                     Comi.Precio = (decimal)accesoDatos.Lector["PrecioComida"];
-
+                    Comi.TC = new TipoComida();
+                    Comi.TC.Id = (int)accesoDatos.Lector["IdComida"];
+                    Comi.TC.Nombre = accesoDatos.Lector["NombreTipoComida"].ToString();
                     Comi.UserAdd = new Usuario();
                     Comi.UserAdd.IdUsuario = (int)accesoDatos.Lector["IdComida"];
                     Comi.UserAdd.User = accesoDatos.Lector["Usuario"].ToString();

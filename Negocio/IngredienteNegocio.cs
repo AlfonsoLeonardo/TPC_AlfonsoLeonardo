@@ -21,6 +21,7 @@ namespace Negocio
             List<Ingrediente> listado = new List<Ingrediente>();
             AccesoDatosManager accesoDatos = new AccesoDatosManager();
             Ingrediente Ingre = new Ingrediente();
+            TipoComida tipoComida = new TipoComida();
             try
             {
                accesoDatos.setearConsulta("select* from  DINGREDIENTES");
@@ -37,7 +38,6 @@ namespace Negocio
                     Ingre.UM = new UnidadDeMedida();
                     Ingre.UM.IdUnidad = (int)accesoDatos.Lector["IdIngrediente"];
                     Ingre.UM.DescripcionCorta = accesoDatos.Lector["Descripcioncorta"].ToString();
-                  
                     Ingre.UserAdd = new Usuario();
                     Ingre.UserAdd.IdUsuario= (int)accesoDatos.Lector["IdIngrediente"];
                     Ingre.UserAdd.User= accesoDatos.Lector["Usuario"].ToString();

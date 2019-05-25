@@ -42,10 +42,14 @@ namespace Principal
         {
 
             ComidaNegocio negocio = new ComidaNegocio();
+            TipoComidaNegocio tipoComida = new TipoComidaNegocio();
             try
             {
 
                 listaComidaLocal = negocio.ListarComida();
+                cboTipoComida.DataSource = tipoComida.ListarTipoComida();
+                cboTipoComida.DisplayMember = "Nombre"; //Nombre de la varible a mostrar en pantalla
+                cboTipoComida.ValueMember = "Id";// nobre de la variable del id a mostar
                 dgvlistacomida.DataSource = listaComidaLocal;
                 dgvlistacomida.Columns[7].Visible = false;
 

@@ -53,6 +53,7 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.lBusquedacomi = new System.Windows.Forms.Label();
             this.textBusquedacomida = new System.Windows.Forms.TextBox();
+            this.cboTipoComida = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvlistacomida)).BeginInit();
             this.pnNombrecomida.SuspendLayout();
             this.pnPreciocomida.SuspendLayout();
@@ -287,7 +288,7 @@
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel2.Controls.Add(this.button1);
-            this.panel2.Location = new System.Drawing.Point(53, 297);
+            this.panel2.Location = new System.Drawing.Point(54, 338);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(113, 55);
             this.panel2.TabIndex = 47;
@@ -297,7 +298,7 @@
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.Controls.Add(this.btnagregarcomida);
-            this.panel1.Location = new System.Drawing.Point(195, 297);
+            this.panel1.Location = new System.Drawing.Point(196, 338);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(113, 55);
             this.panel1.TabIndex = 46;
@@ -342,12 +343,21 @@
             this.textBusquedacomida.TabIndex = 50;
             this.textBusquedacomida.TextChanged += new System.EventHandler(this.textBusquedacomida_TextChanged);
             // 
+            // cboTipoComida
+            // 
+            this.cboTipoComida.FormattingEnabled = true;
+            this.cboTipoComida.Location = new System.Drawing.Point(182, 246);
+            this.cboTipoComida.Name = "cboTipoComida";
+            this.cboTipoComida.Size = new System.Drawing.Size(121, 21);
+            this.cboTipoComida.TabIndex = 52;
+            // 
             // AltaComida
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.ClientSize = new System.Drawing.Size(1084, 573);
+            this.Controls.Add(this.cboTipoComida);
             this.Controls.Add(this.lBusquedacomi);
             this.Controls.Add(this.textBusquedacomida);
             this.Controls.Add(this.panel3);
@@ -403,5 +413,6 @@
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label lBusquedacomi;
         private System.Windows.Forms.TextBox textBusquedacomida;
+        private System.Windows.Forms.ComboBox cboTipoComida;
     }
 }
