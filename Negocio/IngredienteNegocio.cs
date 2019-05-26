@@ -39,7 +39,7 @@ namespace Negocio
                     Ingre.UM.IdUnidad = (int)accesoDatos.Lector["IdIngrediente"];
                     Ingre.UM.DescripcionCorta = accesoDatos.Lector["Descripcioncorta"].ToString();
                     Ingre.UserAdd = new Usuario();
-                    Ingre.UserAdd.IdUsuario= (int)accesoDatos.Lector["IdIngrediente"];
+                    Ingre.UserAdd.IdUsuario= (int)accesoDatos.Lector["IdIngrediente"];  
                     Ingre.UserAdd.User= accesoDatos.Lector["Usuario"].ToString();
                     Ingre.F_Add = (DateTime)accesoDatos.Lector["FechaCreacion"];
                     Ingre.UserMod = new Usuario();

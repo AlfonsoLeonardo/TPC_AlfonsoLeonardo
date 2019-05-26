@@ -22,6 +22,7 @@ namespace Principal
         {
 
             IngredienteNegocio negocio = new IngredienteNegocio();
+            IngredientePorComidaNegocio porComidaNegocio = new IngredientePorComidaNegocio();
             ComidaNegocio negocioc = new ComidaNegocio();
             try
             {
@@ -33,10 +34,19 @@ namespace Principal
                 chkingrediente.DisplayMember = "Nombre"; //Nombre de la varible a mostrar en pantalla
                 chkingrediente.ValueMember = "Id";// nobre de la variable del id a mostar
 
-                //listaIngredienteLocal = negocio.ListarIngrediente();
-                // dgvIngredientes.DataSource = listaIngredienteLocal;
-                //dgvIngredientes.Columns[2].Visible = false;
-                //dgvIngredientes.Columns[10].Visible = false;
+
+               // DataGridViewCheckBoxColumn checkBoxColumn = new DataGridViewCheckBoxColumn();
+               // checkBoxColumn.HeaderText = "Agregar";
+                
+                //DataGridViewTextBoxColumn Catn = new DataGridViewTextBoxColumn();
+               // Catn.HeaderText = "Cantidad";
+                
+                dgvIngreporComida.DataSource = porComidaNegocio.ListarIngredienteporcomida();
+               // dgvIngreporComida.Columns.Add(checkBoxColumn);
+               // dgvIngreporComida.Columns.Add(Catn);
+    
+
+
             }
             catch (Exception ex)
             {
