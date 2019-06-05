@@ -18,11 +18,11 @@ namespace Dominio
     }
     public class IngredienteC
     {
-        public bool Agragar { get; set; }
+        public bool Agregar { get; set; }
         public int Id { get; set; }
         public string Nombre { get; set; }
         public decimal Cantidad { get; set; }
-        public bool estado { get; set; }
+        public bool Estado { get; set; }
 
 
     }

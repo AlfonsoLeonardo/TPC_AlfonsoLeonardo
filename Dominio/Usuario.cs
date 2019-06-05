@@ -16,14 +16,14 @@ namespace Dominio
         public TipoUsuario Tipo { get; set; }
         public bool Estado { get; set; }
 
-        public static Usuario UsuarioLogin {get; set; }
+        public static Usuario UsuarioLogin { get; set; }
 
-        
 
-            public override string ToString()
-       {
+
+        public override string ToString()
+        {
             return User;
-       }
+        }
     }
 
 }

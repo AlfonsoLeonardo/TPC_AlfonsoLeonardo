@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using Dominio;
+using Negocio;
 
 
 namespace Principal
@@ -53,17 +54,24 @@ namespace Principal
 
         private void frmPrincipal_Load_1(object sender, EventArgs e)
         {
+            UsuarioNegocio usuarioNegocio =new  UsuarioNegocio();
+
             try
             {
                 usuarioLogueado = new Usuario();
-                frmLogin login = new frmLogin(usuarioLogueado);
+                UsuarioLogueado.User = "admin";// para no loguearse a cada rato
+                usuarioLogueado.Pass = "admin";//
+                usuarioNegocio.validarUsuario(usuarioLogueado);//
+                /*frmLogin login = new frmLogin(usuarioLogueado); //para loguearse
+
                 login.ShowDialog();
+                
 
                 if (usuarioLogueado.Tipo.Id == TipoUsuario.ADMINISTRADOR)
-                {
+                {*/
                     btnAbm.Visible = true;
                     pnABM.Visible = true;
-                }
+               // }
                 lUsernombre.Text = "Usuario: "+ usuarioLogueado.Apellido.ToString()+" "+usuarioLogueado.Nombre.ToString();
             }
             catch (Exception ex)

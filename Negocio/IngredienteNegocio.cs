@@ -13,18 +13,18 @@ namespace Negocio
 {
     public class IngredienteNegocio
     {
-        
-    
+
+
         public List<Ingrediente> ListarIngrediente()
         {
-            
+
             List<Ingrediente> listado = new List<Ingrediente>();
             AccesoDatosManager accesoDatos = new AccesoDatosManager();
             Ingrediente Ingre = new Ingrediente();
             TipoComida tipoComida = new TipoComida();
             try
             {
-               accesoDatos.setearConsulta("select* from  DINGREDIENTES");
+                accesoDatos.setearConsulta("select* from  DINGREDIENTES");
                 accesoDatos.abrirConexion();
                 accesoDatos.ejecutarConsulta();
 
@@ -39,15 +39,15 @@ namespace Negocio
                     Ingre.UM.IdUnidad = (int)accesoDatos.Lector["IdIngrediente"];
                     Ingre.UM.DescripcionCorta = accesoDatos.Lector["Descripcioncorta"].ToString();
                     Ingre.UserAdd = new Usuario();
-                    Ingre.UserAdd.IdUsuario= (int)accesoDatos.Lector["IdIngrediente"];  
-                    Ingre.UserAdd.User= accesoDatos.Lector["Usuario"].ToString();
+                    Ingre.UserAdd.IdUsuario = (int)accesoDatos.Lector["IdIngrediente"];
+                    Ingre.UserAdd.User = accesoDatos.Lector["Usuario"].ToString();
                     Ingre.F_Add = (DateTime)accesoDatos.Lector["FechaCreacion"];
                     Ingre.UserMod = new Usuario();
                     Ingre.UserMod.IdUsuario = (int)accesoDatos.Lector["IdIngrediente"];
                     Ingre.UserMod.User = accesoDatos.Lector["UserMod"].ToString();
                     Ingre.F_Mod = (DateTime)accesoDatos.Lector["FechaModificacion"];
-              
-                     
+
+
                     listado.Add(Ingre);
                 }
 
@@ -62,7 +62,7 @@ namespace Negocio
             finally
             {
                 accesoDatos.cerrarConexion();
-                
+
             }
         }
         public void agregarIngrediente(Ingrediente nuevo)
@@ -73,7 +73,7 @@ namespace Negocio
             {
                 conexion.ConnectionString = "data source=(local); initial catalog=ALFONSO_DB; integrated security=sspi";
                 comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "SET DATEFORMAT 'DMY' insert into INGREDIENTES (NombreIngrediente, StockIngrediente, UnidadMedida, MasterPack, PrecioIngrediente, FechaCreacion, UsuarioCreacion, FechaModificacion, UsuarioModificacion, Estado) values ('" + nuevo.Nombre + "','" + nuevo.Stock + "','" + nuevo.UM.IdUnidad + "','" + nuevo.Precio + "','" + nuevo.Master + "','"+nuevo.F_Add+"','"+nuevo.UserAdd.IdUsuario+ "','" + nuevo.F_Add + "','" +nuevo.UserMod.IdUsuario+ "','" + nuevo.estado+ "')";
+                comando.CommandText = "SET DATEFORMAT 'DMY' insert into INGREDIENTES (NombreIngrediente, StockIngrediente, UnidadMedida, MasterPack, PrecioIngrediente, FechaCreacion, UsuarioCreacion, FechaModificacion, UsuarioModificacion, Estado) values ('" + nuevo.Nombre + "','" + nuevo.Stock + "','" + nuevo.UM.IdUnidad + "','" + nuevo.Precio + "','" + nuevo.Master + "','" + nuevo.F_Add + "','" + nuevo.UserAdd.IdUsuario + "','" + nuevo.F_Add + "','" + nuevo.UserMod.IdUsuario + "','" + nuevo.estado + "')";
                 comando.Connection = conexion;
                 conexion.Open();
                 comando.ExecuteNonQuery();
@@ -119,17 +119,17 @@ namespace Negocio
         }
         public void eliminarIngrediente(Ingrediente nuevo)
         {
-             AccesoDatosManager accesoDatos = new AccesoDatosManager();
-            
+            AccesoDatosManager accesoDatos = new AccesoDatosManager();
+
             try
             {
                 accesoDatos.setearConsulta("update INGREDIENTES Set Estado = @Estado where IdIngrediente = " + nuevo.Id);
-      
+
                 accesoDatos.Comando.Parameters.Clear();
                 accesoDatos.Comando.Parameters.AddWithValue("@Estado", false);
                 accesoDatos.abrirConexion();
                 accesoDatos.ejecutarConsulta();
-                
+
             }
             catch (Exception ex)
             {
@@ -151,12 +151,12 @@ namespace Negocio
                 conexion.setearConsulta("select IdIngrediente, Estado, NombreIngrediente from INGREDIENTES Where NombreIngrediente=@Nombre");
                 conexion.Comando.Parameters.Clear();
                 conexion.Comando.Parameters.AddWithValue("@Nombre", nuevo.Nombre);
-             
+
                 conexion.abrirConexion();
                 conexion.ejecutarConsulta();
                 if (conexion.Lector.Read())
                 {
-                    
+
                     nuevo.estado = (bool)conexion.Lector["Estado"];
                     if (false == nuevo.estado)
                     {
@@ -165,9 +165,9 @@ namespace Negocio
                         nuevo.estado = true;
                         modificarIngrediente(nuevo);
                         return false;
-                        
+
                     }
-                     return true;
+                    return true;
                 }
                 else
                 {

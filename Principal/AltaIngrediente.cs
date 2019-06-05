@@ -22,7 +22,7 @@ namespace Principal
         }
 
         bool estado = false;
-    
+
         private List<Ingrediente> listaIngredienteLocal;
 
         private void DeleteAlls()
@@ -36,9 +36,9 @@ namespace Principal
             pnCantidading.BackColor = System.Drawing.Color.Black;
             pnNombreing.BackColor = System.Drawing.Color.Black;
             pnPrecioing.BackColor = System.Drawing.Color.Black;
-            
+
             dgvIngredientes.Enabled = true;
-           
+
         }
 
         private void cargarGrilla()
@@ -81,7 +81,7 @@ namespace Principal
                 {
 
                     lTxtvacioNombre.Visible = true;
-                    
+
                     pnNombreing.BackColor = System.Drawing.Color.Red;
                     dgvIngredientes.Enabled = false;
                     return;
@@ -90,12 +90,12 @@ namespace Principal
                 else
                 {
                     lTxtvacioNombre.Visible = false;
-                    
+
                     pnNombreing.BackColor = System.Drawing.Color.Black;
                     dgvIngredientes.Enabled = true;
 
                 }
-                if (textCantidadIngrediente.Text.Trim() == string.Empty|| Convert.ToDecimal(textCantidadIngrediente.Text)<1)
+                if (textCantidadIngrediente.Text.Trim() == string.Empty || Convert.ToDecimal(textCantidadIngrediente.Text) < 1)
                 {
                     ltxtcantidadIngrediente.Visible = true;
                     pnCantidading.BackColor = System.Drawing.Color.Red;
@@ -109,7 +109,7 @@ namespace Principal
                     dgvIngredientes.Enabled = true;
                 }
 
-                if (textPrecioIngrediente.Text.Trim() == string.Empty ||( Convert.ToDecimal(textPrecioIngrediente.Text)) < 1)
+                if (textPrecioIngrediente.Text.Trim() == string.Empty || (Convert.ToDecimal(textPrecioIngrediente.Text)) < 1)
                 {
                     ltxtprecioingrediente.Visible = true;
                     pnPrecioing.BackColor = System.Drawing.Color.Red;
@@ -125,7 +125,7 @@ namespace Principal
 
                 if (estado == false)
                 {
-                   
+
                     DateTime fecha = DateTime.Today;
                     ingrediente.Nombre = textNombreIngrediente.Text;
                     ingrediente.Stock = 0;
@@ -175,7 +175,7 @@ namespace Principal
                     textPrecioIngrediente.Text = "";
                     estado = false;
                     cargarGrilla();
-                    
+
                     dgvIngredientes.Enabled = true;
                 }
             }
@@ -227,7 +227,7 @@ namespace Principal
         {
             try
             {
-                
+
                 IngredienteNegocio ingredienteNegocio = new IngredienteNegocio();
 
                 Ingrediente ing;
@@ -276,38 +276,58 @@ namespace Principal
 
         private void textCantidadIngrediente_KeyPress(object sender, KeyPressEventArgs e)
         {
-           
-            if ((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8 && e.KeyChar != 13&&e.KeyChar!='.')
+
+            if ((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8 && e.KeyChar != 13 && e.KeyChar != '.')
             {
                 e.Handled = true;
                 ltxtcantidadIngrediente.Visible = true;
                 pnCantidading.BackColor = System.Drawing.Color.Red;
             }
-            
-            else 
+
+            else
             {
                 ltxtcantidadIngrediente.Visible = false;
                 pnCantidading.BackColor = System.Drawing.Color.Black;
-                 textCantidadIngrediente.Focus();
+                textCantidadIngrediente.Focus();
             }
         }
 
         private void textPrecioIngrediente_KeyPress(object sender, KeyPressEventArgs e)
         {
-            
+
             if ((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8 && e.KeyChar != 13 && e.KeyChar != '.')
             {
                 e.Handled = true;
                 ltxtprecioingrediente.Visible = true;
                 pnPrecioing.BackColor = System.Drawing.Color.Red;
             }
-         
-            else 
+
+            else
             {
                 ltxtprecioingrediente.Visible = false;
                 pnPrecioing.BackColor = System.Drawing.Color.Black;
 
                 textPrecioIngrediente.Focus();
+            }
+        }
+
+        private void textNombreIngrediente_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            /*if (e.==Keys.Tab)
+            {
+                e.Handled = true;
+                ltxtcantidadIngrediente.Visible = true;
+                pnCantidading.BackColor = System.Drawing.Color.Red;
+            }*/
+        }
+
+        private void textNombreIngrediente_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData== Keys.Tab)
+            {
+                e.Handled = true;
+                ltxtcantidadIngrediente.Visible = true;
+                pnCantidading.BackColor = System.Drawing.Color.Red;
             }
         }
     }
