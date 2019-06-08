@@ -20,6 +20,9 @@ namespace Dominio
         public Usuario UserMod { get; set; }
         public bool estado { get; set; }
 
-
+        public override string ToString()
+        {
+            return Nombre;
+        }
     }
 }

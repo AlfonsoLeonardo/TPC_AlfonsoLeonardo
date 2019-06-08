@@ -33,9 +33,16 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvIngreporComida = new System.Windows.Forms.DataGridView();
             this.cboComida = new System.Windows.Forms.ComboBox();
+            this.dgvIngredienteppcc = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIngreporComida)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvIngredienteppcc)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvIngreporComida
@@ -73,13 +80,14 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvIngreporComida.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dgvIngreporComida.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnKeystroke;
+            this.dgvIngreporComida.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgvIngreporComida.EnableHeadersVisualStyles = false;
             this.dgvIngreporComida.GridColor = System.Drawing.Color.White;
             this.dgvIngreporComida.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.dgvIngreporComida.Location = new System.Drawing.Point(329, 52);
+            this.dgvIngreporComida.Location = new System.Drawing.Point(558, 80);
             this.dgvIngreporComida.MultiSelect = false;
             this.dgvIngreporComida.Name = "dgvIngreporComida";
+            this.dgvIngreporComida.ReadOnly = true;
             this.dgvIngreporComida.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.Red;
@@ -97,12 +105,13 @@
             this.dgvIngreporComida.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
             this.dgvIngreporComida.RowTemplate.DefaultCellStyle.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvIngreporComida.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvIngreporComida.Size = new System.Drawing.Size(708, 365);
+            this.dgvIngreporComida.Size = new System.Drawing.Size(248, 586);
             this.dgvIngreporComida.TabIndex = 8;
             this.dgvIngreporComida.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvIngreporComida_CellContentClick);
-            this.dgvIngreporComida.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvIngreporComida_CellDoubleClick);
             this.dgvIngreporComida.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvIngreporComida_CellFormatting);
             this.dgvIngreporComida.CurrentCellDirtyStateChanged += new System.EventHandler(this.dgvIngreporComida_CurrentCellDirtyStateChanged);
+            this.dgvIngreporComida.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgvIngreporComida_DataError);
+            this.dgvIngreporComida.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dgvIngreporComida_KeyPress);
             // 
             // cboComida
             // 
@@ -114,12 +123,73 @@
             this.cboComida.TabIndex = 3;
             this.cboComida.SelectedValueChanged += new System.EventHandler(this.cboComida_SelectedValueChanged);
             // 
+            // dgvIngredienteppcc
+            // 
+            this.dgvIngredienteppcc.AllowUserToAddRows = false;
+            this.dgvIngredienteppcc.AllowUserToDeleteRows = false;
+            this.dgvIngredienteppcc.AllowUserToResizeColumns = false;
+            this.dgvIngredienteppcc.AllowUserToResizeRows = false;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvIngredienteppcc.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
+            this.dgvIngredienteppcc.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.dgvIngredienteppcc.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.dgvIngredienteppcc.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.dgvIngredienteppcc.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvIngredienteppcc.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.Maroon;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.Red;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvIngredienteppcc.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            this.dgvIngredienteppcc.ColumnHeadersHeight = 20;
+            this.dgvIngredienteppcc.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.Red;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvIngredienteppcc.DefaultCellStyle = dataGridViewCellStyle8;
+            this.dgvIngredienteppcc.EnableHeadersVisualStyles = false;
+            this.dgvIngredienteppcc.GridColor = System.Drawing.Color.White;
+            this.dgvIngredienteppcc.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.dgvIngredienteppcc.Location = new System.Drawing.Point(35, 100);
+            this.dgvIngredienteppcc.MultiSelect = false;
+            this.dgvIngredienteppcc.Name = "dgvIngredienteppcc";
+            this.dgvIngredienteppcc.ReadOnly = true;
+            this.dgvIngredienteppcc.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.Red;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvIngredienteppcc.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            this.dgvIngredienteppcc.RowHeadersVisible = false;
+            this.dgvIngredienteppcc.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            this.dgvIngredienteppcc.RowsDefaultCellStyle = dataGridViewCellStyle10;
+            this.dgvIngredienteppcc.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
+            this.dgvIngredienteppcc.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvIngredienteppcc.Size = new System.Drawing.Size(290, 365);
+            this.dgvIngredienteppcc.TabIndex = 9;
+            // 
             // IngredientePorComida
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.ClientSize = new System.Drawing.Size(1175, 707);
+            this.Controls.Add(this.dgvIngredienteppcc);
             this.Controls.Add(this.cboComida);
             this.Controls.Add(this.dgvIngreporComida);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -127,6 +197,7 @@
             this.Text = "IngredientePorComida";
             this.Load += new System.EventHandler(this.IngredientePorComida_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvIngreporComida)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvIngredienteppcc)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -134,5 +205,6 @@
         #endregion
         private System.Windows.Forms.ComboBox cboComida;
         private System.Windows.Forms.DataGridView dgvIngreporComida;
+        private System.Windows.Forms.DataGridView dgvIngredienteppcc;
     }
 }

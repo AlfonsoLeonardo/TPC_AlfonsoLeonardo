@@ -8,7 +8,8 @@ namespace Dominio
 {
     public class IngreditePorComida
     {
-        public List<Ingrediente> ingrediente { set; get; }
+        public Ingrediente Ingrediente { set; get; }
+        public Comida Comida { set; get; }
         public DateTime FechaCreacion { get; set; }
         public Usuario UsuarioCreacion { get; set; }
         public DateTime FechaModificacion { get; set; }

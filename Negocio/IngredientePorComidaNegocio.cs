@@ -10,7 +10,7 @@ namespace Negocio
 {
    public class IngredientePorComidaNegocio
     {
-        public decimal validarIngredientepc(IngredienteC nuevo, int id)
+       /* public List<IngreditePorComida> validarIngredientepc(IngredienteC nuevo, int id)
         {
             
             AccesoDatosManager conexion;
@@ -25,18 +25,9 @@ namespace Negocio
                 conexion.abrirConexion();
                 conexion.ejecutarConsulta();
                 if (conexion.Lector.Read())
-                {
-
-                    /*  id = (int)conexion.Lector["IdIngrediente"];
-                  if (nuevo.Id ==id )
-                      {
-                      */
-
-                    // conexion.cerrarConexion();            
+                {        
                     return nuevo.Cantidad = (decimal)conexion.Lector["Cantidad"];   
 
-                    //  }
-                    // return false;
                 }
                 else
                 {
@@ -49,39 +40,45 @@ namespace Negocio
             {
                 throw ex;
             }
+            
+
+        }*/
 
 
-        }
-
-
-        public List<IngredienteC> ListarIngredienteporcomida(int xxx)
+        public List<IngreditePorComida> ListarIngredienteporcomida( int id)
         {
             
 
-            List<IngredienteC> listado = new List<IngredienteC>();
+            List<IngreditePorComida> listado = new List<IngreditePorComida>();
             AccesoDatosManager accesoDatos = new AccesoDatosManager();
           
-            IngredienteC Ingre = new IngredienteC();
+            IngreditePorComida Ingre = new IngreditePorComida();
             TipoComida tipoComida = new TipoComida();
             try
             {
-                accesoDatos.setearConsulta("select IdIngrediente, NombreIngrediente from  INGREDIENTES where estado=1");
+                accesoDatos.setearConsulta("select i.IdIngrediente, i.NombreIngrediente,  ic.Cantidad  from INGREDIENTES as i inner join INGREDIETESPORCOMIDAS as ic on i.IdIngrediente= ic.IdIngredientes	where IdComidas=@Idcomida and ic.Estado=1");
+                accesoDatos.Comando.Parameters.Clear();
+                accesoDatos.Comando.Parameters.AddWithValue("@Idcomida", id);
+               // accesoDatos.Comando.Parameters.AddWithValue("@IdIngrediente", nuevo.Id);
+
                 accesoDatos.abrirConexion();
                 accesoDatos.ejecutarConsulta();
 
                 while (accesoDatos.Lector.Read())
                 {
+                    
+                   Ingre = new IngreditePorComida();
+                    Ingre.Ingrediente = new Ingrediente();
 
-                   Ingre = new IngredienteC();
-                   Ingre.Id = (int)accesoDatos.Lector["Idingrediente"];
-                   Ingre.Nombre = accesoDatos.Lector["NombreIngrediente"].ToString();
-                   Ingre.Cantidad  = validarIngredientepc(Ingre, xxx);
+                    Ingre.Ingrediente.Id= (int)accesoDatos.Lector["IdIngrediente"];
+                    Ingre.Ingrediente.Nombre = accesoDatos.Lector["NombreIngrediente"].ToString();
+                    Ingre.Cantidad = (decimal)accesoDatos.Lector["Cantidad"];
 
-                    if (Ingre.Cantidad > 0)
-                    {
-                        Ingre.Agregar = true;
-                    }
-                    else { Ingre.Agregar = false; }
+
+                  
+                   
+
+                 
 
                     listado.Add(Ingre);
                 }
