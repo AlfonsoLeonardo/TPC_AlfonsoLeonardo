@@ -67,16 +67,25 @@ namespace Negocio
         }
         public void agregarIngrediente(Ingrediente nuevo)
         {
-            SqlConnection conexion = new SqlConnection();
-            SqlCommand comando = new SqlCommand();
+            AccesoDatosManager accesoDatos = new AccesoDatosManager();
             try
             {
-                conexion.ConnectionString = "data source=(local); initial catalog=ALFONSO_DB; integrated security=sspi";
-                comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "SET DATEFORMAT 'DMY' insert into INGREDIENTES (NombreIngrediente, StockIngrediente, UnidadMedida, MasterPack, PrecioIngrediente, FechaCreacion, UsuarioCreacion, FechaModificacion, UsuarioModificacion, Estado) values ('" + nuevo.Nombre + "','" + nuevo.Stock + "','" + nuevo.UM.IdUnidad + "','" + nuevo.Precio + "','" + nuevo.Master + "','" + nuevo.F_Add + "','" + nuevo.UserAdd.IdUsuario + "','" + nuevo.F_Add + "','" + nuevo.UserMod.IdUsuario + "','" + nuevo.estado + "')";
-                comando.Connection = conexion;
-                conexion.Open();
-                comando.ExecuteNonQuery();
+                accesoDatos.setearSP("AgregarIngrediente");
+                accesoDatos.Comando.Parameters.Clear();
+                accesoDatos.Comando.Parameters.AddWithValue("@NombreIngrediente", nuevo.Nombre);
+                accesoDatos.Comando.Parameters.AddWithValue("@StockIngrediente", nuevo.Precio);
+                accesoDatos.Comando.Parameters.AddWithValue("@UnidadMedida", nuevo.UM.IdUnidad);
+                accesoDatos.Comando.Parameters.AddWithValue("@MasterPack", nuevo.Master);
+                accesoDatos.Comando.Parameters.AddWithValue("@PrecioIngrediente",nuevo.Precio);
+                accesoDatos.Comando.Parameters.AddWithValue("@FechaCreacion", nuevo.F_Add);
+                accesoDatos.Comando.Parameters.AddWithValue("@UsuarioCreacion",nuevo.UserAdd.IdUsuario);
+                accesoDatos.Comando.Parameters.AddWithValue("@FechaModificacion",nuevo.F_Mod);
+                accesoDatos.Comando.Parameters.AddWithValue("@UsuarioModificacion", nuevo.UserMod.IdUsuario);
+                accesoDatos.Comando.Parameters.AddWithValue("@Estado",nuevo.estado);
+
+                accesoDatos.abrirConexion();
+                accesoDatos.ejecutarAccion();
+
             }
             catch (Exception ex)
             {
@@ -84,7 +93,7 @@ namespace Negocio
             }
             finally
             {
-                conexion.Close();
+                accesoDatos.cerrarConexion();
             }
         }
         public void modificarIngrediente(Ingrediente modificar)

@@ -38,8 +38,6 @@
             this.btnMaximizar = new System.Windows.Forms.PictureBox();
             this.btnCerrar = new System.Windows.Forms.PictureBox();
             this.panelmenu = new System.Windows.Forms.Panel();
-            this.lUsernombre = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.SubMenuABM = new System.Windows.Forms.Panel();
             this.pnIngPrcomida = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -49,6 +47,8 @@
             this.btnComid = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
             this.btnIngre = new System.Windows.Forms.Button();
+            this.lUsernombre = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pnABM = new System.Windows.Forms.Panel();
             this.pntomadepedido = new System.Windows.Forms.Panel();
             this.pnReporte = new System.Windows.Forms.Panel();
@@ -59,8 +59,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnMaximizar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCerrar)).BeginInit();
             this.panelmenu.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SubMenuABM.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnAbm
@@ -96,6 +96,7 @@
             this.btnTomaDePedido.TabIndex = 155;
             this.btnTomaDePedido.Text = "Toma De Pedidos";
             this.btnTomaDePedido.UseVisualStyleBackColor = false;
+            this.btnTomaDePedido.Click += new System.EventHandler(this.btnTomaDePedido_Click);
             // 
             // btnReporte
             // 
@@ -182,9 +183,9 @@
             // panelmenu
             // 
             this.panelmenu.BackColor = System.Drawing.Color.Maroon;
+            this.panelmenu.Controls.Add(this.SubMenuABM);
             this.panelmenu.Controls.Add(this.lUsernombre);
             this.panelmenu.Controls.Add(this.pictureBox1);
-            this.panelmenu.Controls.Add(this.SubMenuABM);
             this.panelmenu.Controls.Add(this.pnABM);
             this.panelmenu.Controls.Add(this.pntomadepedido);
             this.panelmenu.Controls.Add(this.pnReporte);
@@ -194,28 +195,8 @@
             this.panelmenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelmenu.Location = new System.Drawing.Point(0, 38);
             this.panelmenu.Name = "panelmenu";
-            this.panelmenu.Size = new System.Drawing.Size(200, 612);
+            this.panelmenu.Size = new System.Drawing.Size(202, 612);
             this.panelmenu.TabIndex = 7;
-            // 
-            // lUsernombre
-            // 
-            this.lUsernombre.AutoSize = true;
-            this.lUsernombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lUsernombre.ForeColor = System.Drawing.Color.White;
-            this.lUsernombre.Location = new System.Drawing.Point(10, 587);
-            this.lUsernombre.Name = "lUsernombre";
-            this.lUsernombre.Size = new System.Drawing.Size(0, 16);
-            this.lUsernombre.TabIndex = 0;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(200, 155);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 6;
-            this.pictureBox1.TabStop = false;
             // 
             // SubMenuABM
             // 
@@ -340,6 +321,29 @@
             this.btnIngre.UseVisualStyleBackColor = false;
             this.btnIngre.Click += new System.EventHandler(this.btnIngre_Click);
             // 
+            // lUsernombre
+            // 
+            this.lUsernombre.AutoSize = true;
+            this.lUsernombre.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.lUsernombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lUsernombre.ForeColor = System.Drawing.Color.White;
+            this.lUsernombre.Location = new System.Drawing.Point(0, 596);
+            this.lUsernombre.Name = "lUsernombre";
+            this.lUsernombre.Size = new System.Drawing.Size(76, 16);
+            this.lUsernombre.TabIndex = 0;
+            this.lUsernombre.Text = "USUARIO";
+            this.lUsernombre.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(200, 155);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 6;
+            this.pictureBox1.TabStop = false;
+            // 
             // pnABM
             // 
             this.pnABM.BackColor = System.Drawing.Color.Red;
@@ -370,9 +374,9 @@
             this.panelcontenedor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.panelcontenedor.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.panelcontenedor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelcontenedor.Location = new System.Drawing.Point(200, 38);
+            this.panelcontenedor.Location = new System.Drawing.Point(202, 38);
             this.panelcontenedor.Name = "panelcontenedor";
-            this.panelcontenedor.Size = new System.Drawing.Size(1100, 612);
+            this.panelcontenedor.Size = new System.Drawing.Size(1098, 612);
             this.panelcontenedor.TabIndex = 8;
             // 
             // frmPrincipal
@@ -385,6 +389,7 @@
             this.Controls.Add(this.panelmenu);
             this.Controls.Add(this.pnBarraTitulo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.Name = "frmPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -397,8 +402,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnCerrar)).EndInit();
             this.panelmenu.ResumeLayout(false);
             this.panelmenu.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.SubMenuABM.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }

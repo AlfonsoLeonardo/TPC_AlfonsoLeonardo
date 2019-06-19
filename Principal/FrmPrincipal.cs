@@ -192,5 +192,10 @@ namespace Principal
             btnReporte.Location = new Point(0, btnTomaDePedido.Location.Y + btnTomaDePedido.Height + 5);
             AbrirFormHijo<IngredientePorComida>();
         }
+
+        private void btnTomaDePedido_Click(object sender, EventArgs e)
+        {
+            AbrirFormHijo<TomaDePedido>();
+        }
     }
 }

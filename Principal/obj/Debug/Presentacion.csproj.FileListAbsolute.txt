@@ -15,6 +15,7 @@ C:\Users\alfon\source\repos\TPC_AlfonsoLeonardo\Principal\obj\Debug\Principal.fr
 C:\Users\alfon\source\repos\TPC_AlfonsoLeonardo\Principal\obj\Debug\Principal.frmPrincipal.resources
 C:\Users\alfon\source\repos\TPC_AlfonsoLeonardo\Principal\obj\Debug\Principal.IngredientePorComida.resources
 C:\Users\alfon\source\repos\TPC_AlfonsoLeonardo\Principal\obj\Debug\Principal.Properties.Resources.resources
+C:\Users\alfon\source\repos\TPC_AlfonsoLeonardo\Principal\obj\Debug\Principal.TomaDePedido.resources
 C:\Users\alfon\source\repos\TPC_AlfonsoLeonardo\Principal\obj\Debug\Presentacion.csproj.GenerateResource.cache
 C:\Users\alfon\source\repos\TPC_AlfonsoLeonardo\Principal\obj\Debug\Presentacion.csproj.CoreCompileInputs.cache
 C:\Users\alfon\source\repos\TPC_AlfonsoLeonardo\Principal\obj\Debug\Presentacion.csproj.CopyComplete

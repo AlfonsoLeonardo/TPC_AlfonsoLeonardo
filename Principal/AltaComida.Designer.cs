@@ -146,7 +146,8 @@
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvlistacomida.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvlistacomida.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.dgvlistacomida.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvlistacomida.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dgvlistacomida.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.dgvlistacomida.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -172,7 +173,7 @@
             this.dgvlistacomida.EnableHeadersVisualStyles = false;
             this.dgvlistacomida.GridColor = System.Drawing.Color.White;
             this.dgvlistacomida.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.dgvlistacomida.Location = new System.Drawing.Point(364, 87);
+            this.dgvlistacomida.Location = new System.Drawing.Point(364, 47);
             this.dgvlistacomida.MultiSelect = false;
             this.dgvlistacomida.Name = "dgvlistacomida";
             this.dgvlistacomida.ReadOnly = true;
@@ -191,7 +192,7 @@
             this.dgvlistacomida.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvlistacomida.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
             this.dgvlistacomida.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvlistacomida.Size = new System.Drawing.Size(708, 365);
+            this.dgvlistacomida.Size = new System.Drawing.Size(708, 511);
             this.dgvlistacomida.TabIndex = 8;
             // 
             // btnEliminarComida
@@ -305,20 +306,22 @@
             // 
             // panel3
             // 
+            this.panel3.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel3.Controls.Add(this.btnEliminarComida);
-            this.panel3.Location = new System.Drawing.Point(522, 458);
+            this.panel3.Location = new System.Drawing.Point(95, 461);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(113, 55);
             this.panel3.TabIndex = 49;
             // 
             // panel4
             // 
+            this.panel4.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel4.Controls.Add(this.btnmodificarcomida);
-            this.panel4.Location = new System.Drawing.Point(664, 458);
+            this.panel4.Location = new System.Drawing.Point(237, 461);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(113, 55);
             this.panel4.TabIndex = 48;
@@ -328,7 +331,7 @@
             this.lBusquedacomi.AutoSize = true;
             this.lBusquedacomi.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lBusquedacomi.ForeColor = System.Drawing.Color.White;
-            this.lBusquedacomi.Location = new System.Drawing.Point(400, 54);
+            this.lBusquedacomi.Location = new System.Drawing.Point(399, 14);
             this.lBusquedacomi.Name = "lBusquedacomi";
             this.lBusquedacomi.Size = new System.Drawing.Size(120, 25);
             this.lBusquedacomi.TabIndex = 51;
@@ -337,7 +340,7 @@
             // textBusquedacomida
             // 
             this.textBusquedacomida.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBusquedacomida.Location = new System.Drawing.Point(531, 52);
+            this.textBusquedacomida.Location = new System.Drawing.Point(530, 12);
             this.textBusquedacomida.Name = "textBusquedacomida";
             this.textBusquedacomida.Size = new System.Drawing.Size(147, 29);
             this.textBusquedacomida.TabIndex = 50;
@@ -345,6 +348,7 @@
             // 
             // cboTipoComida
             // 
+            this.cboTipoComida.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboTipoComida.FormattingEnabled = true;
             this.cboTipoComida.Location = new System.Drawing.Point(182, 246);
             this.cboTipoComida.Name = "cboTipoComida";
@@ -356,7 +360,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.ClientSize = new System.Drawing.Size(1084, 573);
+            this.ClientSize = new System.Drawing.Size(1084, 570);
             this.Controls.Add(this.cboTipoComida);
             this.Controls.Add(this.lBusquedacomi);
             this.Controls.Add(this.textBusquedacomida);

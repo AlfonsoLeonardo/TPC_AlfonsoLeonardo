@@ -15,6 +15,7 @@ namespace Dominio
         public DateTime FechaModificacion { get; set; }
         public Usuario UsuarioModificacion { get; set; }
         public decimal Cantidad { set; get; }
+        public bool Estado { set; get; }
 
     }
     public class IngredienteC

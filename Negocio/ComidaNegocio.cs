@@ -63,17 +63,22 @@ namespace Negocio
         }
         public void agregarComida(Comida nuevo)
         {
-            SqlConnection conexion = new SqlConnection();
-            SqlCommand comando = new SqlCommand();
+            AccesoDatosManager accesoDatos = new AccesoDatosManager();
             try
             {
-                conexion.ConnectionString = "data source=(local); initial catalog=ALFONSO_DB; integrated security=sspi";
-                comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "SET DATEFORMAT 'DMY' insert into COMIDAS (NombreComida, PrecioComida, FechaCreacion, UsuarioCreacion, FechaModificacion, UsuarioModificacion, Estado) values ('" + nuevo.Nombre + "','" + nuevo.Precio + "','" + nuevo.F_Add + "','" + nuevo.UserAdd.IdUsuario + "','" + nuevo.F_Add + "','" + nuevo.UserMod.IdUsuario + "','" + nuevo.Estado + "')";
-                comando.Connection = conexion;
-                conexion.Open();
+                accesoDatos.setearSP("AgregarComida");
+                accesoDatos.Comando.Parameters.Clear();
+                accesoDatos.Comando.Parameters.AddWithValue("@NombreComida", nuevo.Nombre);
+                accesoDatos.Comando.Parameters.AddWithValue("@PrecioComida", nuevo.Precio);
+                accesoDatos.Comando.Parameters.AddWithValue("@FechaCreacion", nuevo.F_Add);
+                accesoDatos.Comando.Parameters.AddWithValue("@UsuarioCreacion", nuevo.UserAdd.IdUsuario);
+                accesoDatos.Comando.Parameters.AddWithValue("@FechaModificacion", nuevo.F_Mod);
+                accesoDatos.Comando.Parameters.AddWithValue("@UsuarioModificacion", nuevo.UserMod.IdUsuario);
+                accesoDatos.Comando.Parameters.AddWithValue("@Estado", nuevo.Estado);
+                accesoDatos.Comando.Parameters.AddWithValue("@TC", nuevo.TC.Id);
 
-                comando.ExecuteNonQuery();
+                accesoDatos.abrirConexion();
+                accesoDatos.ejecutarAccion();
 
             }
             catch (Exception ex)
@@ -82,7 +87,7 @@ namespace Negocio
             }
             finally
             {
-                conexion.Close();
+                accesoDatos.cerrarConexion();
             }
         }
         public void modificarComida(Comida modificar)

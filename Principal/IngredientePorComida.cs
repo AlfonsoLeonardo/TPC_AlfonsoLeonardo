@@ -74,7 +74,24 @@ namespace Principal
 
         private void btnAgregarIngredienteporcomida_Click(object sender, EventArgs e)
         {
+            IngredientePorComidaNegocio porComidaNegocio = new IngredientePorComidaNegocio();
+            Comida comida = new Comida();
+            Ingrediente ingrediente = new Ingrediente();
+            DateTime fecha = DateTime.Today;
+            IngreditePorComida ingreditePorComida  = new IngreditePorComida();
 
+            comida = (Comida)cboComida.SelectedItem;
+            ingrediente=(Ingrediente)dgvIngredienteppcc.CurrentRow.DataBoundItem;
+            ingreditePorComida.Ingrediente = ingrediente;
+            ingreditePorComida.Comida = comida;
+            ingreditePorComida.UsuarioCreacion= Usuario.UsuarioLogin;
+            ingreditePorComida.UsuarioModificacion= Usuario.UsuarioLogin;
+            ingreditePorComida.FechaCreacion= fecha.ToLocalTime();
+            ingreditePorComida.FechaModificacion= fecha.ToLocalTime();
+            string canti;
+            canti =Microsoft.VisualBasic.Interaction.InputBox("Ingrese Cantidad:", "Agregar cantidad a la Comida", "0", 100, 100);
+            ingreditePorComida.Cantidad = Convert.ToDecimal(canti);
+            porComidaNegocio.validarIngredienteporComida(ingreditePorComida);
         }
 
         private void btnEliminaringredienteporcomida_Click(object sender, EventArgs e)
@@ -87,7 +104,7 @@ namespace Principal
 
         }
 
-        /*     private void dgvIngreporComida_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+       /*  private void dgvIngreporComida_CurrentCellDirtyStateChanged(object sender, EventArgs e)
              {
                  if(dgvIngreporComida.IsCurrentCellDirty)
                  {

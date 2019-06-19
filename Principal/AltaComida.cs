@@ -97,6 +97,7 @@ namespace Principal
 
             if (estado == false) {
                 Comida comida = new Comida();
+                TipoComida tipoComida = new TipoComida();
                 ComidaNegocio negocio = new ComidaNegocio();
                 try
                 {
@@ -104,6 +105,7 @@ namespace Principal
 
                     comida.Nombre = textComida.Text;
                     comida.Precio = Convert.ToDecimal(textcomidaprecio.Text);
+                    comida.TC= (TipoComida)cboTipoComida.SelectedItem;
                     comida.F_Add = fecha.ToLocalTime();
                     comida.UserAdd = Usuario.UsuarioLogin;
                     comida.F_Mod = fecha.ToLocalTime();
@@ -139,6 +141,7 @@ namespace Principal
                 comida.Id = comi.Id;
                 comida.Nombre = textComida.Text;
                 comida.Precio = Convert.ToDecimal(textcomidaprecio.Text);
+                comida.TC = (TipoComida)cboTipoComida.SelectedItem;
                 comida.Estado = true;
                 comida.F_Mod = fecha.ToLocalTime();
                 comida.UserMod = Usuario.UsuarioLogin;
