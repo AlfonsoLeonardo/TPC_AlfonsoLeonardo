@@ -84,19 +84,28 @@ namespace Principal
         {
             Application.Exit();
         }
+        int lx, ly;
+        int sw, sh;
 
         private void btnMaximizar_Click(object sender, EventArgs e)
         {
-            this.WindowState = FormWindowState.Maximized;
+            lx = this.Location.X;
+            ly = this.Location.Y;
+            sw = this.Size.Width;
+            sh = this.Size.Height;
+            this.Size = Screen.PrimaryScreen.WorkingArea.Size;
+            this.Location = Screen.PrimaryScreen.WorkingArea.Location;
             btnMaximizar.Visible = false;
             btnRestaurar.Visible = true;
         }
 
         private void btnRestaurar_Click(object sender, EventArgs e)
         {
-            this.WindowState = FormWindowState.Normal;
+            this.Size = new Size(sw, sh);
+            this.Location = new Point(lx, ly);
             btnRestaurar.Visible = false;
             btnMaximizar.Visible = true; 
+            
            
         }
 
@@ -149,37 +158,27 @@ namespace Principal
             AbrirFormHijo<AltaUsuario>();
         }
 
-        private void AbrirFormHijo<Forms>() where Forms : Form, new()
+        private void AbrirFormHijo<MiForm>() where MiForm : Form, new()
         {
             Form formulario;
-            formulario = panelcontenedor.Controls.OfType<Forms>().FirstOrDefault();
-
-            //si el formulario/instancia no existe, creamos nueva instancia y mostramos
+            formulario = panelcontenedor.Controls.OfType<MiForm>().FirstOrDefault();//Busca en la colecion el formulario
+            //si el formulario/instancia no existe
             if (formulario == null)
             {
-                formulario = new Forms();
+                formulario = new MiForm();
                 formulario.TopLevel = false;
-                //formulario.FormBorderStyle = FormBorderStyle.None;
-                //formulario.Dock = DockStyle.Fill;
+                formulario.FormBorderStyle = FormBorderStyle.None;
+                formulario.Dock = DockStyle.Fill;
                 panelcontenedor.Controls.Add(formulario);
                 panelcontenedor.Tag = formulario;
                 formulario.Show();
-
                 formulario.BringToFront();
-                // formulario.FormClosed += new FormClosedEventHandler(CloseForms);               
+               // formulario.FormClosed += new FormClosedEventHandler(CloseForms);
             }
+            //si el formulario/instancia existe
             else
             {
-
-                //si la Formulario/instancia existe, lo traemos a frente
                 formulario.BringToFront();
-
-                //Si la instancia esta minimizada mostramos
-                if (formulario.WindowState == FormWindowState.Minimized)
-                {
-                    formulario.WindowState = FormWindowState.Normal;
-                }
-
             }
         }
 
