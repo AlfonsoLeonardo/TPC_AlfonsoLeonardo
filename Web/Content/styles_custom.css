@@ -1,0 +1,147 @@
+﻿.no-margin {
+    margin-top: 6px !important;
+}
+
+footer ul li {
+    margin-bottom: 12px;
+}
+
+.deslizador {
+    margin-bottom: 0;
+}
+
+.content-hogar {
+    position: relative;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.content-hogar h3 {
+    font-size: 30px;
+    margin: 20px 0 20px 0px;
+    color: #aaa !important;
+}
+
+.content-hogar .texto-de-arriba {
+    margin-bottom: 0px;
+}
+
+.info-deslizador {
+    background: #000000;
+    color: #ffffff;
+    margin-top: 0px;
+    height: auto;
+    border-top: 1px solid #aaa;
+    border-bottom: 1px solid #aaa;
+}
+
+.info-deslizador div {
+    padding: 0 20px;
+    width: auto;
+    border-bottom: 0;
+    font-size: 11px;
+    letter-spacing: 0.02em;
+}
+
+.iconoUsuario {
+    font-size: 24px;
+    color: #d3d3d6;
+}
+
+.iconoUsuario i {
+    font-style: normal !important;
+}
+
+.validaciones {
+    border-radius: 12px;
+    padding: 5px 5px 5px 15px;
+    margin-top: 16px;
+}
+
+.bordeTexto {
+    text-shadow: 2px 2px 30px black;
+    -webkit-text-stroke-color: black;
+    -webkit-text-stroke-width: 0.75px;
+    letter-spacing: 5px;
+}
+
+.subtitulo {
+    font-size: 40px;
+}
+
+/*Lista de pedidos de sucursal ------------------------*/
+
+.tabla {
+    margin-top: 50px !important;
+    margin-bottom: 50px !important;
+    border: 1px solid #DDD;
+}
+
+    .tabla > td {
+        text-align: center;
+    }
+
+th {
+    text-align: center !important;
+}
+
+.tabla-head {
+    background: #f16121;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+    .tabla-head th {
+        color: white;
+    }
+
+.botonReset {
+    display: none;
+}
+
+/*Productos----------------*/
+
+.product-list-item {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    border-radius: 40px;
+    background-color: #f16121;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: left
+}
+
+.product-list-item img {
+    border-radius: 21px;
+    margin-top: 1px;
+}
+
+.product-description {
+    float: left;
+    max-height: 156px;
+    background-color: white;
+    border-radius: 20px;
+    border: solid 1px #d3d3d6;
+    padding: 2% 8% 2% 2%;
+}
+
+.cantity-box { 
+    width: 30px;
+    text-align: center;
+}
+
+.product-list-item .btn-default {
+    color: #2b2c2f;
+    background-color: white;
+    border-color: #d3d3d6;
+    padding: 0px;
+    width: 30px;
+}
+
+.product-list-item .btn-default:hover {
+    color: #fff;
+    background-color: #2b2c2f;
+    border-color: #2b2c2f;
+}

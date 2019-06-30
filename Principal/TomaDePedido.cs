@@ -15,7 +15,7 @@ namespace Principal
     public partial class TomaDePedido : Form
     {
 
-        private List<ComidaM> listaLocal;
+        private List<Comida> listaLocal;
 
         public TomaDePedido()
         {
@@ -64,48 +64,49 @@ namespace Principal
 
             try
             {
+               
+                    listaLocal = negocio.ListarComida(1, 6);
+                    dgvPizzas.DataSource = listaLocal;
 
-                listaLocal = negocio.ListarComida(1, 6);
-                dgvPizzas.DataSource = listaLocal;
+                    dgvPizzas.Columns[0].Visible = false;
+                    dgvPizzas.Columns[2].Visible = false;
+                    dgvPizzas.Columns[1].ReadOnly = true;
+                    dgvPizzas.Columns[3].ReadOnly = true;
+                    dgvPizzas.Columns[4].ReadOnly = true;
+                    dgvPizzas.Columns[5].ReadOnly = true;
+                    dgvPizzas.Location = new Point(3, 35);
+                    dgvPizzas.ClientSize = new Size(Ancho(dgvPizzas) + 2, Alto(dgvPizzas) + 2);
+                    lPizzas.Location = new Point((Ancho(dgvPizzas) - lPizzas.Width) / 2, 0);
+          
+                    listaLocal = negocio.ListarComida(2, 9999);
+                    dgvempanadas.DataSource = listaLocal;
+                    dgvempanadas.Columns[0].Visible = false;
+                    dgvempanadas.Columns[2].Visible = false;
+                    dgvempanadas.Columns[1].ReadOnly = true;
+                    dgvempanadas.Columns[3].ReadOnly = true;
+                    dgvempanadas.Columns[4].ReadOnly = true;
+                    dgvempanadas.Columns[5].ReadOnly = true;
+                    dgvempanadas.Location = new Point(Ancho(dgvPizzas) + 2, 35);
+
+                    dgvempanadas.ClientSize = new Size(Ancho(dgvempanadas) + 2, Alto(dgvempanadas) + 2);
+
+                    lEmpanadas.Location = new Point((Ancho(dgvempanadas) - lEmpanadas.Width) / 2 + Ancho(dgvPizzas), 0);
+
+                    lMilaCombos.Location = new Point((Ancho(dgvPizzas) + 5), Alto(dgvempanadas) + lMilaCombos.Height + 8);
+
+                    dgvMilaCombo.Location = new Point(Ancho(dgvPizzas) + 5, lMilaCombos.Location.Y + lMilaCombos.Height + 2);
+
+                    listaLocal = negocio.ListarComida(8, 10);
+                    dgvMilaCombo.DataSource = listaLocal;
+                    dgvMilaCombo.Columns[0].Visible = false;
+                    dgvMilaCombo.Columns[2].Visible = false;
+                    dgvMilaCombo.Columns[1].ReadOnly = true;
+                    dgvMilaCombo.Columns[3].ReadOnly = true;
+                    dgvMilaCombo.Columns[4].ReadOnly = true;
+                    dgvMilaCombo.Columns[5].ReadOnly = true;
+
+                    dgvMilaCombo.ClientSize = new Size(Ancho(dgvMilaCombo) + 2, Alto(dgvMilaCombo) + 2);
                 
-                dgvPizzas.Columns[0].Visible = false;
-                dgvPizzas.Columns[2].Visible = false;
-                dgvPizzas.Columns[1].ReadOnly = true;
-                dgvPizzas.Columns[3].ReadOnly = true;
-                dgvPizzas.Columns[4].ReadOnly = true;
-                dgvPizzas.Columns[5].ReadOnly = true;
-                dgvPizzas.Location = new Point(3, 35);
-                dgvPizzas.ClientSize = new Size(Ancho(dgvPizzas)+2 , Alto(dgvPizzas) + 2);
-                
-                
-                listaLocal = negocio.ListarComida(2, 9999);
-                dgvempanadas.DataSource = listaLocal;
-                dgvempanadas.Columns[0].Visible = false;
-                dgvempanadas.Columns[2].Visible = false;
-                dgvempanadas.Columns[1].ReadOnly = true;
-                dgvempanadas.Columns[3].ReadOnly = true;
-                dgvempanadas.Columns[4].ReadOnly = true;
-                dgvempanadas.Columns[5].ReadOnly = true;
-                dgvempanadas.Location = new Point(Ancho(dgvPizzas) + 2, 35);
-                
-                dgvempanadas.ClientSize = new Size(Ancho(dgvempanadas) + 2, Alto(dgvempanadas) + 2);
-
-                lEmpanadas.Location = new Point((Ancho(dgvempanadas) - lEmpanadas.Width) / 2 + Ancho(dgvPizzas), 0);
-                lPizzas.Location = new Point((Ancho(dgvPizzas) - lPizzas.Width) / 2, 0);
-                lMilaCombos.Location = new Point((Ancho(dgvPizzas) +5) , Alto(dgvempanadas)+lMilaCombos.Height+8);
-
-                dgvMilaCombo.Location = new Point(Ancho(dgvPizzas) + 5,  lMilaCombos.Location.Y + lMilaCombos.Height+2);
-
-                listaLocal = negocio.ListarComida(8, 10);
-                dgvMilaCombo.DataSource = listaLocal;
-                dgvMilaCombo.Columns[0].Visible = false;
-                dgvMilaCombo.Columns[2].Visible = false;
-                dgvMilaCombo.Columns[1].ReadOnly = true;
-                dgvMilaCombo.Columns[3].ReadOnly = true;
-                dgvMilaCombo.Columns[4].ReadOnly = true;
-                dgvMilaCombo.Columns[5].ReadOnly = true;
-
-                dgvMilaCombo.ClientSize = new Size(Ancho(dgvMilaCombo) + 2, Alto(dgvMilaCombo) + 2);
             }
             catch (Exception ex)
             {
@@ -211,8 +212,6 @@ namespace Principal
             }
 
 
-
-
         }
 
         private void dgvsuperEspecial_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -267,6 +266,16 @@ namespace Principal
                 dgvPizzas.EditMode = DataGridViewEditMode.EditOnEnter;
 
             }
+        }
+
+        private void lEmpanadas_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lPizzas_Click(object sender, EventArgs e)
+        {
+           
         }
     }
 }
