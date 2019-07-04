@@ -1,23 +1,22 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Pedidos.aspx.cs" Inherits="Web.Pedidos" %>
-
 <!DOCTYPE html>
-
-<html lang="en">>
-<head runat="server">
+<html lang="es-ar">
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Los 3 tags de arriba tienen que ser los primeros; NO MOVERLOS -->
-    <title>Te Pido | Pedidos online</title>
+    <title>Mi Pizza | Pedidos online</title>
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="Content/bootstrap-theme.css">
     <link rel="stylesheet" href="Content/Site.css">
+    
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons" rel="stylesheet" type="text/css">
     
     <link rel="stylesheet" href="Content/scrollToTop/totop.css">
-    
+  </head>  
 <style>
 @media only screen and (min-width: 769px) {
     
@@ -49,13 +48,13 @@ bottom: 0;
 right: 20px;
 display:none;
 }
-</style><script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/37/6/intl/es_ALL/common.js"></script><script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/37/6/intl/es_ALL/util.js"></script></head>
+</style>
+
+
+
 <body>
-    <script async="" src="https://www.google-analytics.com/analytics.js"></script>
-    <script type="text/javascript" async="" src="https://www.gstatic.com/recaptcha/api2/v1561357937155/recaptcha__es.js"></script>
-    <script>
-    </script>
-  <nav id="nav_header" class="navbar navbar-inverse top_bar_navbar only_desktop sombraBox">
+     
+    <nav id="nav_header" class="navbar navbar-inverse top_bar_navbar only_desktop sombraBox">
         <div class="gradient_1" style="height: 150px;" id="grad_1"></div>
         <div class="container-fluid" style="z-index: 20; position: relative;">
             <div class="navbar-header">
@@ -71,13 +70,13 @@ display:none;
                 
                 <div class="navbar-brand">
                     <div id="container_image_pedido" class="sombraBox">
-                        <img id="div_image_pedido" src="Content/imagenes/logo.png" width="120px">
+                        <img id="div_image_pedido" src="images/logo.png" width="120px">
                     </div>
-                    <div class="div_titulo_pedido class_titulo_pedido white sombraText2">Mi Pizza</div>
-                    <div class="div_dir_cliente"><span class="dir_entrega white">aca va la dirrecion</span> <a class="white-link" href="#" onclick="goBack();">(Cambiar Dirección)</a></div>
-                    <div class="div_distancia">Distancia<br><span class="distancia">696 m</span></div>
-                    <div class="div_pedido_minimo">Pedido mínimo<br><span class="pedido-minimo">$80</span></div>
-                    <div class="div_tiempo_entrega">Tiempo Entrega<br><span class="tiempo_entrega">40 minutos</span></div>
+                    <div class="div_titulo_pedido class_titulo_pedido white sombraText2">Cargando</div>
+                    <div class="div_dir_cliente"><span class="dir_entrega white">Cargando dirección</span> <a class="white-link" href="#" onclick="goBack();">(Cambiar Dirección)</a></div>
+                    <div class="div_distancia">Distancia</br><span class="distancia">-</span></div>
+                    <div class="div_pedido_minimo">Pedido mínimo</br><span class="pedido-minimo">-</span></div>
+                    <div class="div_tiempo_entrega">Tiempo Entrega</br><span class="tiempo_entrega">-</span></div>
                 </div>
                 
             </div><!--/.nav-collapse -->
@@ -109,17 +108,19 @@ display:none;
             
         </div>
     </nav>
+    
+    
     <nav class="navbar navbar-inverse only_mobile" role="navigation" style="top: -3px; min-height: 155px;">
         
         <div>
           <div class="navbar-brand">
               <div id="container_image_pedido" style="margin-top: 35px;">
-                  <img id="Content/imagenes/logo.png" width="120px">
+                  <img id="div_image_pedido" src="https://migusto.com.ar/assets/images/logo.png" width="120px">
               </div>
-              <div class="div_titulo_pedido class_titulo_pedido letras_sombra">Mi Pizza</div>
-              <div class="div_dir_cliente"><span class="dir_entrega letras_sombra">aca va la dirrecion</span> <a class="letras_sombra" href="#" onclick="goBack();">(Cambiar Dirección)</a></div>
-              <div class="div_distancia letras_sombra">Distancia<br><span class="distancia">696 m</span></div>
-              <div class="div_pedido_minimo letras_sombra">Pedido mínimo<br><span class="pedido-minimo">$80</span></div>
+              <div class="div_titulo_pedido class_titulo_pedido letras_sombra">Cargando</div>
+              <div class="div_dir_cliente"><span class="dir_entrega letras_sombra">Cargando dirección</span> <a class="letras_sombra" href="#" onclick="goBack();">(Cambiar Dirección)</a></div>
+              <div class="div_distancia letras_sombra">Distancia</br><span class="distancia">-</span></div>
+              <div class="div_pedido_minimo letras_sombra">Pedido mínimo</br><span class="pedido-minimo">-</span></div>
           </div>
           
           <div class="navbar-header top_bar_navbar">
@@ -146,12 +147,13 @@ display:none;
       
     </nav>
     
-  <div class="container-fluid">
+    
+    <div class="container-fluid">
         <div id="main_div_seleccion" class="row" style="background-image: url();">
             <div class="main-content col-xs-12 col-md-8 col-lg-7 col-lg-offset-1">
                
             
-                <div id="sucursalCerrada" class="alert alert-danger" style="">La sucursal se encuentra cerrada.</div>
+                <div id="sucursalCerrada" class="alert alert-danger" style="display: none;">La sucursal se encuentra cerrada.</div>
                 <div>
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs" role="tablist">
@@ -162,22 +164,6 @@ display:none;
                     <div class="tab-content">
                         <div role="tabpanel" class="tab-pane fade in active" id="menu">
                             <div id="productosContainer" class="inner-tab-content">
-        <section>
-            <div class="menu-header">
-                <div class="col-xs-12">
-                    <h3>Promos</h3>
-                    
-                    <img src="content/imagenes/mgHeadPromos.jpg">
-                    
-                </div>
-                
-            </div>
-            <div class="productos">
-                
-                
-            </div>
-        </section>
-    
         <section>
             <div class="menu-header">
                 <div class="col-xs-12">
@@ -193,7 +179,7 @@ display:none;
               <% cargar(2, 9999); %>
                  <% foreach (var comidas in comidas) { %>
                 <div class="col-xs-12 col-sm-6 col-lg-4">
-                    <div class="producto sombraBox" data-disabled="" data-id-producto=" <%= comidas.Id %>" data-id-promo="" data-id-grupo-promo=" <%= comidas.TC.Id %>" data-id-grupo-producto="1" data-precio-mostrado="<%= comidas.Precio %>">
+                    <div class="producto sombraBox" id="<%= comidas.Id %>"data-disabled="" data-id-producto=" <%= comidas.Id %>" data-id-promo="" data-id-grupo-promo=" <%= comidas.TC.Id %>" data-id-grupo-producto="1" data-precio-mostrado="<%= comidas.Precio %>">
                         <div class="precio-producto">
                             <span> <%= comidas.Precio %></span>
                             
@@ -223,15 +209,13 @@ display:none;
                 
             </div>
             <div class="productos">
-
                  <% cargar(1, 6); %>
                  <% foreach (var comidas in comidas) { %>
                 <div class="col-xs-12 col-sm-6 col-lg-4">
                     <div class="producto sombraBox" data-disabled="" data-id-producto=" <%= comidas.Id %>" data-id-promo="" data-id-grupo-promo=" <%= comidas.TC.Id %>" data-id-grupo-producto="1" data-precio-mostrado="50">
                         <div class="precio-producto">
                             <span> <%= comidas.Precio %></span>
-                            
-                        </div>
+                                                   </div>
                         <h4 class="nombre-producto">
                            <%= comidas.Nombre %>
                         </h4>
@@ -244,188 +228,74 @@ display:none;
                <% } %>
             </div>
         </section>
-    
-        <section>
-            <div class="menu-header">
-                <div class="col-xs-12">
-                    <h3>Bebidas</h3>
-                    
-                    <img src="content/imagenes/mgHeadBebidas.jpg">
-                    
-                </div>
-                
-            </div>
-            <div class="productos">
-
-                
-            </div>
-        </section>
-    </div>
+                            </div>
                         </div> <!-- /#menu -->
                         <div role="tabpanel" class="tab-pane fade" id="sucursal">
                             <div class="inner-tab-content">
                          
                                 <section class="grey-box">
-                                    <h3><img id="datalive-logo" src="Content/imagenes/logo.png" width="60px"> Horarios</h3>
+                                    <h3><img id="datalive-logo" src="images/logo.png" width="60px" /> Horarios</h3>
                                     <div id="schedule">
-        <ul class="schedule">
-            
-            <li class="">
-                <div class="date">Domingo</div>
-                <div class="times">
-                    
-                    <div class="time"><span>11:30</span> - <span>14:30</span></div>
-                    
-                    <div class="time"><span>19:00</span> - <span>23:30</span></div>
-                    
-                </div>
-            </li>
-            
-            <li class="">
-                <div class="date">Lunes</div>
-                <div class="times">
-                    
-                    <div class="time"><span>11:30</span> - <span>14:30</span></div>
-                    
-                    <div class="time"><span>19:00</span> - <span>23:30</span></div>
-                    
-                </div>
-            </li>
-            
-            <li class="">
-                <div class="date">Martes</div>
-                <div class="times">
-                    
-                    <div class="time"><span>11:30</span> - <span>14:30</span></div>
-                    
-                    <div class="time"><span>19:00</span> - <span>23:30</span></div>
-                    
-                </div>
-            </li>
-            
-            <li class="">
-                <div class="date">Miércoles</div>
-                <div class="times">
-                    
-                    <div class="time"><span>11:30</span> - <span>14:30</span></div>
-                    
-                    <div class="time"><span>19:00</span> - <span>23:30</span></div>
-                    
-                </div>
-            </li>
-            
-            <li class="">
-                <div class="date">Jueves</div>
-                <div class="times">
-                    
-                    <div class="time"><span>11:30</span> - <span>14:30</span></div>
-                    
-                    <div class="time"><span>19:00</span> - <span>23:30</span></div>
-                    
-                </div>
-            </li>
-            
-            <li class="">
-                <div class="date">Viernes</div>
-                <div class="times">
-                    
-                    <div class="time"><span>11:30</span> - <span>14:30</span></div>
-                    
-                    <div class="time"><span>19:00</span> - <span>23:30</span></div>
-                    
-                </div>
-            </li>
-            
-            <li class="active">
-                <div class="date">Sábado</div>
-                <div class="times">
-                    
-                    <div class="time"><span>11:30</span> - <span>14:30</span></div>
-                    
-                    <div class="time"><span>19:00</span> - <span>23:30</span></div>
-                    
-                </div>
-            </li>
-            
-        </ul>
-    </div> 
-                                    <!-- /#schedule -->
-                                </section>
 
+                                    </div> <!-- /#schedule -->
+                                </section>
+                                <section class="grey-box">
+                                    <h3>Ubicación y zona de entrega</h3>
+                                    <h5 id="address"></h5>
+                                    <div id="map_placeholder">
+                                    </div>
+                                </section>
                             </div>
-                        </div> 
-                        <!-- /#sucursal -->
+                        </div> <!-- /#sucursal -->
                     </div>
                 </div>
-            </div>
-            <!-- /.main-content -->
-            <div class="pedido-content col-xs-12 col-md-4 col-lg-3" style="top: 0px;">
+            </div><!-- /.main-content -->
+            <div class="pedido-content col-xs-12 col-md-4 col-lg-3">
                 <div id="pedidoHeader">
-                    <button class="btn btn-default button_new"><span class="glyphicon glyphicon-chevron-left"></span> Volver al menú</button>
+                    <button class="btn btn-default button_new"><span class="glyphicon glyphicon-chevron-left"></span> Volver al men&uacute;</button>
                 </div>
                 <div class="grey-box sombraBox">
                     <span id="vaciarPedido" class="glyphicon glyphicon-trash" title="Vaciar pedido"></span>
                     <h4 id="pedidoTop"><b>Mi pedido</b></h4>
                     <div id="pedidoVacio">
-                        <span class="glyphicon glyphicon-shopping-cart"></span><br>
+                        <span class="glyphicon glyphicon-shopping-cart"></span><br />
                         Todavía no has pedido nada.
                     </div>
                     <div id="pedido">
                         <!-- items pedidos -->
                     </div>
                     <div id="subtotal">
-        <div class="item">
-            <div class="sub-total item-right">$0</div>
-            Sub-Total
-        </div>
-        <div class="item">
-            
-            <div class="item-right">$30</div>
-            
-            aca va la dirrecion, El Talar
-            <br>
-            <div id="divPisoDto"><a href="javascript:void(0)" onclick="fcnAddPisoDto();" style="color: white;">+ Agregar piso / departamento</a></div>
-        </div>
-        <div class="item">
-            <span class="glyphicon glyphicon-time" aria-hidden="true"></span> Entrega
-            <div id="selectedTime">
-                <span></span> <a style="color: white;" id="cambiarLink" href="#">(Cambiar)</a>
-            </div>
-            <div id="deliveryTimeDiv" style="display: none;">
-                <select class="form-control" id="deliveryTime">
-                </select>
-            </div>
-        </div>
-        <div class="item">
-            <div class="item-right precio">$30</div>
-            <b>Total</b>
-        </div>
-        <textarea class="form-control" id="comentarios" name="comentarios" placeholder="Comentarios (opcional)..."></textarea>
-    </div>
+                        <!-- subtotal -->
+                    </div>
                     <div>
                         <div class="alert alert-danger" id="alertPedidoError" style="display: none;"></div>
-                        <div class="alert alert-danger" id="alertPedidoMinimo" style="display: none;">El mínimo por pedido es <span class="pedido-minimo">$80</span></div>
+                        <div class="alert alert-danger" id="alertPedidoMinimo" style="display: none;">El mínimo por pedido es <span class="pedido-minimo"></span></div>
                         <button id="revisarPedido" class="btn_new btn-primary width_100">Finalizar Pedido</button>
-                        <%--<button id="realizarPedido" class="btn btn-primary button_new">Realizar Pedido</button>--%>
-
+                        <!--<button id="realizarPedido" class="btn btn-primary button_new">Realizar Pedido</button>-->
                     </div>
                 </div>
-            </div>
-            <!-- /.pedido-content -->
+            </div><!-- /.pedido-content -->
             <div id="mostrarPedido" class="grey-box">
-                <button class="btn_new btn-primary button_new width_100">Ver pedido <span class="ver-pedido-total">($30)</span></button>
+                <button class="btn_new btn-primary button_new width_100">Ver pedido <span class="ver-pedido-total">($0)</span></button>
             </div>
         </div>
          <input type="hidden" id="versionTPhd" value="1.00">
     
-    </div>
-        <!-- /.container -->
-     <%--ACA ABRE VENTANA--%>
-<div id="pedidoDialog" class="modal fade" tabindex="-1" role="dialog">
+    </div><!-- /.container -->
+    <footer class="site-footer">
+        <!-- Company Footer -->
+        <div class="footer-company center">
+            <div class="container">
+                <img height="40" src="../content/logo_tepido_blanco.png"> es un producto de <a target="_blank" href="http://www.datalive.com.ar">Datalive</a> - Todos los derechos reservados
+            </div>
+        </div>
+    </footer>
+
+    <div id="pedidoDialog" class="modal fade" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content modal_new">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title  center text-grey"></h4>
                     <p class="subtitle"></p>
                 </div>
@@ -441,12 +311,9 @@ display:none;
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
-    </div>
-
-   
-   <!-- /.modal -->
+    </div><!-- /.modal -->
     <!-- este template es para el dialogo de promociones que indican grupos de productos -->
-    <script id="option_dialog_promo_grupos_template" type="text/x-jsrender" data-jsv-tmpl="jsvTmpl">
+    <script id="option_dialog_promo_grupos_template" type="text/x-jsrender">
         <section class="products-container" data-promo-id="{{:id}}" data-promo-grupo-producto-id="{{:promoGrupoProdId}}" data-is-ok="{{:isOk}}">
             <h5>{{:titulo}} <small class="option-quantity">{{if cantidad > 0}}Elegí {{:cantidad}}{{/if}}</small></h5>
             <ul>
@@ -480,7 +347,7 @@ display:none;
     </script>
 
     <!-- este template es para el dialogo de promociones que indican productos -->
-    <script id="option_dialog_promo_template" type="text/x-jsrender" data-jsv-tmpl="jsvTmpl">
+    <script id="option_dialog_promo_template" type="text/x-jsrender">
         <section class="products-container" data-promo-id="{{:id}}" data-promo-grupo-producto-id="{{:promoGrupoProdId}}" data-is-ok="{{:isOk}}">
             <h5>{{:titulo}} <small class="option-quantity">{{if cantidad > 0}}Elegí {{:cantidad}}{{/if}}</small></h5>
             <ul class="{{if !hasOptions}}group{{/if}}">
@@ -539,7 +406,7 @@ display:none;
     </script>
 
     <!-- este template es para el dialogo de productos con modificadores -->
-    <script id="option_dialog_template" type="text/x-jsrender" data-jsv-tmpl="jsvTmpl">
+    <script id="option_dialog_template" type="text/x-jsrender">
         <section class="option-container{{if cantidad == opciones.length}} optional-container{{/if}}" data-modificador-id="{{:id}}" data-is-ok="{{:isOk}}">
             <h5>{{:titulo}} <small class="option-quantity">{{if cantidad < opciones.length}}Elegí {{:cantidad}}{{else}}<span class="dim">(opcional)</span>{{/if}}</small></h5>
             <ul>
@@ -555,8 +422,9 @@ display:none;
         </section>
     </script>
 
-    <script id="schedule_template" type="text/x-jsrender" data-jsv-tmpl="jsvTmpl">
+    <script id="schedule_template" type="text/x-jsrender">
         <ul class="schedule">
+            
             {{for horarios}}
             <li class="{{if active}}active{{/if}}">
                 <div class="date">{{:nombre}}</div>
@@ -572,7 +440,7 @@ display:none;
         </ul>
     </script>
 
-    <script id="subtotal_template" type="text/x-jsrender" data-jsv-tmpl="jsvTmpl">
+    <script id="subtotal_template" type="text/x-jsrender">
         <div class="item">
             <div class="sub-total item-right">${{:subTotal}}</div>
             Sub-Total
@@ -603,7 +471,7 @@ display:none;
     </script>
 
     <!-- este template es para productos y promos -->
-    <script id="grupoProductosTemplate" type="text/x-jsrender" data-jsv-tmpl="jsvTmpl">
+    <script id="grupoProductosTemplate" type="text/x-jsrender">
         <section>
             <div class="menu-header">
                 <div class="col-xs-12">
@@ -644,7 +512,7 @@ display:none;
     </script>
 
     <!--este template es para los productos en la bandeja de pedidos del usuario-->
-    <script id="itemPedidoTemplate" type="text/x-jsrender" data-jsv-tmpl="jsvTmpl">
+    <script id="itemPedidoTemplate" type="text/x-jsrender">
         <div data-id-item-pedido="{{:id}}" class="item">
             <div class="item-right precio">${{:precio_total}}</div>
             <span class="add-remove-controls"><span class="glyphicon glyphicon-plus"></span><span class="glyphicon glyphicon-minus"></span></span>
@@ -678,23 +546,29 @@ display:none;
     <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>    <!-- Latest compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jsrender/0.9.80/jsrender.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <script src="../../scripts/layout.js?V5"></script>
+    <script src="Scripts/layout.js"></script>
     <script src="../../user/assets/js/bootstrap-notify.js"></script>
     <script src="../../user/assets/js/tepido.js"></script>
     <script src="Scripts/sucursal.js"></script>
-    <script src="Content/scrollToTop/jquery.totop.js"></script>
+    <script src="../../content/scrollToTop/jquery.totop.js"></script>
+    <script src="JavaScript.js"></script>
     <!--Acá estoy usando mi API_KEY de desarrollo. Vos deberías usar tu propia API_KEY.
         Ver https://developers.google.com/maps/faq?hl=es#keysystem
             https://developers.google.com/maps/documentation/javascript/get-api-key?hl=es#key -->
-    <script async="" defer="" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDE9UILj0YokjZpfRiH6a0al4CWDDeKNBc&amp;signed_in=true&amp;callback=googleInitMapCallback"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDE9UILj0YokjZpfRiH6a0al4CWDDeKNBc&signed_in=true&callback=googleInitMapCallback"></script>
 
-<a id="back-to-top" href="#" class="btn btn-warning btn-lg back-to-top" role="button" title="Subir" data-toggle="tooltip" data-placement="top">
+    <a id="back-to-top" href="#" class="btn btn-warning btn-lg back-to-top" 
+      role="button" title="Subir" data-toggle="tooltip" data-placement="top">
       <span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span>
     </a>
 
+</body>
+
 <div id="totopscroller">
-<a href="#" class="totopscroller-top" style=""></a>
-    <div><a href="#" class="totopscroller-bottom" style=""></a><a href="#" class="totopscroller-prev" style="display: none;"></a></div></div>
+</div>
+
+</html>
+
 <script>
 
 $(function(){
@@ -824,7 +698,7 @@ $( document ).ready(function() {
 	        </div>
 	        
 	        <div class="well center">
-	            <div id="resumenCostoDelivery"><div style="margin-top:  -12px;margin-bottom:  12px;">Costo delivery $30</div></div>
+	            <div id="resumenCostoDelivery"></div>
 	            <h3 style="margin: -10px;">Costo total $<span id="ModalRevisarTotal"></span></h3>
         	</div>
 
@@ -834,7 +708,7 @@ $( document ).ready(function() {
             </div>
             
             <div class="well center" style="padding: 10px;">
-        	    <div><label>Indique las Entre Calles</label> <input type="text" style="width: 50%; display: inline-block;" class="form-control" id="ModalRevisarEntreCalle" placeholder="Solar y Juncal"></div>
+        	    <div><label>Indique las Entre Calles</label> <input type="text"  style="width: 50%; display: inline-block;" class="form-control" id="ModalRevisarEntreCalle" placeholder="Solar y Juncal"></div>
                 <p id="EntreCalleMsj" class="center" style="color: red;"></p>
             </div>
             
@@ -864,8 +738,12 @@ $( document ).ready(function() {
     </div>
   </div>
 <!-- FIN Modal Revisar Pedido -->
+
+
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.css">
+
+
 <!-- INI Modal INICIAR SESION -->
   <div class="modal fade" id="ModalLogin" role="dialog">
     <div class="modal-dialog modal-sm">
@@ -880,8 +758,8 @@ $( document ).ready(function() {
           
             <div class="form-group">
               <div class="col-sm-12">
-                <div style="display: none;" class="btn button_new width_100 btn_fb"><span>Continuar con <b>Facebook</b></span></div>
-                <div class="btn button_new width_100 btn_gplus"><span>Continuar con <b>Google</b></span></div>
+                <div style="display: none;" class="btn button_new width_100 btn_fb"><span >Continuar con <b>Facebook</b></span></div>
+                <div class="btn button_new width_100 btn_gplus"><span >Continuar con <b>Google</b></span></div>
               </div>
             </div>
 
@@ -900,7 +778,7 @@ $( document ).ready(function() {
             <div class="form-group">
               <div class="col-sm-12">
                 <input id="is_pwd" type="password" class="form-control textbox_new width_100" placeholder="Contraseña">
-             		<p></p><div style="margin-top: 10px; font-size: 12px;" class="center"><span class="text-grey">Olvidaste tu contraseña?</span> <a data-dismiss="modal" href="#" id="btn_recovery_pass">Recuperala!</a></div><p></p>
+             		<p><div style="margin-top: 10px; font-size: 12px;" class="center"><span class="text-grey">Olvidaste tu contraseña?</span> <a data-dismiss="modal" href="#" id="btn_recovery_pass" >Recuperala!</a></div></p>
 							</div>
             </div>
             
@@ -910,12 +788,14 @@ $( document ).ready(function() {
         </div>
         <div class="modal-footer center">
           <button type="button" id="btn_login" class="btn btn-success button_new width_100">Ingresar</button>
-          <p></p><div style="margin-top: 10px; font-size: 12px;" class="center"><span class="text-grey">No tenes cuenta?</span> <a data-dismiss="modal" href="#" class="registrarse" onclick="fcn_add_modalclass_body();">Registrate!</a></div><p></p>
+          <p><div style="margin-top: 10px; font-size: 12px;" class="center"><span class="text-grey">No tenes cuenta?</span> <a data-dismiss="modal" href="#" class="registrarse" onclick="fcn_add_modalclass_body();">Registrate!</a></div></p>
         </div>
       </div>
     </div>
   </div>
 <!-- FIN Modal INICIAR SESION -->
+
+
 <!-- INI Modal REGISTER -->
   <div class="modal fade" id="ModalRegister" role="dialog">
     <div class="modal-dialog modal-sm">
@@ -932,8 +812,8 @@ $( document ).ready(function() {
           
             <div class="form-group">
               <div class="col-sm-12">
-                <div style="display: none;" class="btn button_new width_100 btn_fb"><span>Continuar con <b>Facebook</b></span></div>
-                <div class="btn button_new width_100 btn_gplus"><span>Continuar con <b>Google</b></span></div>
+                <div style="display: none;" class="btn button_new width_100 btn_fb"><span >Continuar con <b>Facebook</b></span></div>
+                <div class="btn button_new width_100 btn_gplus"><span >Continuar con <b>Google</b></span></div>
               </div>
             </div>
 
@@ -973,7 +853,7 @@ $( document ).ready(function() {
               </div>
             </div>
             
-            <div style="width: 260px" class="g-recaptcha" data-sitekey="6LfQaiYUAAAAANDblY5M_t3cV9DNeriWIaFAdM5i"><div style="width: 304px; height: 78px;"><div><iframe src="https://www.google.com/recaptcha/api2/anchor?ar=1&amp;k=6LfQaiYUAAAAANDblY5M_t3cV9DNeriWIaFAdM5i&amp;co=aHR0cHM6Ly93d3cudGVwaWRvLmNvbS5hcjo0NDM.&amp;hl=es&amp;v=v1561357937155&amp;size=normal&amp;cb=7c67g8eu1pkq" width="304" height="78" role="presentation" name="a-v9c5mz51b7qa" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox"></iframe></div><textarea id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea></div></div>
+            <div style="width: 260px" class="g-recaptcha" data-sitekey="6LfQaiYUAAAAANDblY5M_t3cV9DNeriWIaFAdM5i"></div>
             
           </form>
             
@@ -981,7 +861,7 @@ $( document ).ready(function() {
         </div>
         <div class="modal-footer center">
           <button id="btn_conf_register" type="button" class="btn btn-success button_new width_100">Confirmar datos</button>
-          <p></p><div style="margin-top: 10px; font-size: 12px;" class="center"><span class="text-grey">Ya tenes cuenta?</span> <a data-dismiss="modal" href="#" id="btn_ini_sesion2" onclick="fcn_add_modalclass_body();">Ingresar!</a></div><p></p>
+          <p><div style="margin-top: 10px; font-size: 12px;" class="center"><span class="text-grey">Ya tenes cuenta?</span> <a data-dismiss="modal" href="#" id="btn_ini_sesion2" onclick="fcn_add_modalclass_body();">Ingresar!</a></div></p>
         </div>
       
       </div>
@@ -993,6 +873,7 @@ $( document ).ready(function() {
     </div>
   </div>
 <!-- FIN Modal REGISTER -->
+
 
 <!-- INI Modal VER PEDIDOS -->
   <div class="modal fade" id="ModalPedidos" role="dialog">
@@ -1017,6 +898,8 @@ $( document ).ready(function() {
     </div>
   </div>
 <!-- FIN Modal VER PEDIDOS -->
+
+
 <!-- INI Modal VER PERFIL -->
   <div class="modal fade" id="ModalPerfil" role="dialog">
     <div class="modal-dialog">
@@ -1105,7 +988,7 @@ $( document ).ready(function() {
         </div>
         <div class="modal-footer center">
           <button type="button" id="btn_recovery" class="btn btn-success button_new width_100">Enviar</button>
-          <p></p><div style="margin-top: 10px; font-size: 12px;" class="center"><span class="text-grey">Ya la recordaste?</span> <a data-dismiss="modal" href="#" id="btn_ini_sesion3" onclick="fcn_add_modalclass_body();">Ingresa!</a></div><p></p>
+          <p><div style="margin-top: 10px; font-size: 12px;" class="center"><span class="text-grey">Ya la recordaste?</span> <a data-dismiss="modal" href="#" id="btn_ini_sesion3" onclick="fcn_add_modalclass_body();">Ingresa!</a></div></p>
         </div>
       </div>
       </form>
@@ -1807,10 +1690,10 @@ function UPDATETokenToServer(Token, v_uid){
 	
 </script>
 
-<script src="https://www.google.com/recaptcha/api.js"></script>
+<script src='https://www.google.com/recaptcha/api.js'></script>
 <script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
-<script src="https://apis.google.com/js/platform.js" async="" defer="" gapi_processed="true"></script>
-    <script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<script>
   
   var v_bloquearFirebase = '';
   
@@ -1877,5 +1760,14 @@ function UPDATETokenToServer(Token, v_uid){
     });
   	
 </script>
-</body>
-</html>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-104830613-1', 'auto');
+  ga('send', 'pageview');
+
+</script>

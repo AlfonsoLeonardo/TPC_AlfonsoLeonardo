@@ -1,6 +1,7 @@
-/// <reference path="layout.js" />
+/// /*<reference path="layout.js" />*/
 
 var GLOB_costoDelivery = 0;
+
 
 var rangoHorarioModule = (function () {
 
@@ -10,7 +11,7 @@ var rangoHorarioModule = (function () {
         /// <summary>Se encarga de determinar si la hora actual se encuentra dentro del rango horario indicado.</summary>
         /// <param name="minutesThreshold">La cantidad de minutos que se considera suficientemente cerca para devolver "FaltanPocosMinutos" o "QuedanPocosMinutos"</param>  
         /// <returns>DentroDeHorario|FueraDeHorario|FaltanPocosMinutos|QuedanPocosMinutos</returns>
-        rangoHorario= 3:
+
         minutesThreshold = minutesThreshold * 60000;
         var now = new Date();
         var date = now.getFullYear() + "/" + (now.getMonth() + 1) + "/" + now.getDate() + " ";
@@ -53,51 +54,51 @@ var productosModule = (function () {
     var grupo_productos_template;
 
     // referencia a los datos de la sucursal
-    var datosSucursal;
+    var DatosLocal;
 
-    function procesarDatosSucursal() {
+    function procesarDatosLocal() {
         /// <summary>Se encarga de procesar los datos que vienen en el JSON para que sea más accesible por el resto de los métodos.</summary>
 
         // productosById lo creo para poder acceder al producto por su ID, en lugar de iterar el array hasta
         // encontrar el producto
-        datosSucursal.productosById = {};
-        for (var i = 0; i < datosSucursal.productos_base.length; i++) {
-            var prod = datosSucursal.productos_base[i];
-            datosSucursal.productosById[prod.id] = prod;
+        DatosLocal.productosById = {};
+        for (var i = 0; i < DatosLocal.productos_base.length; i++) {
+            var prod = DatosLocal.productos_base[i];
+            DatosLocal.productosById[prod.id] = prod;
         }
         // lo mismo para los otros arrays...
-        datosSucursal.promosById = {};
-        for (var i = 0; i < datosSucursal.promos_base.length; i++) {
-            var promo = datosSucursal.promos_base[i];
-            datosSucursal.promosById[promo.id] = promo;
+        DatosLocal.promosById = {};
+        for (var i = 0; i < DatosLocal.promos_base.length; i++) {
+            var promo = DatosLocal.promos_base[i];
+            DatosLocal.promosById[promo.id] = promo;
 
             promo.grupoProductoById = {};
             for (var j = 0; j < promo.grupos_productos.length; j++) {
                 promo.grupoProductoById[promo.grupos_productos[j].id] = promo.grupos_productos[j];
             }
         }
-        datosSucursal.gruposProductosById = {};
-        for (var i = 0; i < datosSucursal.grupos_productos.length; i++) {
-            var grupoProd = datosSucursal.grupos_productos[i];
-            datosSucursal.gruposProductosById[grupoProd.id] = grupoProd;
+        DatosLocal.gruposProductosById = {};
+        for (var i = 0; i < DatosLocal.grupos_productos.length; i++) {
+            var grupoProd = DatosLocal.grupos_productos[i];
+            DatosLocal.gruposProductosById[grupoProd.id] = grupoProd;
         }
 
-        datosSucursal.gruposPromosById = {};
-        for (var i = 0; i < datosSucursal.grupos_promos.length; i++) {
-            var grupoPromo = datosSucursal.grupos_promos[i];
-            datosSucursal.gruposPromosById[grupoPromo.id] = grupoPromo;
+        DatosLocal.gruposPromosById = {};
+        for (var i = 0; i < DatosLocal.grupos_promos.length; i++) {
+            var grupoPromo = DatosLocal.grupos_promos[i];
+            DatosLocal.gruposPromosById[grupoPromo.id] = grupoPromo;
         }
 
-        datosSucursal.modificadoresProductosById = {};
-        for (var i = 0; i < datosSucursal.modificadores_productos.length; i++) {
-            var modProd = datosSucursal.modificadores_productos[i];
-            datosSucursal.modificadoresProductosById[modProd.id] = modProd;
+        DatosLocal.modificadoresProductosById = {};
+        for (var i = 0; i < DatosLocal.modificadores_productos.length; i++) {
+            var modProd = DatosLocal.modificadores_productos[i];
+            DatosLocal.modificadoresProductosById[modProd.id] = modProd;
         }
 
-        datosSucursal.opcionesBaseById = {};
-        for (var i = 0; i < datosSucursal.opciones_base.length; i++) {
-            var opc = datosSucursal.opciones_base[i];
-            datosSucursal.opcionesBaseById[opc.id] = opc;
+        DatosLocal.opcionesBaseById = {};
+        for (var i = 0; i < DatosLocal.opciones_base.length; i++) {
+            var opc = DatosLocal.opciones_base[i];
+            DatosLocal.opcionesBaseById[opc.id] = opc;
         }
     }
 
@@ -141,7 +142,7 @@ var productosModule = (function () {
 
         if (sucursalModule.sucursalAbierta()) {
             // si llego a este punto, es porque la sucursal está disponible para hacer pedidos hoy y ahora. Proceso los horarios y días del grupo en particular
-            procesarCondicionesGruposProductos(renderObj, grupo);
+           // procesarCondicionesGruposProductos(renderObj, grupo);
         } else {
             renderObj.disabled = "disabled";
         }
@@ -158,10 +159,10 @@ var productosModule = (function () {
         /// }
         /// </summary>
         /// <remarks>Si modificador_precio indica una función, param1 va a ser el precio del producto, param2 va a ser el producto, y param3 va a ser la instancia actual de grupo_producto.</remarks>
-        if (datosSucursal.grupos_productos) {
+        if (DatosLocal.grupos_productos) {
             // itero cada grupo de productos
-            for (var i = 0; i < datosSucursal.grupos_productos.length; i++) {
-                var grupo = datosSucursal.grupos_productos[i];
+            for (var i = 0; i < DatosLocal.grupos_productos.length; i++) {
+                var grupo = DatosLocal.grupos_productos[i];
 
                 var objTemplate = {
                     nombre: grupo.nombre,
@@ -195,10 +196,10 @@ var productosModule = (function () {
         /// pueden restringir la cantidad de productos a pedir, etc.
         /// </summary>
         /// <remarks>Si modificador_precio indica una función, param1 va a ser el precio del producto, param2 va a ser el producto, y param3 va a ser la instancia actual de grupo_producto.</remarks>
-        if (datosSucursal.grupos_promos) {
+        if (DatosLocal.grupos_promos) {
             // itero cada grupo de promos
-            for (var i = 0; i < datosSucursal.grupos_promos.length; i++) {
-                var grupo = datosSucursal.grupos_promos[i];
+            for (var i = 0; i < DatosLocal.grupos_promos.length; i++) {
+                var grupo = DatosLocal.grupos_promos[i];
 
                 var objTemplate = {
                     nombre: grupo.nombre,
@@ -249,8 +250,8 @@ var productosModule = (function () {
     function getProductoProcesado(idProducto, idPromo, idGrupoPromo, idGrupoProducto, getPrecioProducto) {
         /// <summary>Se encarga de devolver un producto para que pueda ser interpretado por el template de jsrender.</summary>
         /// <param name="getPrecioProducto">Función callback para obtener el precio a mostra de este producto.</param>
-        var prod = idProducto ? datosSucursal.productosById[idProducto]
-            : datosSucursal.promosById[idPromo];
+        var prod = idProducto ? DatosLocal.productosById[idProducto]
+            : DatosLocal.promosById[idPromo];
         return {
             id: idProducto,
             precio: getPrecioProducto(prod),
@@ -287,11 +288,11 @@ var productosModule = (function () {
 
             if (idGrupoProducto) {
                 // si pertenece a un grupoProducto, obtengo el grupo producto y el producto
-                var grupoProd = datosSucursal.gruposProductosById[idGrupoProducto];
-                var prod = datosSucursal.productosById[idProducto];
+                var grupoProd = DatosLocal.gruposProductosById[idGrupoProducto];
+                var prod = DatosLocal.productosById[idProducto];
                 // si el producto tiene modificadores, tengo que mostrar la ventana...
                 if (prod.modificadores_producto && prod.modificadores_producto.length) {
-                    dialogModule.initDialog(prod, idGrupoProducto, null, datosSucursal);
+                    dialogModule.initDialog(prod, idGrupoProducto, null, DatosLocal);
                 }
                 else {
                     // verifico que haya stock, y agrego el producto directamente...
@@ -320,20 +321,20 @@ var productosModule = (function () {
             }
             else if (idGrupoPromo) {
                 // si pertenece a un grupoPromo, obtengo el grupo promo y la promo
-                var promo = datosSucursal.promosById[idPromo];
+                var promo = DatosLocal.promosById[idPromo];
                 // las promos SIEMPRE muestran una ventana. Si queres hacer una promo que se agregue directamente
                 // sin pasar por la ventana, hace la promo como si fuera un producto y listo...
-                dialogModule.initDialog(promo, null, idGrupoPromo, datosSucursal);
+                dialogModule.initDialog(promo, null, idGrupoPromo, DatosLocal);
             }
         });
     }
 
     function getPromoById(id) {
-        return datosSucursal.promosById[id];
+        return DatosLocal.promosById[id];
     }
 
     function getProdById(id) {
-        return datosSucursal.productosById[id];
+        return DatosLocal.productosById[id];
     }
 
     return {
@@ -343,12 +344,12 @@ var productosModule = (function () {
             // obtengo la data de la sucursal
             dataHelper.getSucursalData(id)
                 .done(function (data) {
-                    datosSucursal = data;
+                    DatosLocal = data;
 
-                    procesarDatosSucursal();
-                    
+                    procesarDatosLocal();
+
                     $("#productosContainer").empty();
-                    
+
                     initPromosProductos();
                     initGruposProductos();
 
@@ -365,7 +366,7 @@ var dialogModule = (function () {
 
     var option_dialog_template, option_dialog_promo_grupos_template, option_dialog_promo_template;
 
-    var refDatosSucursal;
+    var refDatosLocal;
 
     var currentDialog;
     var currentProducto, idGrupoProducto, idGrupoPromocion;
@@ -430,7 +431,7 @@ var dialogModule = (function () {
         /// <summary>Se encarga de agregar los "extras" al pedido de las promos seleccionadas.</summary>
         var containers = $("#pedidoDialog .products-container");
         for (var i = 0; i < containers.length; i++) {
-            var promo = refDatosSucursal.promosById[containers[i].dataset.promoId];
+            var promo = refDatosLocal.promosById[containers[i].dataset.promoId];
             var grupoPromo = promo.grupoProductoById[containers[i].dataset.promoGrupoProductoId];
 
             // idGrupoProductoPromo es el ID del array "grupos_productos" dentro de la promo
@@ -438,15 +439,15 @@ var dialogModule = (function () {
 
             var opciones = $(containers[i]).find("input:checked");
             for (var j = 0; j < opciones.length; j++) {
-                var prod = refDatosSucursal.productosById[opciones[j].dataset.productoId];
+                var prod = refDatosLocal.productosById[opciones[j].dataset.productoId];
                 var opcion = null;
                 if (opciones[j].dataset.opcionId) {
-                    opcion = refDatosSucursal.opcionesBaseById[opciones[j].dataset.opcionId];
+                    opcion = refDatosLocal.opcionesBaseById[opciones[j].dataset.opcionId];
                 }
 
                 var precio = 0;
                 if (grupoPromo.usar_modificadores) {
-                    var grupoProd = refDatosSucursal.gruposProductosById[opciones[j].dataset.grupoProductoId];
+                    var grupoProd = refDatosLocal.gruposProductosById[opciones[j].dataset.grupoProductoId];
                     var newPrecio = productosModule.getPrecioConModificador(prod, grupoProd ? grupoProd.modificador_precio : prod.modificador_precio, promo);
                     precio = (newPrecio.calculado - prod.precio);
                 }
@@ -471,11 +472,11 @@ var dialogModule = (function () {
             for (var j = 0; j < pedidos.length; j++) {
 
                 if (pedidos[j].value > 0) {
-                    var prod = refDatosSucursal.productosById[pedidos[j].dataset.productoId];
+                    var prod = refDatosLocal.productosById[pedidos[j].dataset.productoId];
 
                     var precio = 0;
                     if (grupoPromo.usar_modificadores) {
-                        var grupoProd = refDatosSucursal.gruposProductosById[pedidos[j].dataset.grupoProductoId];
+                        var grupoProd = refDatosLocal.gruposProductosById[pedidos[j].dataset.grupoProductoId];
                         var newPrecio = productosModule.getPrecioConModificador(prod, grupoProd ? grupoProd.modificador_precio : prod.modificador_precio, promo);
                         precio = (newPrecio.calculado - prod.precio) * pedidos[j].value;
                     }
@@ -504,13 +505,13 @@ var dialogModule = (function () {
         /// <summary>Se encarga de agregar los "extras" al pedido de los modificadores seleccionados.</summary>
         var containers = $("#pedidoDialog .option-container");
         for (var i = 0; i < containers.length; i++) {
-            var currentGroup = refDatosSucursal.modificadoresProductosById[containers[i].dataset.modificadorId];
+            var currentGroup = refDatosLocal.modificadoresProductosById[containers[i].dataset.modificadorId];
 
             var extra = { idModificadorProducto: currentGroup.id, nombre: currentGroup.nombre, items: [] };
 
             var opciones = $(containers[i]).find("input:checked");
             for (var j = 0; j < opciones.length; j++) {
-                var currentOpcion = refDatosSucursal.opcionesBaseById[opciones[j].dataset.opcionId];
+                var currentOpcion = refDatosLocal.opcionesBaseById[opciones[j].dataset.opcionId];
 
                 var precio = 0;
                 if (currentGroup.usar_modificadores) {
@@ -534,7 +535,7 @@ var dialogModule = (function () {
         var currentTotal = currentProducto.precio;
 
         if (idGrupoPromocion) {
-            var grupoPromocion = refDatosSucursal.gruposPromosById[idGrupoPromocion];
+            var grupoPromocion = refDatosLocal.gruposPromosById[idGrupoPromocion];
             if (grupoPromocion.modificador_precio) {
                 currentTotal = Number.parseFloat(productosModule.getPrecioConModificador(currentProducto, grupoPromocion.modificador_precio, grupoPromocion).calculado);
             }
@@ -546,39 +547,37 @@ var dialogModule = (function () {
 
             if (current.dataset.promoId) {
                 if (current.value > 0) {
-                    var promo = refDatosSucursal.promosById[current.dataset.promoId];
+                    var promo = refDatosLocal.promosById[current.dataset.promoId];
                     var grupoPromo = promo.grupoProductoById[current.dataset.promoGrupoProductoId];
 
                     if (grupoPromo.usar_modificadores) {
-                        var prod = refDatosSucursal.productosById[current.dataset.productoId];
-                        var grupoProd = refDatosSucursal.gruposProductosById[current.dataset.grupoProductoId];
+                        var prod = refDatosLocal.productosById[current.dataset.productoId];
+                        var grupoProd = refDatosLocal.gruposProductosById[current.dataset.grupoProductoId];
                         var newPrecio = productosModule.getPrecioConModificador(prod, grupoProd ? grupoProd.modificador_precio : prod.modificador_precio, promo);
                         currentTotal += (newPrecio.calculado - prod.precio) * current.value;
                     }
                 }
             }
             else if (current.dataset.modificadorId) {
-                var modProd = refDatosSucursal.modificadoresProductosById[current.dataset.modificadorId];
+                var modProd = refDatosLocal.modificadoresProductosById[current.dataset.modificadorId];
                 if (modProd.usar_modificadores) {
-                    var opc = refDatosSucursal.opcionesBaseById[current.dataset.opcionId];
-                   
-                   if(currentProducto.idrubro==2)
-                   {
-                      var newPrecio = procesarmodificador(opc.modificador_precio, opc, currentProducto,true)
-                       if (current.checked) {
+                    var opc = refDatosLocal.opcionesBaseById[current.dataset.opcionId];
+
+                    if (currentProducto.idrubro == 2) {
+                        var newPrecio = procesarmodificador(opc.modificador_precio, opc, currentProducto, true)
+                        if (current.checked) {
                             currentTotal = dataHelper.parseDecimalPlaces(newPrecio.calculado);
                         }
-                        
-                   }else
-                   {
-                       var newPrecio = productosModule.getPrecioConModificador(currentProducto, opc.modificador_precio, modProd);
-                   
-                       if (current.checked) {
+
+                    } else {
+                        var newPrecio = productosModule.getPrecioConModificador(currentProducto, opc.modificador_precio, modProd);
+
+                        if (current.checked) {
                             currentTotal += newPrecio.calculado - currentProducto.precio;
                         }
-                   }
-                    
-                    
+                    }
+
+
                 }
             }
         }
@@ -600,9 +599,9 @@ var dialogModule = (function () {
     function promoClicked(element) {
         /// <summary>La opcion seleccionada pertenece a una promo.</summary>
 
-        var promo = refDatosSucursal.promosById[element.dataset.promoId];
+        var promo = refDatosLocal.promosById[element.dataset.promoId];
         var grupo = promo.grupoProductoById[element.dataset.promoGrupoProductoId];
-        var prod = refDatosSucursal.productosById[element.dataset.productoId];
+        var prod = refDatosLocal.productosById[element.dataset.productoId];
 
         var prodsContainer = $(element).parents(".products-container");
         var optionQuantity = prodsContainer.find(".option-quantity");
@@ -634,7 +633,7 @@ var dialogModule = (function () {
     function modificadorProductoClicked(element) {
         /// <summary>La opcion seleccionada pertenece a un producto con modificadores.</summary>
 
-        var modif = refDatosSucursal.modificadoresProductosById[element.dataset.modificadorId];
+        var modif = refDatosLocal.modificadoresProductosById[element.dataset.modificadorId];
 
         var container = $(element).parents(".option-container");
         var inputs = container.find("input");
@@ -662,10 +661,10 @@ var dialogModule = (function () {
         dialogTotal.text(currentTotal > 0 ? ('$' + dataHelper.parseDecimalPlaces(currentTotal * cantidadTotal)) : '');
     }
 
-    function initDialog(producto, idGrupoProd, idGrupoPromo, datosSucursal) {
+    function initDialog(producto, idGrupoProd, idGrupoPromo, DatosLocal) {
         /// <summary>Se encarga de inicializar el diálogo con las opciones del producto (o la promo).</summary>
 
-        refDatosSucursal = datosSucursal;
+        refDatosLocal = DatosLocal;
 
         modalBody.empty();
         modalTitle.text(producto.nombre);
@@ -678,10 +677,10 @@ var dialogModule = (function () {
 
         if (idGrupoProd) {
             for (var i = 0; i < producto.modificadores_producto.length; i++) {
-                var modProd = datosSucursal.modificadoresProductosById[producto.modificadores_producto[i]];
+                var modProd = DatosLocal.modificadoresProductosById[producto.modificadores_producto[i]];
 
                 // option representa el grupo de las opciones (por ejemplo: "souffle o al horno")
-                var option = getGrupoOpciones(modProd, datosSucursal, producto);
+                var option = getGrupoOpciones(modProd, DatosLocal, producto);
                 options.push(option);
                 modalBodyHtml += option_dialog_template.render(option);
             }
@@ -695,14 +694,14 @@ var dialogModule = (function () {
                 if (grupoProdPromo.grupos_productos_posibles && grupoProdPromo.grupos_productos_posibles.length) {
                     // grupos_productos_posibles fue definido, por lo tanto la promo indica grupos de productos en lugar de productos directamente
 
-                    var promo = getPromoGruposProductos(producto.id, grupoProdPromo, datosSucursal);
+                    var promo = getPromoGruposProductos(producto.id, grupoProdPromo, DatosLocal);
                     options.push(promo);
                     modalBodyHtml += option_dialog_promo_grupos_template.render(promo);
                 }
                 else {
                     // esta promo es más parecida a la de productos modificadores, ya que indica directamente los productos posibles en lugar de los grupos productos
 
-                    var promo = getPromoProductos(producto.id, grupoProdPromo, datosSucursal);
+                    var promo = getPromoProductos(producto.id, grupoProdPromo, DatosLocal);
                     options.push(promo);
                     modalBodyHtml += option_dialog_promo_template.render(promo);
                 }
@@ -722,7 +721,7 @@ var dialogModule = (function () {
         dialog.modal("show");
     }
 
-    function getPromoProductos(promoId, grupoProdPromo, datosSucursal) {
+    function getPromoProductos(promoId, grupoProdPromo, DatosLocal) {
         /// <summary>Se encarga de crear el objeto para renderizar el template option_dialog_promo_template.
         /// Este template se renderiza cuando el grupo producto de la promo indica productos directamente, en
         /// lugar de grupos de productos.</summary>
@@ -738,7 +737,7 @@ var dialogModule = (function () {
             isOk: false
         };
         for (var j = 0; j < grupoProdPromo.productos_posibles.length; j++) {
-            var prd = datosSucursal.productosById[grupoProdPromo.productos_posibles[j]];
+            var prd = DatosLocal.productosById[grupoProdPromo.productos_posibles[j]];
 
             var stock = parseInt(prd.stock);
             if (!stock) {
@@ -761,15 +760,15 @@ var dialogModule = (function () {
 
             // inserto cada opción al grupo (ejemplo: 'souffle')
             promo.productos.push(prdRender);
-          
+
             if (prd.modificadores_producto) {
                 // este producto contiene "modificadores", por lo tanto tengo que iterar esos modificadores para generar
                 // las opciones correspondientes
                 prdRender.options = [];
                 promo.hasOptions = true;
                 for (var i = 0; i < prd.modificadores_producto.length; i++) {
-                    var modProd = datosSucursal.modificadoresProductosById[prd.modificadores_producto[i]];
-                    var option = getGrupoOpciones(modProd, datosSucursal, prd);
+                    var modProd = DatosLocal.modificadoresProductosById[prd.modificadores_producto[i]];
+                    var option = getGrupoOpciones(modProd, DatosLocal, prd);
                     prdRender.options.push(option);
                 }
             }
@@ -777,7 +776,7 @@ var dialogModule = (function () {
         return promo;
     }
 
-    function getPromoGruposProductos(promoId, grupoProdPromo, datosSucursal) {
+    function getPromoGruposProductos(promoId, grupoProdPromo, DatosLocal) {
         /// <summary>Se encarga de crear el objeto para renderizar el template option_dialog_promo_grupos_template
         /// Un ejemplo de este tipo de promo sería una que indica "empandas" y se venden empanadas al horno y souffle. Por lo tanto,
         /// puedo indicar un grupo de productos para las "souffle" y uno para "al horno".</summary>
@@ -794,7 +793,7 @@ var dialogModule = (function () {
         };
 
         for (var j = 0; j < grupoProdPromo.grupos_productos_posibles.length; j++) {
-            var grupoProd = datosSucursal.gruposProductosById[grupoProdPromo.grupos_productos_posibles[j]];
+            var grupoProd = DatosLocal.gruposProductosById[grupoProdPromo.grupos_productos_posibles[j]];
 
             var grupo = {
                 titulo: grupoProd.nombre,
@@ -804,7 +803,7 @@ var dialogModule = (function () {
             promo.grupos.push(grupo);
 
             for (var i = 0; i < grupoProd.productos.length; i++) {
-                var prod = datosSucursal.productosById[grupoProd.productos[i]];
+                var prod = DatosLocal.productosById[grupoProd.productos[i]];
 
                 var stock = parseInt(prod.stock);
                 if (!stock) {
@@ -835,7 +834,7 @@ var dialogModule = (function () {
         return promo;
     }
 
-    function getGrupoOpciones(modProd, datosSucursal, producto) {
+    function getGrupoOpciones(modProd, DatosLocal, producto) {
         /// <summary>Se encarga de crear el objeto para renderizar el template option_dialog_template.
         /// Estos dialogos se usan en productos que tienen modificadores con opciones. Las opciones son
         /// una forma de customizar los productos de una forma básica.</summary>
@@ -850,13 +849,13 @@ var dialogModule = (function () {
         };
 
         for (var j = 0; j < modProd.opciones.length; j++) {
-            var opt = datosSucursal.opcionesBaseById[modProd.opciones[j]];
+            var opt = DatosLocal.opcionesBaseById[modProd.opciones[j]];
             // inserto cada opción al grupo (ejemplo: 'souffle')
             option.opciones.push({
                 id: opt.id,
                 nombre: opt.nombre,
-               // precio: modProd.usar_modificadores ? dataHelper.parseDecimalPlaces(opt.modificador_precio) : ''
-                precio: modProd.usar_modificadores ? dataHelper.parseDecimalPlaces(procesarmodificador(opt.modificador_precio, opt, producto,false)): ''
+                // precio: modProd.usar_modificadores ? dataHelper.parseDecimalPlaces(opt.modificador_precio) : ''
+                precio: modProd.usar_modificadores ? dataHelper.parseDecimalPlaces(procesarmodificador(opt.modificador_precio, opt, producto, false)) : ''
             });
         }
         return option;
@@ -954,7 +953,21 @@ var pedidoModule = (function () {
         $("#pedidoVacio").hide();
     }
 
+    function storePedido() {
+        /// <summary>Este método guarda o actualiza durante 20 minutos desde ahora el pedido en localStorage, y de actualizar el subtotal y total en el DOM.</summary>
 
+        storageHelper.tempStorage.setItem("sucursalPedidoData_" + userHelper.getIdSucursal(), {
+            uid: uid,
+            pedidos: pedidos,
+            pedidosSinExtras: pedidosSinExtras
+        }, 20);
+
+        var total = 0;
+        for (var prop in pedidos) {
+            total += parseFloat(pedidos[prop].precio_total);
+        }
+        sucursalModule.changeSubtotal(total)
+    }
 
     function modifyPedidoCantidad(pedido, byCant) {
         /// <summary>Se modifica la cantidad del pedido, y se actualiza el DOM para reflejar los cambios.
@@ -1168,42 +1181,41 @@ var sucursalModule = (function () {
         });
 
         $("#confirmarPedido").on("click", function () {
-            
-            $("#ModalRevisarPagaCon").css({'border-color' : '#ccc', 'background-color' : '#fff'});
-            $("#ModalRevisarTel").css({'border-color' : '#ccc', 'background-color' : '#fff'});
-            
+
+            $("#ModalRevisarPagaCon").css({ 'border-color': '#ccc', 'background-color': '#fff' });
+            $("#ModalRevisarTel").css({ 'border-color': '#ccc', 'background-color': '#fff' });
+
             var alert = document.getElementById("alertPedidoMinimo");
             alert.style = subtotal < pedidoMinimo ? "" : "display: none;";
 
             if (subtotal < pedidoMinimo || !sucursalEstaAbierta) {
                 return;
             }
-            
+
             var v_paga_con = $("#ModalRevisarPagaCon").val();
-            
-            if(v_paga_con == '' || v_paga_con == 0){
-                $("#ModalRevisarPagaCon").css({'border-color' : '#f4686b', 'background-color' : '#fee9e7'});
+
+            if (v_paga_con == '' || v_paga_con == 0) {
+                $("#ModalRevisarPagaCon").css({ 'border-color': '#f4686b', 'background-color': '#fee9e7' });
                 $("#PagaConMsj").html('Por favor, indique con cuanto paga.');
                 return;
-            }else{
+            } else {
                 v_paga_con = parseFloat(v_paga_con);
             }
-            
-            
+
+
             var v_entrecalles = $("#ModalRevisarEntreCalle").val();
-            
-            if(v_entrecalles == '')
-            {
-                $("#ModalRevisarEntreCalle").css({'border-color' : '#f4686b', 'background-color' : '#fee9e7'});
+
+            if (v_entrecalles == '') {
+                $("#ModalRevisarEntreCalle").css({ 'border-color': '#f4686b', 'background-color': '#fee9e7' });
                 $("#EntreCalleMsj").html('Por favor, indique las entrecalles.');
                 return;
             }
-            
-            
+
+
             var v_num_tel = $("#ModalRevisarTel").val();
-            
-            if(v_num_tel == 0 || v_num_tel == ''){
-                $("#ModalRevisarTel").css({'border-color' : '#f4686b', 'background-color' : '#fee9e7'});
+
+            if (v_num_tel == 0 || v_num_tel == '') {
+                $("#ModalRevisarTel").css({ 'border-color': '#f4686b', 'background-color': '#fee9e7' });
                 $("#NumTelMsj").html('Ingrese su número de teléfono.');
                 return;
             }
@@ -1214,37 +1226,37 @@ var sucursalModule = (function () {
             pedido.comentarios = document.getElementById("comentarios").value;
             pedido.horario = $("#deliveryTime").val();
 
-            if(v_paga_con != '' && v_paga_con != 0 && v_paga_con < pedido.total){
-                $("#ModalRevisarPagaCon").css({'border-color' : '#f4686b', 'background-color' : '#fee9e7'});
+            if (v_paga_con != '' && v_paga_con != 0 && v_paga_con < pedido.total) {
+                $("#ModalRevisarPagaCon").css({ 'border-color': '#f4686b', 'background-color': '#fee9e7' });
                 $("#PagaConMsj").html('El valor con el que paga debe ser igual o mayor al total.');
                 return;
             }
-          
+
             $("#confirmarPedido").attr('disabled', true);
-            
-            var vi_idsuc      = userHelper.getIdSucursal();
-         
+
+            var vi_idsuc = userHelper.getIdSucursal();
+
             var empredata = storageHelper.tempStorage.getItem("empresaData_" + storageHelper.empresaId);
             var vi_sucursales = empredata.sucursales;
-            var vi_suc_name   = '';
-            
-            for (i=0;i<vi_sucursales.length;i++){
-              if(vi_sucursales[i].id == vi_idsuc){
-                  vi_suc_name = vi_sucursales[i].nombre;
-              }
+            var vi_suc_name = '';
+
+            for (i = 0; i < vi_sucursales.length; i++) {
+                if (vi_sucursales[i].id == vi_idsuc) {
+                    vi_suc_name = vi_sucursales[i].nombre;
+                }
             }
-            
+
             pedido.suc_name = vi_suc_name;
-            
+
             pedido.paga_con = v_paga_con;
-            pedido.cli_tel  = v_num_tel;
-            
+            pedido.cli_tel = v_num_tel;
+
             var v_pisoDto = localStorage.getItem('TPPDto');
-            
-            if(v_pisoDto != '' && v_pisoDto != null && v_pisoDto != undefined){
+
+            if (v_pisoDto != '' && v_pisoDto != null && v_pisoDto != undefined) {
                 v_pisoDto.replace('"', '');
             }
-            
+
             pedido.datos_delivery = {
                 direccion_google: userHelper.getGoogleAddress(),
                 direccion_usuario: userHelper.getUserAddress(),
@@ -1254,74 +1266,72 @@ var sucursalModule = (function () {
                 pisoDto: v_pisoDto,
                 entrecalles: v_entrecalles
             };
-            
-               
+
+
             //pedido.suc_name: vi_suc_name;
 
             handlePedidoPost(pedido);
         });
-        
-        
+
+
         $("#revisarPedido").on("click", function () {
-            
-            if(subtotal == 0){
+
+            if (subtotal == 0) {
                 tepido.showMessage('bottom', 'left', 'danger', 'error', 'No se eligieron productos');
                 return;
             }
-            
+
             if (subtotal < pedidoMinimo || !sucursalEstaAbierta) {
-                tepido.showMessage('bottom', 'left', 'warning', 'error', 'El mínimo por pedido es $'+pedidoMinimo);
+                tepido.showMessage('bottom', 'left', 'warning', 'error', 'El mínimo por pedido es $' + pedidoMinimo);
                 return;
             }
-          
+
             var v_logUsr = localStorage.getItem('TPoauth_uid');
-            
-            if(v_logUsr == undefined || v_logUsr == '' || v_logUsr == null){
-               
-              $("#ModalLoginMsj").html('<div class="txtheadModalLogin"><i class="fas fa-exclamation-triangle"></i><br>Debe iniciar sesión y luego finalizar su pedido</div>');
-               
-              $("#ModalLoginMsj").show();
-              
-               v_modal_open = 'ModalLogin';
-               $("#btn_login").html('Ingresar');
-               $('#ModalLogin').modal();
-              
-               return;
-             }
-          
+
+            if (v_logUsr == undefined || v_logUsr == '' || v_logUsr == null) {
+
+                $("#ModalLoginMsj").html('<div class="txtheadModalLogin"><i class="fas fa-exclamation-triangle"></i><br>Debe iniciar sesión y luego finalizar su pedido</div>');
+
+                $("#ModalLoginMsj").show();
+
+                v_modal_open = 'ModalLogin';
+                $("#btn_login").html('Ingresar');
+                $('#ModalLogin').modal();
+
+                return;
+            }
+
             //$("#ModalRevisar").modal('toggle');
-          
+
             fcn_detalle_pedido();
-            
+
         });
-        
+
     });
 
     function handlePedidoPost(pedido) {
         /// <summary>Se encarga de hacer el POST del pedido, y manejar los errores si sucede alguno.</summary>
-        
-        
+
+
         // Actualizo el popup para avisar que se esta enviando
         //$("#ModalRevisarBody").html('<center><h3>Estamos enviando tu pedido</h3></br><img style="height: 30px; width: 30px;" src="https://www.tepido.com.ar/content/spin_loader.gif"></center>');
-        
+
         $("#ModalRevisarBody").hide();
-        
+
         $("#ModalRevisarMsj").show();
         $("#ModalRevisarMsj").html('<center><h3>Estamos enviando tu pedido</h3></br><img src="https://www.tepido.com.ar/content/loader-food.gif"></center>');
-        
-       var urlguardar= "";
-      
-       if($("#versionTPhd").val() == null ||  $("#versionTPhd").val()=="" ||  $("#versionTPhd").val()=="1.00")
-       {
-           urlguardar='../api/guardarpedido.php';
-       }
-       else
-       {
-           urlguardar='../api/guardarpedido2.php';
-       }
-                  
-        
-        
+
+        var urlguardar = "";
+
+        if ($("#versionTPhd").val() == null || $("#versionTPhd").val() == "" || $("#versionTPhd").val() == "1.00") {
+            urlguardar = '../api/guardarpedido.php';
+        }
+        else {
+            urlguardar = '../api/guardarpedido2.php';
+        }
+
+
+
         $.ajax({
             url: urlguardar,
             method: 'POST',
@@ -1330,62 +1340,62 @@ var sucursalModule = (function () {
                 // Type: Function( jqXHR jqXHR, String textStatus, String errorThrown )
                 // TODO manejar error
                 //$("#alertPedidoError").text("Ha ocurrido un error y no se realizó el pedido").show();
-                
+
                 $("#ModalRevisar").modal('toggle');
                 tepido.showMessage('bottom', 'left', 'danger', 'error', 'Ocurrió un error al intentar realizar el pedido.');
-                
+
             },
             success: function (data) {
                 // Type: Function( Anything data, String textStatus, jqXHR jqXHR )
                 // TODO habría que eliminar el pedido del localStorage, e indicarle
                 // al usuario que ya se realizó el pedido
-                if(data[0] == 'OK'){
-                 /*   // limpio todo el pedido
-                    for (var prop in domElements) {
-                        domElements[prop].remove();
-                    }
+                if (data[0] == 'OK') {
+                    /*   // limpio todo el pedido
+                       for (var prop in domElements) {
+                           domElements[prop].remove();
+                       }
+   
+                       uid = 1;
+                       pedidos = {};
+                       pedidosSinExtras = {};
+                       domElements = {};
+   
+                       storePedido();
+                       reloadPedidos();*/
 
-                    uid = 1;
-                    pedidos = {};
-                    pedidosSinExtras = {};
-                    domElements = {};
-
-                    storePedido();
-                    reloadPedidos();*/
-                  
                     $("#vaciarPedido").click();
                     // Cargo el panel de usuario
-                    window.location.assign("/pedido.ok?c="+data['nro_pedido']);
-                }else{
-                    //   $("#alertPedidoError").text(data[1]).show();
-                    
+                    window.location.assign("/pedido.ok?c=" + data['nro_pedido']);
+                } else {
+                    //$("#alertPedidoError").text(data[1]).show();
+
                     //$("#ModalRevisar").modal('toggle');
                     //tepido.showMessage('bottom', 'left', 'danger', 'error', data[1]);
-                    
-                    if(data['inisession'] == 'X'){
-                        
+
+                    if (data['inisession'] == 'X') {
+
                         $("#ModalRevisar").modal('toggle');
-                      
+
                         $("#confirmarPedido").attr('disabled', false);
-                        
+
                         $("#ModalLoginMsj").html('<div class="txtheadModalLogin"><i class="fas fa-exclamation-triangle"></i><br>Debe iniciar sesión y luego finalizar su pedido</div>');
-                      
+
                         $("#ModalLoginMsj").show();
-                      
-                         v_modal_open = 'ModalLogin';
+
+                        v_modal_open = 'ModalLogin';
                         $("#btn_login").html('Ingresar');
                         $('#ModalLogin').modal();
-                    }else{
-                      
-                      $("#ModalRevisarMsj").html('<div style="text-align: center;"><i class="far fa-frown" style="color: #F44336; font-size: 80px;"></i><br><br><b>'+data[1]+'</b><br><br><button class="btn_new btn-default" data-dismiss="modal">SALIR</button></div>');
-                      
-                      $("#confirmarPedido").attr('disabled', false);
-                      
+                    } else {
+
+                        $("#ModalRevisarMsj").html('<div style="text-align: center;"><i class="far fa-frown" style="color: #F44336; font-size: 80px;"></i><br><br><b>' + data[1] + '</b><br><br><button class="btn_new btn-default" data-dismiss="modal">SALIR</button></div>');
+
+                        $("#confirmarPedido").attr('disabled', false);
+
                     }
-                    
-                    
+
+
                 }
-                
+
             }
         });
     }
@@ -1403,7 +1413,7 @@ var sucursalModule = (function () {
             myFragment.appendChild(opt);
         }
 
-        while(from < to){
+        while (from < to) {
             var opt = document.createElement('option');
             opt.textContent = dataHelper.pad(from.getHours(), 2) + ":" + dataHelper.pad(from.getMinutes(), 2);
             opt.value = opt.textContent;
@@ -1488,24 +1498,24 @@ var sucursalModule = (function () {
 
     function initSubtotal(costoDelivery, direccionDelivery) {
         costodelivery = costoDelivery;
-        
+
         var v_pisoDto = localStorage.getItem('TPPDto');
-        
-        if(v_pisoDto == '' || v_pisoDto ==  null || v_pisoDto == undefined){
+
+        if (v_pisoDto == '' || v_pisoDto == null || v_pisoDto == undefined) {
             v_pisoDto = '<div id="divPisoDto"><a href="javascript:void(0)" onclick="fcnAddPisoDto();" style="color: white;">+ Agregar piso / departamento</a></div>';
-        }else{
-            $(".dir_entrega").append(' <span class="savedPisoDto">'+v_pisoDto+'</span>');
-            v_pisoDto = '<div id="divPisoDto">Piso/Dpto: '+v_pisoDto+' <span class="glyphicon glyphicon-trash" title="Borrar piso/depto" onclick="fcnDelPisoDto();" style="cursor: pointer;"></span></div>';
+        } else {
+            $(".dir_entrega").append(' <span class="savedPisoDto">' + v_pisoDto + '</span>');
+            v_pisoDto = '<div id="divPisoDto">Piso/Dpto: ' + v_pisoDto + ' <span class="glyphicon glyphicon-trash" title="Borrar piso/depto" onclick="fcnDelPisoDto();" style="cursor: pointer;"></span></div>';
         }
-        
+
         var htmlOutput = subtotal_template.render({ subTotal: dataHelper.parseDecimalPlaces(subtotal), costoDelivery: dataHelper.parseDecimalPlaces(costoDelivery || 0), direccionDelivery: direccionDelivery, pisoDto: v_pisoDto, total: dataHelper.parseDecimalPlaces(costoDelivery + subtotal) });
         $("#subtotal").html(htmlOutput);
-        
-        if(costoDelivery != undefined && costoDelivery != null && costoDelivery != 0 && costoDelivery != ''){
-            $("#resumenCostoDelivery").html('<div style="margin-top:  -12px;margin-bottom:  12px;">Costo delivery $'+costoDelivery+'</div>');
+
+        if (costoDelivery != undefined && costoDelivery != null && costoDelivery != 0 && costoDelivery != '') {
+            $("#resumenCostoDelivery").html('<div style="margin-top:  -12px;margin-bottom:  12px;">Costo delivery $' + costoDelivery + '</div>');
             GLOB_costoDelivery = costoDelivery;
         }
-        
+
         $(".ver-pedido-total").text("($" + dataHelper.parseDecimalPlaces(costoDelivery + subtotal) + ")");
         subtotalIniciado = true;
     }
@@ -1558,12 +1568,11 @@ var sucursalModule = (function () {
                     $(".pedido-minimo").text("$" + dataHelper.parseDecimalPlaces(data.pedido_minimo));
                     $(".tiempo_entrega").text(data.tiempo_delivery_aprox);
                     pedidoMinimo = data.pedido_minimo;
-                    
-                    var direccionverificada =userHelper.getGoogleAddress().short_address;
-                    if(direccionverificada.includes("null"))
-                    {
+
+                    var direccionverificada = userHelper.getGoogleAddress().short_address;
+                    if (direccionverificada.includes("null")) {
                         //si tiene nulos uso la del usuario
-                        direccionverificada=userHelper.getUserAddress() + " " + userHelper.getGoogleAddress().short_address.substring(userHelper.getGoogleAddress().short_address.indexOf(","),userHelper.getGoogleAddress().short_address.length );
+                        direccionverificada = userHelper.getUserAddress() + " " + userHelper.getGoogleAddress().short_address.substring(userHelper.getGoogleAddress().short_address.indexOf(","), userHelper.getGoogleAddress().short_address.length);
                     }
                     initSubtotal(data.costo_delivery, direccionverificada);
                     initHorarios(data.horarios);
@@ -1573,50 +1582,50 @@ var sucursalModule = (function () {
 })();
 
 // document ready
-//$(function () {
+$(function () {
 
-//    $("#pedidoDialog").modal({ show: false });
+    $("#pedidoDialog").modal({ show: false });
 
-//    if (storageHelper.storageAvailable()) {
-//        // hay localStorage - verifico si hay una sucursal seleccionada
-//        if (userHelper.getIdSucursal()) {
-//            sucursalModule.initSucursal(userHelper.getIdSucursal());
-//            productosModule.initProductos(userHelper.getIdSucursal());
-//            pedidoModule.initPedidos();
-//        }
-//        else {
-//            // antes tenes que elegir la sucursal!
-//            window.location = "/index.php";
-//        }
+    if (storageHelper.storageAvailable()) {
+        // hay localStorage - verifico si hay una sucursal seleccionada
+        if (userHelper.getIdSucursal()) {
+            sucursalModule.initSucursal(userHelper.getIdSucursal());
+            productosModule.initProductos(userHelper.getIdSucursal());
+            pedidoModule.initPedidos();
+        }
+        else {
+            // antes tenes que elegir la sucursal!
+            window.location = "/index.php";
+        }
 
-//        $("#mostrarPedido button").on("click", function () {
-//            $("body").addClass("show-pedido");
-//        });
+        $("#mostrarPedido button").on("click", function () {
+            $("body").addClass("show-pedido");
+        });
 
-//        $("#pedidoHeader button").on("click", function () {
-//            $("body").removeClass("show-pedido");
-//        });
+        $("#pedidoHeader button").on("click", function () {
+            $("body").removeClass("show-pedido");
+        });
 
-//        $("#pedido").on("click", ".item", function (e) {
-//            var target = $(e.target);
-//            if (target.hasClass("glyphicon-plus") || target.hasClass("glyphicon-minus")) {
-//                if (target.hasClass("glyphicon-plus")) {
-//                    pedidoModule.incrementPedido(this.dataset.idItemPedido);
-//                } else {
-//                    pedidoModule.decrementPedido(this.dataset.idItemPedido);
-//                }
-//                return false;
-//            }
-//            $(".pedido-content .item").removeClass("show-extras");
-//            $(this).addClass("show-extras");
-//        });
+        $("#pedido").on("click", ".item", function (e) {
+            var target = $(e.target);
+            if (target.hasClass("glyphicon-plus") || target.hasClass("glyphicon-minus")) {
+                if (target.hasClass("glyphicon-plus")) {
+                    pedidoModule.incrementPedido(this.dataset.idItemPedido);
+                } else {
+                    pedidoModule.decrementPedido(this.dataset.idItemPedido);
+                }
+                return false;
+            }
+            $(".pedido-content .item").removeClass("show-extras");
+            $(this).addClass("show-extras");
+        });
 
-//        scrollSidebar.initialize(".pedido-content");
-//    }
-//    else {
-//        // TODO no hay localStorage, decidir con Diego qué hacer ¯\_(ツ)_/¯
-//    }
-//});
+        scrollSidebar.initialize(".pedido-content");
+    }
+    else {
+        // TODO no hay localStorage, decidir con Diego qué hacer ¯\_(ツ)_/¯
+    }
+});
 
 var scrollSidebar = (function () {
 
@@ -1748,157 +1757,148 @@ var scrollSidebar = (function () {
 })();
 
 
-function fcn_detalle_pedido(){
-    
+function fcn_detalle_pedido() {
+
     $('#TablaModalRevisar').empty();
-    
+
     var v_pisoDto = localStorage.getItem('TPPDto');
-    
-    if(v_pisoDto != '' && v_pisoDto != null){
-        $('#dir_entrega_conf').html(userHelper.getUserAddress()+' '+v_pisoDto);
-    }else{
+
+    if (v_pisoDto != '' && v_pisoDto != null) {
+        $('#dir_entrega_conf').html(userHelper.getUserAddress() + ' ' + v_pisoDto);
+    } else {
         $('#dir_entrega_conf').html(userHelper.getUserAddress());
     }
-    
+
     $('#dir_hora_conf').html($('#deliveryTime').val());
-    
-    if($('#dir_hora_conf').html() != 'Lo antes posible'){
-        $('#dir_hora_conf').html($('#dir_hora_conf').html()+'hs');
+
+    if ($('#dir_hora_conf').html() != 'Lo antes posible') {
+        $('#dir_hora_conf').html($('#dir_hora_conf').html() + 'hs');
     }
-    
-    if($('#comentarios').val() != ''){
+
+    if ($('#comentarios').val() != '') {
         $('#comentarios_conf').html($('#comentarios').val());
         $('#comentarios_div').show();
-    }else{
+    } else {
         $('#comentarios_div').hide();
     }
-    
+
     var pedidoCompleto = pedidoModule.getPedidoCompleto();
-    
+
     var pedido = storageHelper.tempStorage.getItem("sucursalPedidoData_" + userHelper.getIdSucursal());
     //var prod22 = pedidos;
-    
+
     //alert(pedido.pedidos[1].nombre);
     var v_txt_promo = '';
-    var v_txt_cant  = '';
-    
-    for (i=0;i<500;i++){
-        if(pedido.pedidos[i] != undefined){
-            
-            if(pedido.pedidos[i].idGrupoPromo != ''){
+    var v_txt_cant = '';
+
+    for (i = 0; i < 500; i++) {
+        if (pedido.pedidos[i] != undefined) {
+
+            if (pedido.pedidos[i].idGrupoPromo != '') {
                 v_txt_promo = '<b>Promo </b>';
-            }else{
+            } else {
                 v_txt_promo = '';
             }
-            
-            $('#TablaModalRevisar').append('<tr><td class="text-center">'+pedido.pedidos[i].cantidad+'</td><td class="text-left">'+v_txt_promo+pedido.pedidos[i].nombre+'</td><td class="text-center">$'+pedido.pedidos[i].precio_total+'</td></tr>');
+
+            $('#TablaModalRevisar').append('<tr><td class="text-center">' + pedido.pedidos[i].cantidad + '</td><td class="text-left">' + v_txt_promo + pedido.pedidos[i].nombre + '</td><td class="text-center">$' + pedido.pedidos[i].precio_total + '</td></tr>');
 
             // Si es promo, imprimo los productos elegidos
-            if(pedido.pedidos[i].idGrupoPromo != '')
-            {
-                
-                if(pedido.pedidos[i].extras!=null)    
-                {
-                    for (e=0;e<pedido.pedidos[i].extras.length;e++)
-                    {
-                        
-                        $('#TablaModalRevisar').append('<tr style="color: #9e9e9e;"><td></td><td class="text-left" style="font-weight: bold; padding-top: 2px; padding-bottom: 2px;">'+pedido.pedidos[i].extras[e].nombre+'</td><td></td></tr>');
-    
-                        for (f=0;f<pedido.pedidos[i].extras[e].items.length;f++){
-                            
-                            if(pedido.pedidos[i].extras[e].items[f].cantidad != undefined){
-                                v_txt_cant = '<b>'+pedido.pedidos[i].extras[e].items[f].cantidad+'x </b>';
-                            }else{
+            if (pedido.pedidos[i].idGrupoPromo != '') {
+
+                if (pedido.pedidos[i].extras != null) {
+                    for (e = 0; e < pedido.pedidos[i].extras.length; e++) {
+
+                        $('#TablaModalRevisar').append('<tr style="color: #9e9e9e;"><td></td><td class="text-left" style="font-weight: bold; padding-top: 2px; padding-bottom: 2px;">' + pedido.pedidos[i].extras[e].nombre + '</td><td></td></tr>');
+
+                        for (f = 0; f < pedido.pedidos[i].extras[e].items.length; f++) {
+
+                            if (pedido.pedidos[i].extras[e].items[f].cantidad != undefined) {
+                                v_txt_cant = '<b>' + pedido.pedidos[i].extras[e].items[f].cantidad + 'x </b>';
+                            } else {
                                 v_txt_cant = '';
                             }
-                            
-                            $('#TablaModalRevisar').append('<tr style="color: #9e9e9e;"><td></td><td class="text-left" style="color: #9e9e9e; padding-left: 15px; padding-top: 2px; padding-bottom: 2px;">'+v_txt_cant+pedido.pedidos[i].extras[e].items[f].nombre+'</td><td></td></tr>');
-    
-                            
+
+                            $('#TablaModalRevisar').append('<tr style="color: #9e9e9e;"><td></td><td class="text-left" style="color: #9e9e9e; padding-left: 15px; padding-top: 2px; padding-bottom: 2px;">' + v_txt_cant + pedido.pedidos[i].extras[e].items[f].nombre + '</td><td></td></tr>');
+
+
                         }
-                        
+
                     }
-                 }
-                
+                }
+
             }
 
         }
     }
-    
+
     $('#ModalRevisarTotal').html(pedidoCompleto.subtotal + GLOB_costoDelivery);
-    
+
     $("#ModalRevisarBody").show();
     $("#ModalRevisarMsj").hide();
-    
-    $("#ModalRevisarPagaCon").css({'border-color' : '#ccc', 'background-color' : '#fff'});
-    $("#ModalRevisarTel").css({'border-color' : '#ccc', 'background-color' : '#fff'});
+
+    $("#ModalRevisarPagaCon").css({ 'border-color': '#ccc', 'background-color': '#fff' });
+    $("#ModalRevisarTel").css({ 'border-color': '#ccc', 'background-color': '#fff' });
     $("#PagaConMsj").html('');
     $("#NumTelMsj").html('');
     $("#ModalRevisarPagaCon").val('');
-    
+
     $("#confirmarPedido").attr('disabled', false);
-  
-    $('#ModalRevisar').modal({backdrop: 'static', keyboard: false});
+
+    $('#ModalRevisar').modal({ backdrop: 'static', keyboard: false });
 }
 
-function procesarmodificador(modificador_precio, opt, producto,esrecalcular)
-{
-    var prec=dataHelper.parseDecimalPlaces(modificador_precio);
+function procesarmodificador(modificador_precio, opt, producto, esrecalcular) {
+    var prec = dataHelper.parseDecimalPlaces(modificador_precio);
     var prod;
-    if(opt.id===3)
-    {
-         prod = productosModule.getProdById(producto.id);
-        prec= dataHelper.parseDecimalPlaces(prod.precio);
-    }else if(opt.id===4)
-    {
-         prod = productosModule.getProdById(producto.id);
-        prec= dataHelper.parseDecimalPlaces(prod.precio2);
-    }else if(opt.id===5)
-    {
+    if (opt.id === 3) {
         prod = productosModule.getProdById(producto.id);
-        prec= dataHelper.parseDecimalPlaces(prod.precio3);
+        prec = dataHelper.parseDecimalPlaces(prod.precio);
+    } else if (opt.id === 4) {
+        prod = productosModule.getProdById(producto.id);
+        prec = dataHelper.parseDecimalPlaces(prod.precio2);
+    } else if (opt.id === 5) {
+        prod = productosModule.getProdById(producto.id);
+        prec = dataHelper.parseDecimalPlaces(prod.precio3);
     }
-    
-    if(esrecalcular)
-    {
+
+    if (esrecalcular) {
         return {
             original: dataHelper.parseDecimalPlaces(producto.precio),
             calculado: prec
-        }; 
+        };
     }
-    else
-    {
+    else {
         return prec;
     }
-    
+
 }
 
-function fcnAddPisoDto(){
-    
+function fcnAddPisoDto() {
+
     $("#divPisoDto").html('<input onchange="fcnSavePisoDto()" style="margin: 5px; border-radius: 3px; border: none; padding: 5px; color: black;" type="text" id="pisoDtoValue" value="" placeholder="Piso / Departamento">');
-    
+
     $("#pisoDtoValue").focus();
-    
+
 }
 
-function fcnSavePisoDto(){
-    
+function fcnSavePisoDto() {
+
     var v_pisoDtoNew = $("#pisoDtoValue").val();
-    
-    $("#divPisoDto").html('<div id="divPisoDto">Piso/Dpto: '+v_pisoDtoNew+' <span class="glyphicon glyphicon-trash" title="Borrar piso/depto" onclick="fcnDelPisoDto();" style="cursor: pointer;"></span></div>');
-    
-    $(".dir_entrega").append(' <span class="savedPisoDto">'+v_pisoDtoNew+'</span>');
-    
-    localStorage.setItem('TPPDto', '"'+v_pisoDtoNew+'"');
-    
+
+    $("#divPisoDto").html('<div id="divPisoDto">Piso/Dpto: ' + v_pisoDtoNew + ' <span class="glyphicon glyphicon-trash" title="Borrar piso/depto" onclick="fcnDelPisoDto();" style="cursor: pointer;"></span></div>');
+
+    $(".dir_entrega").append(' <span class="savedPisoDto">' + v_pisoDtoNew + '</span>');
+
+    localStorage.setItem('TPPDto', '"' + v_pisoDtoNew + '"');
+
 }
 
-function fcnDelPisoDto(){
-    
+function fcnDelPisoDto() {
+
     $(".savedPisoDto").empty();
-    
+
     $("#divPisoDto").html('<a href="javascript:void(0)" onclick="fcnAddPisoDto();" style="color: white;">+ Agregar piso / departamento</a>');
-    
+
     localStorage.removeItem('TPPDto');
-    
+
 }
