@@ -11,10 +11,9 @@ namespace Web
 {
     public partial class Pedidos : System.Web.UI.Page
     {
-       
+        
         public List<Comida> comidas = new List<Comida>();
        
-
         protected void Page_Load(object sender, EventArgs e)
         {
             

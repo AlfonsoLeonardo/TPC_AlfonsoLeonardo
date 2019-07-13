@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="Content/scrollToTop/totop.css">
   </head>  
 <style>
+
 @media only screen and (min-width: 769px) {
     
     .top_bar_navbar{
@@ -115,7 +116,7 @@ display:none;
         <div>
           <div class="navbar-brand">
               <div id="container_image_pedido" style="margin-top: 35px;">
-                  <img id="div_image_pedido" src="https://migusto.com.ar/assets/images/logo.png" width="120px">
+                  <img id="div_image_pedido" src="images/logo.png" width="120px">
               </div>
               <div class="div_titulo_pedido class_titulo_pedido letras_sombra">Cargando</div>
               <div class="div_dir_cliente"><span class="dir_entrega letras_sombra">Cargando dirección</span> <a class="letras_sombra" href="#" onclick="goBack();">(Cambiar Dirección)</a></div>
@@ -125,9 +126,7 @@ display:none;
           
           <div class="navbar-header top_bar_navbar">
             <button type="button" class="div_img_user user_img_button_mobile" style="margin-top: 110px;" data-toggle="collapse" data-target=".navbar-ex1-collapse"></button>
-            <div class="head_right_mobile">
-              <img height="35" src="../content/logo_tepido_blanco.png">
-            </div>
+          
           </div>
          
           <div class="collapse navbar-collapse navbar-ex1-collapse" style="background-color: rgba(255, 255, 255, 0.4)">
@@ -174,12 +173,13 @@ display:none;
                 </div>
                 
             </div>
+             <% cargar(2, 9999); %>
             <div class="productos">
                 
-              <% cargar(2, 9999); %>
+             
                  <% foreach (var comidas in comidas) { %>
                 <div class="col-xs-12 col-sm-6 col-lg-4">
-                    <div class="producto sombraBox" id="<%= comidas.Id %>"data-disabled="" data-id-producto=" <%= comidas.Id %>" data-id-promo="" data-id-grupo-promo=" <%= comidas.TC.Id %>" data-id-grupo-producto="1" data-precio-mostrado="<%= comidas.Precio %>">
+                    <div class="producto sombraBox" id="<%= comidas.Id %>"data-disabled="" data-id-producto="<%= comidas.Id %>" data-id-promo="" data-id-grupo-promo=" <%= comidas.TC.Id %>" data-id-grupo-producto="1" data-precio-mostrado="<%= comidas.Precio %>" onclick="agregarProducto(<%= comidas.Id %>, '<%= comidas.Nombre %>', <%= comidas.Precio %>)">
                         <div class="precio-producto">
                             <span> <%= comidas.Precio %></span>
                             
@@ -187,7 +187,7 @@ display:none;
                         <h4 class="nombre-producto">
                            <%= comidas.Nombre %>
                         </h4>
-                        <div class="agregar-producto"><b class="far fa-plus-square"title="Agregar a mi pedido"></b></div>
+                        <div class="agregar-producto"><b class="far fa-plus-square" id="cm<%= comidas.Id %>"title="Agregar a mi pedido"></b></div>
                         
                         <p class="descripcion-producto"><%= comidas.TC.Nombre %></p>
                         
@@ -212,7 +212,7 @@ display:none;
                  <% cargar(1, 6); %>
                  <% foreach (var comidas in comidas) { %>
                 <div class="col-xs-12 col-sm-6 col-lg-4">
-                    <div class="producto sombraBox" data-disabled="" data-id-producto=" <%= comidas.Id %>" data-id-promo="" data-id-grupo-promo=" <%= comidas.TC.Id %>" data-id-grupo-producto="1" data-precio-mostrado="50">
+                    <div class="producto sombraBox" data-disabled="" onclick="agregarProducto(<%= comidas.Id %>, '<%= comidas.Nombre %>', <%= comidas.Precio %>)" data-id-producto="<%= comidas.Id %>" data-id-promo="" data-id-grupo-promo=" <%= comidas.TC.Id %>" data-id-grupo-producto="1" data-precio-mostrado="50">
                         <div class="precio-producto">
                             <span> <%= comidas.Precio %></span>
                                                    </div>
@@ -286,7 +286,7 @@ display:none;
         <!-- Company Footer -->
         <div class="footer-company center">
             <div class="container">
-                <img height="40" src="../content/logo_tepido_blanco.png"> es un producto de <a target="_blank" href="http://www.datalive.com.ar">Datalive</a> - Todos los derechos reservados
+                <img height="40" src="images/logo.png"><a target="_blank"</a> 
             </div>
         </div>
     </footer>
@@ -440,7 +440,7 @@ display:none;
         </ul>
     </script>
 
-    <script id="subtotal_template" type="text/x-jsrender">
+   <script id="subtotal_template" type="text/x-jsrender">
         <div class="item">
             <div class="sub-total item-right">${{:subTotal}}</div>
             Sub-Total
@@ -470,79 +470,7 @@ display:none;
         <textarea class="form-control" id="comentarios" name="comentarios" placeholder="Comentarios (opcional)..."></textarea>
     </script>
 
-    <!-- este template es para productos y promos -->
-    <script id="grupoProductosTemplate" type="text/x-jsrender">
-        <section>
-            <div class="menu-header">
-                <div class="col-xs-12">
-                    <h3>{{:nombre}}</h3>
-                    {{if imagen}}
-                    <img src="{{:imagen}}" />
-                    {{/if}}
-                </div>
-                {{if warning}}
-                <div class="col-xs-12">
-                    <div class="alert alert-warning" role="alert">{{:warning}}</div>
-                </div>
-                {{/if}}
-            </div>
-            <div class="productos">
-                {{for productos ~disabled=disabled}}
-                <div class="col-xs-12 col-sm-6 col-lg-4">
-                    <div class="producto sombraBox {{:~disabled}}" data-disabled="{{:~disabled}}" data-id-producto="{{:id}}" data-id-promo="{{:id_promo}}" data-id-grupo-promo="{{:id_grupo_promo}}" data-id-grupo-producto="{{:id_grupo_prod}}" data-precio-mostrado="{{:precio.calculado}}">
-                        <div class="precio-producto">
-                            <span>${{:precio.calculado}}</span>
-                            {{if precio.calculado < precio.original}}
-                            <br />
-                            <span class="precio-original">${{:precio.original}}</span>&nbsp;
-                            {{/if}}
-                        </div>
-                        <h4 class="nombre-producto">
-                            {{:nombre}}
-                        </h4>
-                        <div class="agregar-producto"><b class="far fa-plus-square" title="Agregar a mi pedido"></b></div>
-                        {{if descripcion}}
-                        <p class="descripcion-producto">{{:descripcion}}</p>
-                        {{/if}}
-                    </div>
-                </div>
-                {{/for}}
-            </div>
-        </section>
-    </script>
 
-    <!--este template es para los productos en la bandeja de pedidos del usuario-->
-    <script id="itemPedidoTemplate" type="text/x-jsrender">
-        <div data-id-item-pedido="{{:id}}" class="item">
-            <div class="item-right precio">${{:precio_total}}</div>
-            <span class="add-remove-controls"><span class="glyphicon glyphicon-plus"></span><span class="glyphicon glyphicon-minus"></span></span>
-            <span><span class="cantidad">{{:cantidad}}</span>x {{:nombre}}</span>
-            {{if extras}}
-            <div class="view-item-details">
-                <span class="glyphicon glyphicon-option-horizontal"></span>
-            </div>
-            <div class="extras">
-                {{for extras}}
-                {{if items && items.length > 0}}
-                <div class="extra-info">
-                    <h5>{{:nombre}}</h5>
-                    {{for items}}
-                    <div class="info-item">
-                        <span>{{:cantidad}}</span>
-                        {{:nombre}}
-                        {{if precio}}
-                        <span class="extra-precio">${{:precio}}</span>
-                        {{/if}}
-                    </div>
-                    {{/for}}
-                </div>
-                {{/if}}
-                {{/for}}
-            </div>
-            {{/if}}
-        </div>
-    </script>
-    <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>    <!-- Latest compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jsrender/0.9.80/jsrender.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
@@ -623,29 +551,6 @@ $(window).on("scroll", function () {
         $("#user_name").show();
         $("#grad_1").show();
     }
-});
-
-function goBack() {
-    window.history.back();
-}
-
-$( document ).ready(function() {
-  
-  $(".dir_entrega").html(userHelper.getUserAddress());
-  
-  var v_empresa    = 'Mi Gusto Es Diferente';
-  var v_idsuc      = userHelper.getIdSucursal();
-  var v_sucursales = storageHelper.empresaData_3.sucursales;
-  var v_suc_name   = '';
-  
-  for (i=0;i<v_sucursales.length;i++){
-    if(v_sucursales[i].id == v_idsuc){
-        v_suc_name = v_sucursales[i].nombre;
-    }
-  }
-  
-  $(".div_titulo_pedido").html(v_empresa+' '+v_suc_name);
-  
 });
 
 </script>
