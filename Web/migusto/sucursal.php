@@ -432,7 +432,7 @@ display:none;
             <div class="productos">
                 {{for productos ~disabled=disabled}}
                 <div class="col-xs-12 col-sm-6 col-lg-4">
-                    <div class="producto sombraBox {{:~disabled}}" data-disabled="{{:~disabled}}" data-id-producto="{{:id}}" data-id-promo="{{:id_promo}}" data-id-grupo-promo="{{:id_grupo_promo}}" data-id-grupo-producto="{{:id_grupo_prod}}" data-precio-mostrado="{{:precio.calculado}}">
+                    <div class="F {{:~disabled}}" data-disabled="{{:~disabled}}" data-id-producto="{{:id}}" data-id-promo="{{:id_promo}}" data-id-grupo-promo="{{:id_grupo_promo}}" data-id-grupo-producto="{{:id_grupo_prod}}" data-precio-mostrado="{{:precio.calculado}}">
                         <div class="precio-producto">
                             <span>${{:precio.calculado}}</span>
                             {{if precio.calculado < precio.original}}

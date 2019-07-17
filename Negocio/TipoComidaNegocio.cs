@@ -19,7 +19,7 @@ namespace Negocio
             try
             {
 
-                accesoDatos.setearConsulta("select * from DTIPOCOMIDAS");
+                accesoDatos.setearConsulta("select * from TIPOCOMIDA");
                 accesoDatos.abrirConexion();
                 accesoDatos.ejecutarConsulta();
 
@@ -29,7 +29,7 @@ namespace Negocio
                     tipoComi.Id = (int)accesoDatos.Lector["IdTipoComida"];
                     tipoComi.Nombre = accesoDatos.Lector["NombreTipoComida"].ToString();
 
-
+                    tipoComi.Imagen = accesoDatos.Lector["Imagen"].ToString();
                     tipoComi.UserAdd = new Usuario();
                     tipoComi.UserAdd.IdUsuario = (int)accesoDatos.Lector["IdTipoComida"];
                     tipoComi.UserAdd.User = accesoDatos.Lector["Usuario"].ToString();

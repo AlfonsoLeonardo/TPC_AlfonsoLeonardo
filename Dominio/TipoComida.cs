@@ -14,6 +14,7 @@ namespace Dominio
         public Usuario UserAdd { get; set; }
         public DateTime F_Mod { get; set; }
         public Usuario UserMod { get; set; }
+        public string Imagen { get; set; }
         public bool Estado { get; set; }
 
         public override string ToString()

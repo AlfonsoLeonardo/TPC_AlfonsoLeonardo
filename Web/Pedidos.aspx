@@ -37,7 +37,7 @@
     .top_bar_navbar{
         border: solid 0px;
         background-repeat: no-repeat;
-        background-image: url('https://www.tepido.com.ar/content/imagenes/fondoPortadaNegro.jpg');
+        background-image: url('content/imagenes/fondoPortadaNegro.jpg');
     }
 
 }
@@ -173,13 +173,13 @@ display:none;
                 </div>
                 
             </div>
-             <% cargar(2, 9999); %>
+             <% cargar(5, 9999); %>
             <div class="productos">
                 
              
                  <% foreach (var comidas in comidas) { %>
                 <div class="col-xs-12 col-sm-6 col-lg-4">
-                    <div class="producto sombraBox" id="<%= comidas.Id %>"data-disabled="" data-id-producto="<%= comidas.Id %>" data-id-promo="" data-id-grupo-promo=" <%= comidas.TC.Id %>" data-id-grupo-producto="1" data-precio-mostrado="<%= comidas.Precio %>" onclick="agregarProducto(<%= comidas.Id %>, '<%= comidas.Nombre %>', <%= comidas.Precio %>)">
+                    <div class="producto sombraBox" id="<%= comidas.Id %>"data-disabled="" data-id-producto="<%= comidas.Id %>" data-id-promo="" data-id-grupo-promo=" <%= comidas.TC.Id %>" data-id-grupo-producto="1" data-precio-mostrado="<%= comidas.Precio %>" onclick="agregarProducto(<%= comidas.Id %>, '<%= comidas.Nombre %>', <%= comidas.Precio %>, '<%= comidas.TC.Nombre %>')">
                         <div class="precio-producto">
                             <span> <%= comidas.Precio %></span>
                             
@@ -209,17 +209,19 @@ display:none;
                 
             </div>
             <div class="productos">
-                 <% cargar(1, 6); %>
+                 <% cargar(2, 3); %>
                  <% foreach (var comidas in comidas) { %>
                 <div class="col-xs-12 col-sm-6 col-lg-4">
-                    <div class="producto sombraBox" data-disabled="" onclick="agregarProducto(<%= comidas.Id %>, '<%= comidas.Nombre %>', <%= comidas.Precio %>)" data-id-producto="<%= comidas.Id %>" data-id-promo="" data-id-grupo-promo=" <%= comidas.TC.Id %>" data-id-grupo-producto="1" data-precio-mostrado="50">
+                    <div class="producto sombraBox" data-disabled="" onclick="agregarProducto(<%= comidas.Id %>, '<%= comidas.Nombre %>', <%= comidas.Precio %>, '<%= comidas.TC.Nombre %>')" data-id-producto="<%= comidas.Id %>" data-id-promo="" data-id-grupo-promo=" <%= comidas.TC.Id %>" data-id-grupo-producto="1" data-precio-mostrado="50">
                         <div class="precio-producto">
                             <span> <%= comidas.Precio %></span>
                                                    </div>
                         <h4 class="nombre-producto">
                            <%= comidas.Nombre %>
                         </h4>
-                        <div class="agregar-producto"><b class="far fa-plus-square" title="Agregar a mi pedido"></b></div>
+                        <div class="agregar-producto">
+                            
+                            <b class="far fa-plus-square" title="Agregar a mi pedido"></b></div>
                         
                         <p class="descripcion-producto"><%= comidas.TC.Nombre %></p>
                         
@@ -447,7 +449,7 @@ display:none;
         </div>
         <div class="item">
             {{if costoDelivery}}
-            <div class="item-right">${{:costoDelivery}}</div>
+            <div class="item-right">${{:delivery}}</div>
             {{/if}}
             {{:direccionDelivery}}
             <br>
@@ -470,20 +472,63 @@ display:none;
         <textarea class="form-control" id="comentarios" name="comentarios" placeholder="Comentarios (opcional)..."></textarea>
     </script>
 
+        <!-- este template es para productos y promos -->
+    <script id="grupoProductosTemplate" type="text/x-jsrender">
+        <section>
+            <div class="menu-header">
+                <div class="col-xs-12">
+                    <h3>{{:nombre}}</h3>
+                    {{if imagen}}
+                    <img src="{{:imagen}}" />
+                    {{/if}}
+                </div>
+                {{if warning}}
+                <div class="col-xs-12">
+                    <div class="alert alert-warning" role="alert">{{:warning}}</div>
+                </div>
+                {{/if}}
+            </div>
+            <div class="productos">
+                {{for productos ~disabled=disabled}}
+                <div class="col-xs-12 col-sm-6 col-lg-4">
+                    <div class="F {{:~disabled}}" data-disabled="{{:~disabled}}" data-id-producto="{{:id}}" data-id-promo="{{:id_promo}}" data-id-grupo-promo="{{:id_grupo_promo}}" data-id-grupo-producto="{{:id_grupo_prod}}" data-precio-mostrado="{{:precio.calculado}}">
+                        <div class="precio-producto">
+                            <span>${{:precio.calculado}}</span>
+                            {{if precio.calculado < precio.original}}
+                            <br />
+                            <span class="precio-original">${{:precio.original}}</span>&nbsp;
+                            {{/if}}
+                        </div>
+                        <h4 class="nombre-producto">
+                            {{:nombre}}
+                        </h4>
+                        <div class="agregar-producto"><b class="far fa-plus-square" title="Agregar a mi pedido"></b></div>
+                        {{if descripcion}}
+                        <p class="descripcion-producto">{{:descripcion}}</p>
+                        {{/if}}
+                    </div>
+                </div>
+                {{/for}}
+            </div>
+        </section>
+    </script>
 
-    <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsrender/0.9.80/jsrender.min.js"></script>
+    <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jsrender/0.9.80/jsrender.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <script src="Scripts/layout.js"></script>
+    <%--<script src="Scripts/layout.js"></script>--%>
     <script src="../../user/assets/js/bootstrap-notify.js"></script>
     <script src="../../user/assets/js/tepido.js"></script>
-    <script src="Scripts/sucursal.js"></script>
+<%-- <script src="Scripts/sucursal.js"></script>--%>
     <script src="../../content/scrollToTop/jquery.totop.js"></script>
     <script src="JavaScript.js"></script>
     <!--Acá estoy usando mi API_KEY de desarrollo. Vos deberías usar tu propia API_KEY.
         Ver https://developers.google.com/maps/faq?hl=es#keysystem
             https://developers.google.com/maps/documentation/javascript/get-api-key?hl=es#key -->
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDE9UILj0YokjZpfRiH6a0al4CWDDeKNBc&signed_in=true&callback=googleInitMapCallback"></script>
+    <%--<script        async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDE9UILj0YokjZpfRiH6a0al4CWDDeKNBc&signed_in=true&callback=googleInitMapCallback"></script>--%>
 
     <a id="back-to-top" href="#" class="btn btn-warning btn-lg back-to-top" 
       role="button" title="Subir" data-toggle="tooltip" data-placement="top">
@@ -591,6 +636,7 @@ $(window).on("scroll", function () {
 	                                <tr>
                                         <th class="text-center">Cantidad</th>
                                         <th class="text-left">Producto</th>
+                                        <th class="text-center">Tipo comida</th>
                                         <th class="text-center">Precio</th>
                                     </tr>
 	                            </thead>
@@ -901,7 +947,7 @@ $(window).on("scroll", function () {
   </div>
 <!-- FIN Modal Recovery Pass -->
 
-<script>
+<%--<script>
 
 // Funcion que indica al BODY que hay un MODAL abierto
 function fcn_add_modalclass_body(){
@@ -1593,12 +1639,12 @@ function UPDATETokenToServer(Token, v_uid){
 		
 } // UPDATETokenToServer
 	
-</script>
+</script>--%>
 
 <script src='https://www.google.com/recaptcha/api.js'></script>
 <script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
 <script src="https://apis.google.com/js/platform.js" async defer></script>
-<script>
+<%--<script>
   
   var v_bloquearFirebase = '';
   
@@ -1664,9 +1710,9 @@ function UPDATETokenToServer(Token, v_uid){
       
     });
   	
-</script>
+</script>--%>
 
-<script>
+<%--<script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -1675,4 +1721,4 @@ function UPDATETokenToServer(Token, v_uid){
   ga('create', 'UA-104830613-1', 'auto');
   ga('send', 'pageview');
 
-</script>
+</script>--%>
