@@ -5,8 +5,10 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.Services;
+using AccesoDatos;
 using Dominio;
 using Negocio;
+using System.Data;
 
 namespace Web
 {
@@ -27,12 +29,16 @@ namespace Web
 
             comidas = comidaPorOrdenNegocio.ListarComida(xx, yy);
         }
-        public void listaTipoComidaw()
-        {
-            TipoComidaNegocio tipoComidaNegocio = new TipoComidaNegocio();
-            tipoComidas = tipoComidaNegocio.ListarTipoComida();
+        //public void listaTipoComidaw()
+        //{
+        //    TipoComidaNegocio tipoComidaNegocio = new TipoComidaNegocio();
+        //    tipoComidas = tipoComidaNegocio.ListarTipoComida();
+        //}
+        [WebMethod]
+        public static string prueba() {
+            string hola = "holamundo";
+            return hola;
         }
-       
         public static List<Comida> listaComi()
         {
             ComidaPorOrdenNegocio comidaPorOrdenNegocio = new ComidaPorOrdenNegocio();
@@ -48,21 +54,29 @@ namespace Web
             }
             return lista;
         }
-        [WebMethod]
+      
         public static List<TipoComida> listaTipoComidas()
         {
             TipoComidaNegocio tipoComidaNegocio = new TipoComidaNegocio();
 
-            List<TipoComida> lista = null;
+            List<TipoComida> ListaTipo = null;
             try
             {
-                lista = tipoComidaNegocio.ListarTipoComida();
+                ListaTipo = tipoComidaNegocio.ListarTipoComida();
             }
-            catch (Exception ex)
+            catch (Exception    ex)
             {
-                lista = null;
+               // ListaTipo = null;
             }
-            return lista;
+            return ListaTipo;
+        }
+        public void cargartodo()
+        {
+            List<TipoComida> ListaTipo = null;
+            AccesoDatosManager ac = new AccesoDatosManager();
+            DataSet ds = ac.dataSet("select d.idFactura as NumFactura, d.Fecha, c.nombre as Cliente, d.importe from DetalleVenta as d inner join CLIENTES as c on c.id=d.IdCliente");
+           //return ds.Tables;
+           // dlListaVentas.DataBind();
         }
     }   
 }

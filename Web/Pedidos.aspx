@@ -10,45 +10,41 @@
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="Content/bootstrap-theme.css">
-    <link rel="stylesheet" href="Content/Site.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.css">
+    <link rel="stylesheet" href="css/Site.css">
     
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons" rel="stylesheet" type="text/css">
     
-    <link rel="stylesheet" href="Content/scrollToTop/totop.css">
+    <link rel="stylesheet" href="css/totop.css">
   </head>  
 <style>
+    @media only screen and (min-width: 769px) {
 
-@media only screen and (min-width: 769px) {
-    
-    .top_bar_navbar{
-        border: solid 0px;
-        background-repeat: no-repeat;
-        background-size: cover;
-        height: 150px;
-        background-image: url('Content/imagenes/fondoPortadaNegro.jpg');
+        .top_bar_navbar {
+            border: solid 0px;
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 150px;
+            background-image: url('images/fondoPortadaNegro.jpg');
+        }
     }
 
+    @media only screen and (max-width: 768px) {
 
-}
-
-@media only screen and (max-width: 768px) {
-
-    .top_bar_navbar{
-        border: solid 0px;
-        background-repeat: no-repeat;
-        background-image: url('content/imagenes/fondoPortadaNegro.jpg');
+        .top_bar_navbar {
+            border: solid 0px;
+            background-repeat: no-repeat;
+            background-image: url('images/fondoPortadaNegro.jpg');
+        }
     }
 
-}
-
-.back-to-top {
-cursor: pointer;
-position: fixed;
-bottom: 0;
-right: 20px;
-display:none;
-}
+    .back-to-top {
+        cursor: pointer;
+        position: fixed;
+        bottom: 0;
+        right: 20px;
+        display: none;
+    }
 </style>
 
 
@@ -168,7 +164,7 @@ display:none;
                 <div class="col-xs-12">
                     <h3>Empanadas</h3>
                     
-                    <img src="content/imagenes/mgHeadEmpanadas.jpg">
+                    <img src="images/mgHeadEmpanadas.jpg">
                     
                 </div>
                 
@@ -177,7 +173,8 @@ display:none;
             <div class="productos">
                 
              
-                 <% foreach (var comidas in comidas) { %>
+                 <% foreach (var comidas in comidas)
+                     { %>
                 <div class="col-xs-12 col-sm-6 col-lg-4">
                     <div class="producto sombraBox" id="<%= comidas.Id %>"data-disabled="" data-id-producto="<%= comidas.Id %>" data-id-promo="" data-id-grupo-promo=" <%= comidas.TC.Id %>" data-id-grupo-producto="1" data-precio-mostrado="<%= comidas.Precio %>" onclick="agregarProducto(<%= comidas.Id %>, '<%= comidas.Nombre %>', <%= comidas.Precio %>, '<%= comidas.TC.Nombre %>')">
                         <div class="precio-producto">
@@ -203,14 +200,15 @@ display:none;
                 <div class="col-xs-12">
                     <h3>Pizzas</h3>
                     
-                   <img src="content/images/Pizzas.jpg">
+                   <img src="images/Pizzas.jpg">
                     
                 </div>
                 
             </div>
             <div class="productos">
                  <% cargar(2, 3); %>
-                 <% foreach (var comidas in comidas) { %>
+                 <% foreach (var comidas in comidas)
+                     { %>
                 <div class="col-xs-12 col-sm-6 col-lg-4">
                     <div class="producto sombraBox" data-disabled="" onclick="agregarProducto(<%= comidas.Id %>, '<%= comidas.Nombre %>', <%= comidas.Precio %>, '<%= comidas.TC.Nombre %>')" data-id-producto="<%= comidas.Id %>" data-id-promo="" data-id-grupo-promo=" <%= comidas.TC.Id %>" data-id-grupo-producto="1" data-precio-mostrado="50">
                         <div class="precio-producto">
@@ -512,24 +510,20 @@ display:none;
             </div>
         </section>
     </script>
-
-    <script
-  src="https://code.jquery.com/jquery-3.4.1.min.js"
-  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-  crossorigin="anonymous"></script>
- <script src="https://cdnjs.cloudflare.com/ajax/libs/jsrender/0.9.80/jsrender.min.js"></script>
+     
+    <script  src="https://code.jquery.com/jquery-3.4.1.min.js"  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="  crossorigin="anonymous"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsrender/0.9.80/jsrender.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <%--<script src="Scripts/layout.js"></script>--%>
-    <script src="../../user/assets/js/bootstrap-notify.js"></script>
-    <script src="../../user/assets/js/tepido.js"></script>
-<%-- <script src="Scripts/sucursal.js"></script>--%>
-    <script src="../../content/scrollToTop/jquery.totop.js"></script>
-    <script src="JavaScript.js"></script>
-    <!--Acá estoy usando mi API_KEY de desarrollo. Vos deberías usar tu propia API_KEY.
-        Ver https://developers.google.com/maps/faq?hl=es#keysystem
-            https://developers.google.com/maps/documentation/javascript/get-api-key?hl=es#key -->
-    <%--<script        async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDE9UILj0YokjZpfRiH6a0al4CWDDeKNBc&signed_in=true&callback=googleInitMapCallback"></script>--%>
-
+    <script src="js/bootstrap-notify.js"></script>
+<%--       <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>--%>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.4.1/jspdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/2.3.5/jspdf.plugin.autotable.min.js"></script>
+    <script src="js/jquery.totop.js"></script>
+  
+      <script src="js/jquery.dataTables.js" type="text/javascript"></script>
+    <script src="js/dataTables.bootstrap.js"></script>
+     <script src="JavaScript.js" type="text/javascript"></script>
     <a id="back-to-top" href="#" class="btn btn-warning btn-lg back-to-top" 
       role="button" title="Subir" data-toggle="tooltip" data-placement="top">
       <span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span>
@@ -544,59 +538,59 @@ display:none;
 
 <script>
 
-$(function(){
-$('#totopscroller').totopscroller({
-    showToBottom: true,
-    showToPrev: true,
-    link: false,
-    linkTarget: '_self',
-    toTopHtml: '<a href="#"></a>',
-    toBottomHtml: '<a href="#"></a>',
-    toPrevHtml: '<a href="#"></a>',
-    linkHtml: '<a href="#"></a>',
-    toTopClass: 'totopscroller-top',
-    toBottomClass: 'totopscroller-bottom',
-    toPrevClass: 'totopscroller-prev',
-    linkClass: 'totopscroller-lnk',
-});
-})
+    $(function () {
+        $('#totopscroller').totopscroller({
+            showToBottom: true,
+            showToPrev: true,
+            link: false,
+            linkTarget: '_self',
+            toTopHtml: '<a href="#"></a>',
+            toBottomHtml: '<a href="#"></a>',
+            toPrevHtml: '<a href="#"></a>',
+            linkHtml: '<a href="#"></a>',
+            toTopClass: 'totopscroller-top',
+            toBottomClass: 'totopscroller-bottom',
+            toPrevClass: 'totopscroller-prev',
+            linkClass: 'totopscroller-lnk',
+        });
+    })
 
-$(window).on("scroll", function () {
-    if ($(this).scrollTop() > 100) {
-        $("#nav_header").addClass("header_fijo");
-        $("#nav_header").removeClass("top_bar_navbar");
-        $("#div_image_pedido").addClass("header_imagen");
-        $(".div_titulo_pedido").addClass("header_titulo");
-        $(".div_dir_cliente").addClass("header_hide");
-        $(".dir_entrega").addClass("header_hide");
-        $(".div_distancia").addClass("header_hide");
-        $(".div_pedido_minimo").addClass("header_hide");
-        $(".div_tiempo_entrega").addClass("header_hide");
-        $("#main_div_seleccion").addClass("main_margin");
-        $("#div_conectado").addClass("navbar_collapse");
-        $("#div_conectado").removeClass("navbar_not_collapse");
-        $("#div_desconectado").addClass("navbar_collapse_desconectado");
-        $("#user_name").hide();
-        $("#grad_1").hide();
-    }
-    else {
-        $("#nav_header").addClass("top_bar_navbar");
-        $("#nav_header").removeClass("header_fijo");
-        $("#div_image_pedido").removeClass("header_imagen");
-        $(".div_titulo_pedido").removeClass("header_titulo");
-        $(".div_dir_cliente").removeClass("header_hide");
-        $(".dir_entrega").removeClass("header_hide");
-        $(".div_distancia").removeClass("header_hide");
-        $(".div_pedido_minimo").removeClass("header_hide");
-        $(".div_tiempo_entrega").removeClass("header_hide");
-        $("#main_div_seleccion").removeClass("main_margin");
-        $("#div_conectado").removeClass("navbar_collapse");
-        $("#div_conectado").addClass("navbar_not_collapse");
-        $("#div_desconectado").removeClass("navbar_collapse_desconectado");
-        $("#user_name").show();
-        $("#grad_1").show();
-    }
-});
+    $(window).on("scroll", function () {
+        if ($(this).scrollTop() > 100) {
+            $("#nav_header").addClass("header_fijo");
+            $("#nav_header").removeClass("top_bar_navbar");
+            $("#div_image_pedido").addClass("header_imagen");
+            $(".div_titulo_pedido").addClass("header_titulo");
+            $(".div_dir_cliente").addClass("header_hide");
+            $(".dir_entrega").addClass("header_hide");
+            $(".div_distancia").addClass("header_hide");
+            $(".div_pedido_minimo").addClass("header_hide");
+            $(".div_tiempo_entrega").addClass("header_hide");
+            $("#main_div_seleccion").addClass("main_margin");
+            $("#div_conectado").addClass("navbar_collapse");
+            $("#div_conectado").removeClass("navbar_not_collapse");
+            $("#div_desconectado").addClass("navbar_collapse_desconectado");
+            $("#user_name").hide();
+            $("#grad_1").hide();
+        }
+        else {
+            $("#nav_header").addClass("top_bar_navbar");
+            $("#nav_header").removeClass("header_fijo");
+            $("#div_image_pedido").removeClass("header_imagen");
+            $(".div_titulo_pedido").removeClass("header_titulo");
+            $(".div_dir_cliente").removeClass("header_hide");
+            $(".dir_entrega").removeClass("header_hide");
+            $(".div_distancia").removeClass("header_hide");
+            $(".div_pedido_minimo").removeClass("header_hide");
+            $(".div_tiempo_entrega").removeClass("header_hide");
+            $("#main_div_seleccion").removeClass("main_margin");
+            $("#div_conectado").removeClass("navbar_collapse");
+            $("#div_conectado").addClass("navbar_not_collapse");
+            $("#div_desconectado").removeClass("navbar_collapse_desconectado");
+            $("#user_name").show();
+            $("#grad_1").show();
+        }
+    });
 
 </script>
 
@@ -695,135 +689,6 @@ $(window).on("scroll", function () {
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.css">
 
 
-<!-- INI Modal INICIAR SESION -->
-  <div class="modal fade" id="ModalLogin" role="dialog">
-    <div class="modal-dialog modal-sm">
-      <div class="modal-content modal_new">
-        <div class="modal-header">
-          <div id="ModalLoginMsj"></div>
-          <h4 class="modal-title center text-grey">INGRESÁ A TU CUENTA</h4>
-        </div>
-        <div class="modal-body">
-            
-          <form class="form-horizontal" role="form" action="#">
-          
-            <div class="form-group">
-              <div class="col-sm-12">
-                <div style="display: none;" class="btn button_new width_100 btn_fb"><span >Continuar con <b>Facebook</b></span></div>
-                <div class="btn button_new width_100 btn_gplus"><span >Continuar con <b>Google</b></span></div>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <div class="col-sm-12">
-                <div class="center text-grey">O ingresa tu e-mail</div>
-              </div>
-            </div>
-            
-            <div class="form-group">
-              <div class="col-sm-12">
-                <input id="is_mail" type="text" class="form-control textbox_new width_100" placeholder="E-mail">
-              </div>
-            </div>
-
-            <div class="form-group">
-              <div class="col-sm-12">
-                <input id="is_pwd" type="password" class="form-control textbox_new width_100" placeholder="Contraseña">
-             		<p><div style="margin-top: 10px; font-size: 12px;" class="center"><span class="text-grey">Olvidaste tu contraseña?</span> <a data-dismiss="modal" href="#" id="btn_recovery_pass" >Recuperala!</a></div></p>
-							</div>
-            </div>
-            
-          </form>
-            
-          <div class="center" id="TextModalLogin"></div>
-        </div>
-        <div class="modal-footer center">
-          <button type="button" id="btn_login" class="btn btn-success button_new width_100">Ingresar</button>
-          <p><div style="margin-top: 10px; font-size: 12px;" class="center"><span class="text-grey">No tenes cuenta?</span> <a data-dismiss="modal" href="#" class="registrarse" onclick="fcn_add_modalclass_body();">Registrate!</a></div></p>
-        </div>
-      </div>
-    </div>
-  </div>
-<!-- FIN Modal INICIAR SESION -->
-
-
-<!-- INI Modal REGISTER -->
-  <div class="modal fade" id="ModalRegister" role="dialog">
-    <div class="modal-dialog modal-sm">
-      <div class="modal-content modal_new">
-        
-        <div id="registerFields">
-        
-        <div class="modal-header">
-          <h4 class="modal-title center text-grey">REGISTRATE GRATIS</h4>
-        </div>
-        <div class="modal-body">
-            
-          <form class="form-horizontal" role="form" action="#">
-          
-            <div class="form-group">
-              <div class="col-sm-12">
-                <div style="display: none;" class="btn button_new width_100 btn_fb"><span >Continuar con <b>Facebook</b></span></div>
-                <div class="btn button_new width_100 btn_gplus"><span >Continuar con <b>Google</b></span></div>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <div class="col-sm-12">
-                <div class="center text-grey">O registrate con tu e-mail</div>
-              </div>
-            </div>
-            
-            <div class="form-group">
-              <div class="col-sm-12">
-                <input id="reg_nombre" type="text" class="form-control textbox_new width_100" placeholder="Nombre">
-              </div>
-            </div>
-
-            <div class="form-group">
-              <div class="col-sm-12">
-                <input id="reg_apellido" type="text" class="form-control textbox_new width_100" placeholder="Apellido (Opcional)">
-              </div>
-            </div>
-
-            <div class="form-group">
-              <div class="col-sm-12">
-                <input id="reg_mail" type="mail" class="form-control textbox_new width_100" placeholder="E-mail">
-              </div>
-            </div>
-
-            <div class="form-group">
-              <div class="col-sm-12">
-                <input id="reg_pwd" type="password" class="form-control textbox_new width_100" placeholder="Contraseña">
-              </div>
-            </div>
-						
-						  <div class="form-group">
-              <div class="col-sm-12">
-                <input id="reg_pwd2" type="password" class="form-control textbox_new width_100" placeholder="Repetir Contraseña">
-              </div>
-            </div>
-            
-            <div style="width: 260px" class="g-recaptcha" data-sitekey="6LfQaiYUAAAAANDblY5M_t3cV9DNeriWIaFAdM5i"></div>
-            
-          </form>
-            
-          <div class="center" id="TextModalRegister"></div>
-        </div>
-        <div class="modal-footer center">
-          <button id="btn_conf_register" type="button" class="btn btn-success button_new width_100">Confirmar datos</button>
-          <p><div style="margin-top: 10px; font-size: 12px;" class="center"><span class="text-grey">Ya tenes cuenta?</span> <a data-dismiss="modal" href="#" id="btn_ini_sesion2" onclick="fcn_add_modalclass_body();">Ingresar!</a></div></p>
-        </div>
-      
-      </div>
-      
-      <div class="modal-body center" id="registerOK"></div>
-        
-      </div>
-        
-    </div>
-  </div>
-<!-- FIN Modal REGISTER -->
 
 
 <!-- INI Modal VER PEDIDOS -->
@@ -946,779 +811,3 @@ $(window).on("scroll", function () {
     </div>
   </div>
 <!-- FIN Modal Recovery Pass -->
-
-<%--<script>
-
-// Funcion que indica al BODY que hay un MODAL abierto
-function fcn_add_modalclass_body(){
-	
-	setTimeout(function(){ $("body").addClass("modal-open"); }, 500);
-	
-} // fcn_add_modalclass_body
-
-$("#btn_recovery").click(function(){
-    
-    $("#btn_recovery").html('Enviar');
-    
-    $("#reco_mail").css({'border-color' : '#ccc', 'background-color' : '#fff'});
-    $("#TextModalRecovery").html('');
-    
-    // Valido los campos de la pantalla
-    var v_error = '';
-    
-    if($("#reco_mail").val() == ''){
-      $("#reco_mail").css({'border-color' : '#f4686b', 'background-color' : '#fee9e7'});
-      v_error = 1;
-    }
-  
-    
-    if(v_error != ''){
-        $("#TextModalRecovery").html('<span style="color:#e7423a;">Complete todos los campos obligatorios.</span>');
-        return;
-    }
-	
-		if (!validateEmail($("#reco_mail").val())) 
-		{
-     $("#TextModalRecovery").html('<span style="color:#e7423a;">Ingrese un email valido.</span>');
-        return;
-    }
-    /*if($("#g-recaptcha2-response").val() == ''){
-      $("#TextModalRecovery").html('<span style="color:#e7423a;">Por favor valide el captcha.</span>');
-      return;
-    }*/
-    
-    $("#btn_recovery").html('<center><img style="height: 20px; width: 20px;" src="https://www.tepido.com.ar/content/spin_loader.gif"></center>');
-    
-  	$.ajax({
-  	        url: "../pass_recovery.php",  // Url a llamar
-  	        type: "POST",             					 // Metodo de llamada
-  	        data: { 
-              reco_mail : $("#reco_mail").val(),
-             			}, // Datos a enviar
-  	        dataType: "json", 									 // Tipo de datos a devolver (JSON)
-  	        success: function (data) {
-  	          
-  	          // Si no da error, sigo con el proceso
-  	          if(data[0] == 'OK'){
-  	             $("#btn_recovery").html('Enviar nuevamente');
-  							 $("#TextModalRecovery").html('<span class="text-success">'+data[1]+'</span>');
-							}else{
-  	            $("#btn_recovery").html('Enviar nuevamente');
-  	            $("#TextModalRecovery").html('<span style="color:#e7423a;">'+data[1]+'</span>');
-
-  	          }
-  	          
-  	        }
-  	              
-  	}).fail(function(){
-    	
-    });
-    
-});
-	
-$("#btn_login").click(function(){
-    
-    $("#btn_login").html('Ingresar');
-    
-    $("#is_mail").css({'border-color' : '#ccc', 'background-color' : '#fff'});
-	  $("#is_pwd").css({'border-color' : '#ccc', 'background-color' : '#fff'});
-    $("#TextModalLogin").html('');
-    
-    // Valido los campos de la pantalla
-    var v_error = '';
-    
-    if($("#is_mail").val() == ''){
-      $("#is_mail").css({'border-color' : '#f4686b', 'background-color' : '#fee9e7'});
-      v_error = 1;
-    }
-	
-	  if($("#is_pwd").val() == ''){
-      $("#is_pwd").css({'border-color' : '#f4686b', 'background-color' : '#fee9e7'});
-      v_error = 1;
-    }
-  
-    
-    if(v_error != ''){
-        $("#TextModalRecovery").html('<span style="color:#e7423a;">Complete todos los campos obligatorios.</span>');
-        return;
-    }
-	
-		if (!validateEmail($("#is_mail").val())) 
-		{
-     $("#TextModalLogin").html('<span style="color:#e7423a;">Ingrese un email valido.</span>');
-        return;
-    }
-   
-    $("#btn_login").html('<center><img style="height: 20px; width: 20px;" src="https://www.tepido.com.ar/content/spin_loader.gif"></center>');
-
-  	$.ajax({
-  	        url: "../login_action.php",  // Url a llamar
-  	        type: "POST",             					 // Metodo de llamada
-  	        data: { 
-              	mail : $("#is_mail").val(),
-							  pass : $("#is_pwd").val()
-             			}, // Datos a enviar
-  	        dataType: "json", 									 // Tipo de datos a devolver (JSON)
-  	        success: function (data) {
-  	          
-  	          // Si no da error, sigo con el proceso
-  	          if(data[0] == 'OK'){
-  							
-									window.location.reload(true);
-                
-                  localStorage.setItem('TPoauth_uid', data['oauth_uid']);
-  				
-							}else{
-  	            
-  	            $("#btn_login").html('Ingresar');
-  	            $("#TextModalLogin").html('<span style="color:#e7423a;">'+data[1]+'</span>');
-
-  	          }
-  	          
-  	        }
-  	              
-  	}).fail(function(){
-    	
-    });
-    
-});
-	
-	
-
-$("#is_mail").on("keypress", function (e) {
-  if (e.charCode == 13) {
-    $("#btn_login").click();
-  }
-});
-
-$("#is_pwd").on("keypress", function (e) {
-  if (e.charCode == 13) {
-    $("#btn_login").click();
-  }
-});
-
-$("#reco_mail").on("keypress", function (e) {
-  if (e.charCode == 13) {
-    $("#btn_recovery").click();
-  }
-});
-
-
-$("#btn_recovery_pass").click(function(){
-    v_modal_open = 'ModalRecovery';
-    $("#TextModalRecovery").html('');
-    $("#reco_mail").val('');
-    $("#btn_recovery").html('Enviar');
-    $('#ModalRecovery').modal();
-});
-	
-	
-	
-$("#btn_ini_sesion").click(function(){
-    // Abro el modal para iniciar sesión
-    //$('#ModalLogin').modal({backdrop: 'static', keyboard: false});
-    $("#ModalLoginMsj").hide();
-    v_modal_open = 'ModalLogin';
-    $("#btn_login").html('Ingresar');
-    $('#ModalLogin').modal();
-});
-
-$("#btn_ini_sesion2").click(function(){
-    // Abro el modal para iniciar sesión
-    //$('#ModalLogin').modal({backdrop: 'static', keyboard: false});
-    
-    $("#ModalLoginMsj").hide();
-  
-    v_modal_open = 'ModalLogin';
-    $("#btn_login").html('Ingresar');
-    $('#ModalLogin').modal();
-});
-	
-$("#btn_ini_sesion3").click(function(){
-    $("#ModalLoginMsj").hide();
-    v_modal_open = 'ModalLogin';
-    $("#btn_login").html('Ingresar');
-    $('#ModalLogin').modal();
-});
-
-
-$("#btn_ini_sesion_mobile").click(function(){
-    $("#ModalLoginMsj").hide();
-    v_modal_open = 'ModalLogin';
-    $("#btn_login").html('Ingresar');
-    $('#ModalLogin').modal();
-});
-	
-
-$("#btn_ver_pedidos").click(function(){
-    // Llamo al archivo para ver pedidos
-    $('#ModalPedidos').modal();
-});
-
-$("#btn_ver_perfil").click(function(){
-    $('#ModalPerfil').modal();
-});
-
-$(".btn_logout").click(function(){
-    $('#TextModalConfirm').html('<b>Está seguro que desea cerrar sesión?</b>');
-    $('#ModalConfirm').modal();
-});
-
-$(".registrarse").click(function(){
-    
-    $("#reg_nombre").css({'border-color' : '#ccc', 'background-color' : '#fff'});
-    $("#reg_mail").css({'border-color' : '#ccc', 'background-color' : '#fff'});
-    $("#reg_pwd").css({'border-color' : '#ccc', 'background-color' : '#fff'});
-    
-    $("#reg_nombre").val('');
-    $("#reg_apellido").val('');
-    $("#reg_mail").val('');
-    $("#reg_pwd").val('');
-    $("#reg_pwd2").val('');
-    
-    $("#TextModalRegister").html('');
-    
-    v_modal_open = 'ModalRegister';
-    $("#btn_conf_register").html('Confirmar datos');
-    
-    $("#registerFields").show();
-    $("#registerOK").hide();
-    
-    $('#ModalRegister').modal();
-});
-
-$("#btn_conf_register").click(function(){
-    
-    $("#btn_conf_register").html('Confirmar datos');
-    
-    $("#reg_nombre").css({'border-color' : '#ccc', 'background-color' : '#fff'});
-    $("#reg_mail").css({'border-color' : '#ccc', 'background-color' : '#fff'});
-    $("#reg_pwd").css({'border-color' : '#ccc', 'background-color' : '#fff'});
-    $("#TextModalRegister").html('');
-    
-    // Valido los campos de la pantalla
-    var v_error = '';
-    
-    if($("#reg_nombre").val() == ''){
-      $("#reg_nombre").css({'border-color' : '#f4686b', 'background-color' : '#fee9e7'});
-      v_error = 1;
-    }
-    
-    if($("#reg_mail").val() == ''){
-      $("#reg_mail").css({'border-color' : '#f4686b', 'background-color' : '#fee9e7'});
-      v_error = 1;
-    }
-    
-    if($("#reg_pwd").val() == ''){
-      $("#reg_pwd").css({'border-color' : '#f4686b', 'background-color' : '#fee9e7'});
-      v_error = 1;
-    }
-	
-	 if($("#reg_pwd2").val() == ''){
-      $("#reg_pwd2").css({'border-color' : '#f4686b', 'background-color' : '#fee9e7'});
-      v_error = 1;
-    }
-    
-    if(v_error != ''){
-        $("#TextModalRegister").html('<span style="color:#e7423a;">Complete todos los campos obligatorios.</span>');
-        return;
-    }
-	
-	 if($("#g-recaptcha-response").val() == ''){
-      $("#TextModalRegister").html('<span style="color:#e7423a;">Por favor valide el captcha.</span>');
-      return;
-    }
-	
-		if (!validateEmail($("#reg_mail").val())) 
-		{
-     $("#TextModalRegister").html('<span style="color:#e7423a;">Ingrese un email valido.</span>');
-        return;
-    }
-	
-	 if($("#reg_pwd").val() != $("#reg_pwd2").val()){
-     $("#reg_pwd").css({'border-color' : '#f4686b', 'background-color' : '#fee9e7'});
-		 $("#reg_pwd2").css({'border-color' : '#f4686b', 'background-color' : '#fee9e7'});
-      
-		 $("#TextModalRegister").html('<span style="color:#e7423a;">Las contraseñas no coinciden.</span>');
-        return;
-    }
-	
-	var espacios = false;
-	var cont = 0;
-
-	while (!espacios && (cont < $('#reg_pwd').val().length)) {
-		if ($('#reg_pwd').val().charAt(cont) == " ")
-			espacios = true;
-		cont++;
-	}
-
-	if (espacios)
-	{
-		 $("#TextModalRegister").html('<span style="color:#e7423a;">La contraseña no puede contener espacios en blanco.</span>');
-     return;
-	}
-
-	
-	 if($('#reg_pwd').val().length < 6){
-  	 $("#TextModalRegister").html('<span style="color:#e7423a;">La contraseña debe contener mas de 6 caracteres y menos de 30.</span>');
-     return;
-    }
-	
-	 if($('#reg_pwd').val().length > 30){
-    	$("#TextModalRegister").html('<span style="color:#e7423a;">La contraseña debe contener mas de 6 caracteres y menos de 30.</span>');
-     return;;
-    }
-    
-    $("#btn_conf_register").html('<center><img style="height: 20px; width: 20px;" src="https://www.tepido.com.ar/content/spin_loader.gif"></center>');
-    
-  	$.ajax({
-  	        url: "../register_action.php",  // Url a llamar
-  	        type: "POST",             					 // Metodo de llamada
-  	        data: { 
-              reg_nombre : $("#reg_nombre").val(),
-              reg_apellido : $("#reg_apellido").val(),
-              reg_mail : $("#reg_mail").val(),
-              reg_pwd : $("#reg_pwd").val(),
-							reg_pwd2 : $("#reg_pwd2").val(),
-							IDEmpresa : '3'
-  	        				
-  	        			}, // Datos a enviar
-  	        dataType: "json", 									 // Tipo de datos a devolver (JSON)
-  	        success: function (data) {
-  	          
-  	          // Si no da error, sigo con el proceso
-  	          if(data[0] == 'OK'){
-  							  
-                $("#registerFields").hide();
-                
-                var v_textOK =   '<i class="far fa-check-circle" style="font-size:  80px; background: -webkit-linear-gradient(#8BC34A, #4CAF50);'
-                                +'      -webkit-background-clip: text;'
-                                +'      -webkit-text-fill-color: transparent; margin: 8px;"></i><br>'
-                
-                                +'<div style="font-size: 20px;">Gracias por registrarte!</div><br>'
-                
-                                +'<div>Por favor, verificá tu E-mail para confirmar el correo que te enviamos a '+$("#reg_mail").val()+'</div><br>'
-                                
-                                +'<div style="color: #555; font-size: 11px; border: solid 1px #ffeb3b; border-radius: 3px; padding: 5px;"><i class="fas fa-exclamation-triangle" style="color: #f44336;"></i> Si el correo no se encuentra en la bandeja de entrada revise la carpeta de SPAM</div><br>'
-                                
-                                +'<button type="button" class="btn btn-primary" data-dismiss="modal">CONTINUAR</button>';
-                
-                $("#registerOK").html(v_textOK);
-                
-                $("#registerOK").show();
-                
-                $("#registerOK").addClass('animated bounceIn');
-  							
-  	          }else{
-  	             $("#btn_conf_register").html('Confirmar datos');
-  	             $("#TextModalRegister").html('<span style="color:#e7423a;">'+data[1]+'</span>');
-  	          }
-  	          
-  	        }
-  	              
-  	}).fail(function(){
-    	
-    });
-    
-});
-
-// Funcion para cerrar sesion
-function fcn_cerrar_sesion(){
-
-  firebase.auth().signOut().then(function() {
-    // Sign-out successful.
-  }, function(error) {
-    // An error happened.
-  });
-
-  if("" == 'X'){
-  		
-  	window.location.replace('../desloguear.php');
-  					  
-  }else{
-
-    $.ajax({
-            url: "../desloguear.php",  // Url a llamar
-            type: "POST",             					 // Metodo de llamada
-            data: { 
-                    tipo : 'AJAX'
-                    
-            			}, // Datos a enviar
-            dataType: "json", 									 // Tipo de datos a devolver (JSON)
-            success: function (data) {
-              
-              // Si no da error, sigo con el proceso
-              if(data[0] == 'OK'){
-    						
-                localStorage.removeItem('TPoauth_uid');
-                
-    						fcn_header_admin('', '');
-    						$("#ModalConfirm").modal('toggle');
-    						
-              }else{
-                
-                //alert(data[1]);
-  
-              }
-              
-            }
-                  
-    }).fail(function(){
-    	
-    });
-  
-  }
-  
-} // fcn_cerrar_sesion
-
-
-// Funcion para cerrar modal
-function fcn_modal_close(ModalID){
-  
-  $("#"+ModalID).modal('toggle');
-  
-  if(v_modal_open != ''){
-    fcn_add_modalclass_body();
-  }
-  
-} // fcn_modal_close
-
-
-// Funcion que indica al BODY que hay un MODAL abierto
-function fcn_add_modalclass_body(){
-	
-	setTimeout(function(){ $("body").addClass("modal-open"); }, 500);
-	
-} // fcn_add_modalclass_body
-
-// Funcion para obtener localidades
-function fcn_get_localidades(){
-  
-  
-  
-} // fcn_get_localidades
-
-function validateEmail(email) {
-  var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  return re.test(email);
-}
-	
-	
-$(document).ready(function() {
-  
-  fcn_get_localidades();
-  //$("#div_conectado").hide();
-  
-});
-
-$(".btn_gplus").click(function() {
-  
-  var provider = new firebase.auth.GoogleAuthProvider();
-  provider.addScope('profile');
-  provider.addScope('email');
-  
-  fcn_iniciar_sesion(provider, 'G');
-
-});
-
-$(".btn_fb").click(function() {
-  
-  var provider = new firebase.auth.FacebookAuthProvider();
-  provider.addScope('public_profile');
-  fcn_iniciar_sesion(provider, 'FB');
-
-});
-
-
-// Funcion para iniciar sesion
-function fcn_iniciar_sesion(provider, cod_prov){
-
-  firebase.auth().signInWithPopup(provider).then(function(result) {
-    
-    // This gives you a Facebook Access Token.
-    var token = result.credential.accessToken;
-    // The signed-in user info.
-    var user = result.user;
-    
-    var user_extend = result.additionalUserInfo.profile;
-    
-    localStorage.setItem('TPoauth_uid', user_extend['id']);
-    
-    // Ingreso el usuario en la base de datos, o actualizo los datos del mismo
-    fcn_send2db(user_extend, result.additionalUserInfo.providerId, cod_prov);
-    
-    // Modifico cabecera de la web
-    fcn_header_admin(user['displayName'], user['photoURL']);
-    
-    if(v_modal_open != ''){
-      $("#"+v_modal_open).modal('toggle');
-      v_modal_open = '';
-    }
-    
-  }, function(error) {
-    // The provider's account email, can be used in case of
-    // auth/account-exists-with-different-credential to fetch the providers
-    // linked to the email:
-    var email = error.email;
-    // The provider's credential:
-    var credential = error.credential;
-    // In case of auth/account-exists-with-different-credential error,
-    // you can fetch the providers using this:
-    if (error.code === 'auth/account-exists-with-different-credential') {
-      firebase.auth().fetchProvidersForEmail(email).then(function(providers) {
-        // The returned 'providers' is a list of the available providers
-        // linked to the email address. Please refer to the guide for a more
-        // complete explanation on how to recover from this error.
-        
-        $("#TextModalAlerta").html('Su email ya se encuentra registrado con otro proveedor. Por favor, inicie sesión con <b>'+providers+'</b>');
-        $("#ModalAlerta").modal();
-        
-      });
-    }else{
-        $("#TextModalAlerta").html('Ocurrió un error al intentar iniciar sesión.');
-        $("#ModalAlerta").modal();
-    }
-  });
-    
-
-  
-} // fcn_iniciar_sesion
-
-
-// Funcion que registra los datos en la base de datos
-function fcn_send2db(userData, providerId, cod_prov){
-  
-  if(userData != ''){
-    
-    if(cod_prov == 'FB'){
-      var email          = userData['email'];
-      var gender         = userData['gender'];
-      var locale         = userData['locale'];
-      var birthday       = userData['birthday'];
-      var link           = userData['link'];
-      var oauth_provider = providerId;
-      var oauth_uid      = userData['id'];
-      var first_name     = userData['first_name'];
-      var last_name      = userData['last_name'];
-      var photoURL       = userData['picture']['data']['url'];
-    }else if(cod_prov == 'G'){
-      var email          = userData['email'];
-      var gender         = userData['gender'];
-      var locale         = userData['locale'];
-      var birthday       = userData['birthday'];
-      var link           = userData['link'];
-      var oauth_provider = providerId;
-      var oauth_uid      = userData['id'];
-      var first_name     = userData['given_name'];
-      var last_name      = userData['family_name'];
-      var photoURL       = userData['picture'];
-    }
-    
-  	$.ajax({
-  	        url: "../UserUpdate.php",  // Url a llamar
-  	        type: "POST",             					 // Metodo de llamada
-  	        data: { 
-  	                accion         : 'LOGIN',
-                    email          : email,
-                    gender         : gender,
-                    locale         : locale,
-                    birthday       : birthday,
-                    link           : link,
-                    oauth_provider : oauth_provider,
-                    oauth_uid      : oauth_uid,
-                    first_name     : first_name,
-                    last_name      : last_name,
-                    photoURL       : photoURL,
-                    
-  	        			}, // Datos a enviar
-  	        dataType: "json", 									 // Tipo de datos a devolver (JSON)
-  	        success: function (data) {
-  	          
-  	          // Si no da error, sigo con el proceso
-  	          if(data[0] == 'OK'){
-  							
-  							//alert(data[1]);
-  							
-  	          }else{
-  	            
-  	            //alert(data[1]);
-
-  	          }
-  	          
-  	        }
-  	              
-  	}).fail(function(){
-    	
-    });
-    
-  }
-  
-} // fcn_send2db
-
-
-// Funcion para modificar el header con boton o con el usuario
-function fcn_header_admin(Name, photoURL){
-  
-  if (Name != '') {
-    // User is signed in.
-    $('.div_img_user').css("background-image", "url("+photoURL+")");  
-    $('#user_name').html(Name);  
-    
-    $("#div_desconectado").hide();
-    $("#div_conectado").show();
-    
-    $(".div_desconectado_mobile").css({'display' : 'none'});
-    $(".div_conectado_mobile").css({'display' : 'block'});
-    
-  } else {
-    // No user is signed in.
-    $("#div_desconectado").show();
-    $("#div_conectado").hide();
-    
-    $('.div_img_user').css("background-image", "url('https://www.tepido.com.ar/content/imagenes/icon_user1.png')");  
-
-    $(".div_desconectado_mobile").css({'display' : 'block'});
-    $(".div_conectado_mobile").css({'display' : 'none'});
-  }
-  
-} // fcn_header_admin
-
-	
-// Funcion para enlazar el usuario con el token de mensajes
-function fcn_update_message_ID(v_uid){
-	
-	messaging.requestPermission()
-	.then(function() {
-		console.log('Notification permission granted.');
-		// TODO(developer): Retrieve an Instance ID token for use with FCM.
-		// ...	
-		
-		// Obtengo el token para enviarlo al servidor
-		messaging.getToken()
-		.then(function(Token) {
-			console.log('Token obtenido: '+Token);
-			// Send Instance ID token to app server.
-			UPDATETokenToServer(Token, v_uid);
-		})
-		.catch(function(err) {
-			console.log('Unable to retrieve token ', err);
-		});
-		
-	})
-	.catch(function(err) {
-		console.log('Unable to get permission to notify.', err);
-	});
-	
-} // fcn_update_message_ID
-
-
-function UPDATETokenToServer(Token, v_uid){
-	
-	$.ajax({
-	    url: "https://www.tepido.com.ar/saveMessageID.php",  // Url a llamar
-	    type: "POST",             					 // Metodo de llamada
-	    data: { senderID	: Token,
-	            uid   		: v_uid,
-							IDEmpresa : '3'
-	          }, // Datos a enviar
-	    dataType: "json", 									 // Tipo de datos a devolver (JSON)
-	    success: function (data) {
-
-	      // Si no da error, sigo con el proceso
-	      if(data[0] == 'OK'){
-
-	      }else{
-
-	      }
-
-	    }
-
-	 }).fail(function(){
-
- 	});
-		
-} // UPDATETokenToServer
-	
-</script>--%>
-
-<script src='https://www.google.com/recaptcha/api.js'></script>
-<script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
-<script src="https://apis.google.com/js/platform.js" async defer></script>
-<%--<script>
-  
-  var v_bloquearFirebase = '';
-  
-  if( /iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
-    v_bloquearFirebase = 'X';
-    $(".btn_gplus").hide();
-  }
-  
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyB6m2nki28AvY8oqAwjBEqjaauh4H2UqGg",
-    authDomain: "tepido-8e018.firebaseapp.com",
-    databaseURL: "https://tepido-8e018.firebaseio.com",
-    projectId: "tepido-8e018",
-    storageBucket: "",
-    messagingSenderId: "904120649958"
-  };
-  firebase.initializeApp(config);
-  
-	const messaging = firebase.messaging();
-	
-      firebase.auth().onAuthStateChanged(function(user) {
-      fcn_header_admin(user['displayName'], user['photoURL']);
-      
-			fcn_update_message_ID(user['providerData'][0]['uid']);
-      
-      localStorage.setItem('TPoauth_uid', user['providerData'][0]['uid']);
-			
-      $.ajax({
-              url: "../UserUpdate.php",  // Url a llamar
-              type: "POST",             					 // Metodo de llamada
-              data: { 
-                      email          : user['email'],
-                      oauth_provider : user['providerData'][0]['providerId'],
-                      oauth_uid      : user['providerData'][0]['uid'],
-                      first_name     : user['displayName'],
-                      photoURL       : user['photoURL'],
-											IDEmpresa			 : '3'
-                      
-              			}, // Datos a enviar
-              dataType: "json", 									 // Tipo de datos a devolver (JSON)
-              success: function (data) {
-                
-                // Si no da error, sigo con el proceso
-                if(data[0] == 'OK'){
-      						
-      						//alert(data[1]);
-      						if(data['usrTel'] != ''){
-      						  $("#ModalRevisarTel").val(data['usrTel']);
-      						}
-      						
-                }else{
-                  
-                  //alert(data[1]);
-    
-                }
-                
-              }
-                    
-      }).fail(function(){
-      	
-      });
-      
-    });
-  	
-</script>--%>
-
-<%--<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-104830613-1', 'auto');
-  ga('send', 'pageview');
-
-</script>--%>

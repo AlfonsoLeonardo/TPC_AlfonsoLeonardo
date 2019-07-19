@@ -17,9 +17,22 @@ namespace Dominio
         public string Imagen { get; set; }
         public bool Estado { get; set; }
 
-        public override string ToString()
+        public TipoComida() { }
+        public TipoComida(int Id, string Nombre, DateTime F_Add, Usuario UserAdd, DateTime F_Mod, Usuario UserMod, string Imagen, bool Estado)
         {
-            return Nombre;
+            this.Id = Id;
+            this.Nombre = Nombre;
+            this.F_Add = F_Add;
+            this.UserAdd = UserAdd;
+            this.F_Mod = F_Mod;
+            this.UserMod = UserMod;
+            this.Imagen = Imagen;
+            this.Estado = Estado;
         }
+
+        //public override string ToString()
+        //{
+        //    return Nombre;
+        //}
     }
 }

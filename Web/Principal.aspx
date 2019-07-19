@@ -85,24 +85,24 @@
             text-decoration: none;
         }
     </style>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
-    <meta name="description">
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon"/>
+    <meta name="description"/>
     <title>	Mi Pizza</title>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
-    <link rel="stylesheet" href="assets/web/assets/mobirise-icons/mobirise-icons.css">
-    <link rel="stylesheet" href="assets/tether.min.css">
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.min.css">
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-reboot.min.css">
-    <link rel="stylesheet" href="assets/dropdown/css/style.css">
-    <link rel="stylesheet" href="assets/animate.min.css">
-    <link rel="stylesheet" href="assets/socicon/css/styles.css">
-    <link rel="stylesheet" href="assets/bootstrap/data-tables.bootstrap4.min.css">
-    <link rel="stylesheet" href="assets/theme/css/style.css?v3">
-    <link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"/>
+    <link rel="stylesheet" href="css/mobirise-icons.css"/>
+    <link rel="stylesheet" href="css/tether.min.css"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/bootstrap-grid.min.css"/>
+    <link rel="stylesheet" href="css/bootstrap-reboot.min.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="css/animate.min.css"/>
+    <link rel="stylesheet" href="css/styles.css"/>
+    <link rel="stylesheet" href="css/data-tables.bootstrap4.min.css"/>
+    <link rel="stylesheet" href="css/style.css?v3"/>
+    <link rel="stylesheet" href="css/mbr-additional.css" type="text/css"/>
 
     <style>
         .modal-footer {
@@ -458,7 +458,7 @@
             <div class="navbar-brand">
                 <span class="navbar-logo">
                     <a href="#top">
-                         <!--<img src="assets/images/logo-324x207.png" alt="Mobirise" title="" media-simple="true" style="height: 7rem;">-->
+                         <!--<img src="images/logo-324x207.png" alt="Mobirise" title="" media-simple="true" style="height: 7rem;">-->
                          <img src="images/logo.png" alt="" title="" media-simple="true" style="height: 8rem;" class="animated bounceIn">
                          <div class="navbar-slogan" style="font-size: 12px; color: white; text-align: center;"></div>
                          <div class="navbar-slogan" style="font-size: 20px; color: white; text-align: center;"></div>
@@ -489,11 +489,11 @@
 		<div class="mbr-slider slide carousel" data-pause="true" data-keyboard="true" data-ride="carousel" data-interval="8000">
 			<div class="carousel-inner" role="listbox">
 				
-<!--				<div class="carousel-item slider-fullscreen-image active" data-bg-video-slide="false" style="background-image: url(assets/images/slider1-2000x1333.jpg);">
+<!--				<div class="carousel-item slider-fullscreen-image active" data-bg-video-slide="false" style="background-image: url(images/slider1-2000x1333.jpg);">
 					<div class="container container-slide">
 						<div class="image_wrapper">
 							<div class="mbr-overlay"></div>
-							<img src="assets/images/slider1-2000x1333.jpg">
+							<img src="images/slider1-2000x1333.jpg">
 							<div class="carousel-caption justify-content-center">
 								<div class="col-10 align-right">
 									<h2 class="mbr-fonts-style display-1">Hace tu pedido online</h2>
@@ -506,11 +506,11 @@
 					</div>
 				</div>-->
 
-				<div class="carousel-item slider-fullscreen-image" data-bg-video-slide="false" style="background-image: url(assets/images/slider/promo_familia.jpg);">
+				<div class="carousel-item slider-fullscreen-image" data-bg-video-slide="false" style="background-image: url(images/slider/promo_familia.jpg);">
 					<div class="container container-slide">
 						<div class="image_wrapper">
               <div class="mbr-overlay"></div>
-							<img src="assets/images/slider/promo_compartir.jpg">
+							<img src="images/slider/promocompartir.jpg"/>
 							<div class="carousel-caption justify-content-center">
 								<div class="col-10 align-right">
 									<h2 class="mbr-fonts-style display-1 sombraText"><em>Promo Clásica</em></h2>
@@ -523,11 +523,11 @@
 					</div>
 				</div>
 							
-				<div class="carousel-item slider-fullscreen-image" data-bg-video-slide="false" style="background-image: url(assets/images/slider/promo_familia_jamon.jpg);">
+				<div class="carousel-item slider-fullscreen-image" data-bg-video-slide="false" style="background-image: url(images/slider/promo_familia_jamon.jpg);">
 					<div class="container container-slide">
 						<div class="image_wrapper">
               <div class="mbr-overlay"></div>
-							<img src="assets/images/slider/promo_compartir.jpg">
+							<img src="images/slider/promocompartir.jpg"/>
 							<div class="carousel-caption justify-content-center">
 								<div class="col-10 align-right">
 									<h2 class="mbr-fonts-style display-1 sombraText"><em>Promo Familia</em></h2>
@@ -540,11 +540,11 @@
 					</div>
 				</div>
 				
-				<div class="carousel-item slider-fullscreen-image" data-bg-video-slide="false" style="background-image: url(assets/images/slider/promo_compartir.jpg);">
+				<div class="carousel-item slider-fullscreen-image" data-bg-video-slide="false" style="background-image: url('images/slider/promocompartir.jpg');">
 					<div class="container container-slide">
 						<div class="image_wrapper">
               <div class="mbr-overlay"></div>
-							<img src="assets/images/slider/promo_compartir.jpg">
+							<img src="images/slider/promocompartir.jpg"/>
 							<div class="carousel-caption justify-content-center">
 								<div class="col-10 align-right">
 									<h2 class="mbr-fonts-style display-1 sombraText"><em>Promo Compartir</em></h2>
@@ -557,11 +557,11 @@
 					</div>
 				</div>
 
-				<div class="carousel-item slider-fullscreen-image active" data-bg-video-slide="false" style="background-image: url(assets/images/slider/promo_amigos.jpg);">
+				<div class="carousel-item slider-fullscreen-image active" data-bg-video-slide="false" style="background-image: url('images/promoamigos.jpg');">
 					<div class="container container-slide">
 						<div class="image_wrapper">
               <div class="mbr-overlay"></div>
-							<img src="assets/images/slider/promo_amigos.jpg">
+							<img src="images/promoamigos.jpg">
 							<div class="carousel-caption justify-content-center">
 								<div class="col-10 align-right">
 									<h2 class="mbr-fonts-style display-1 sombraText"><em>Promo Amigos</em></h2>
@@ -574,11 +574,11 @@
 					</div>
 				</div>
 				
-				<div class="carousel-item slider-fullscreen-image" data-bg-video-slide="false" style="background-image: url(assets/images/slider/promo_pareja.jpg);">
+				<div class="carousel-item slider-fullscreen-image" data-bg-video-slide="false" style="background-image: url(images/slider/promo_pareja.jpg);">
 					<div class="container container-slide">
 						<div class="image_wrapper">
               <div class="mbr-overlay"></div>
-							<img src="assets/images/slider/promo_pareja.jpg">
+							<img src="images/slider/promo_pareja.jpg">
 							<div class="carousel-caption justify-content-center">
 								<div class="col-10 align-right">
 									<h2 class="mbr-fonts-style display-1 sombraText"><em>Promo Pareja</em></h2>
@@ -592,11 +592,11 @@
 				</div>
 				
 				
-				<div class="carousel-item slider-fullscreen-image" data-bg-video-slide="false" style="background-image: url(assets/images/slider/promoSugerida.jpg);">
+				<div class="carousel-item slider-fullscreen-image" data-bg-video-slide="false" style="background-image: url(images/slider/promoSugerida.jpg);">
 					<div class="container container-slide">
 						<div class="image_wrapper">
               <div class="mbr-overlay"></div>
-							<img src="assets/images/slider/promoSugerida.jpg">
+							<img src="images/slider/promoSugerida.jpg">
 							<div class="carousel-caption justify-content-center">
 								<div class="col-10 align-right">
 									<h2 class="mbr-fonts-style display-1 sombraText"><em>Promo Sugerida</em></h2>
@@ -713,7 +713,7 @@
         </div>
       </div>
     </div>
-<div id="jarallax-container-0" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -100;"><div style="background-position: 50% 50%; background-size: 100%; background-repeat: no-repeat; background-image: url(&quot;https://www.migustoesdiferente.com.ar/assets/images/bg4-1024x640.jpg&quot;); position: fixed; top: 0px; left: 0px; width: 1561.09px; height: 1040.4px; overflow: hidden; pointer-events: none; margin-left: -100.045px; margin-top: -333.2px; visibility: visible; transform: translate3d(0px, 365.269px, 0px);"></div></div></section>
+<div id="jarallax-container-0" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -100;"><div style="background-position: 50% 50%; background-size: 100%; background-repeat: no-repeat; background-image: url(images/bg4-1024x640.jpg;); position: fixed; top: 0px; left: 0px; width: 1561.09px; height: 1040.4px; overflow: hidden; pointer-events: none; margin-left: -100.045px; margin-top: -333.2px; visibility: visible; transform: translate3d(0px, 365.269px, 0px);"></div></div></section>
 
 <section class="section-table cid-qDvYJkZRzr mbr-parallax-background" id="table1-h" data-rv-view="1597" data-jarallax-original-styles="null" style="z-index: 0; position: relative; background-image: none; background-attachment: scroll; background-size: auto;">
 
@@ -750,32 +750,31 @@
       </div>
     </div>
 <div id="jarallax-container-1" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -100;">
-    <div style="background-position: 50% 50%; background-size: 100%; background-repeat: no-repeat; background-image: url(&quot;https://www.migustoesdiferente.com.ar/assets/images/bg1-1024x640.jpg&quot;); position: fixed; top: 0px; left: 0px; width: 1964.42px; height: 1309.2px; overflow: hidden; pointer-events: none; margin-left: -301.708px; margin-top: -467.6px; visibility: visible; transform: translate3d(0px, 422.869px, 0px);"></div>
+    <div style="background-position: 50% 50%; background-size: 100%; background-repeat: no-repeat; background-image: url(&quot;images/bg1-1024x640.jpg&quot;); position: fixed; top: 0px; left: 0px; width: 1964.42px; height: 1309.2px; overflow: hidden; pointer-events: none; margin-left: -301.708px; margin-top: -467.6px; visibility: visible; transform: translate3d(0px, 422.869px, 0px);"></div>
 
 </div>
 
 </section>
 
-  <script src="assets/web/assets/jquery/jquery.min.js"></script>
-  <script src="assets/popper/popper.min.js"></script>
-  <script src="assets/tether/tether.min.js"></script>
-  <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-  <script src="assets/smooth-scroll/smooth-scroll.js"></script>
-  <script src="assets/dropdown/js/script.min.js"></script>
-  <script src="assets/touch-swipe/jquery.touch-swipe.min.js"></script>
-  <script src="assets/viewport-checker/jquery.viewportchecker.js"></script>
-  <script src="assets/jquery-mb-vimeo_player/jquery.mb.vimeo_player.js"></script>
-  <script src="assets/jarallax/jarallax.min.js"></script>
-  <script src="assets/bootstrap-carousel-swipe/bootstrap-carousel-swipe.js"></script>
-  <script src="assets/social-likes/social-likes.js"></script>
-  <script src="assets/data-tables/jquery.data-tables.min.js"></script>
-  <script src="assets/data-tables/data-tables.bootstrap4.min.js"></script>
-  <script src="assets/jquery-mb-ytplayer/jquery.mb.ytplayer.min.js"></script>
-  <script src="assets/theme/js/script.js"></script>
-  <script src="assets/mobirise-slider-video/script.js"></script>
-  <script src="assets/formoid/formoid.min.js"></script>
-	<script src="assets/scptsV2.js?V7"></script>
-	<script src="assets/survey.js"></script>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/tether.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/mooth-scroll/smooth-scroll.js"></script>
+  <script src="js/script.min.js"></script>
+  <script src="js/jquery.touch-swipe.min.js"></script>
+  <script src="js/jquery.viewportchecker.js"></script>
+  <script src="js/jquery.mb.vimeo_player.js"></script>
+  <script src="js/jarallax.min.js"></script>
+  <script src="js/bootstrap-carousel-swipe/bootstrap-carousel-swipe.js"></script>
+  <script src="js/social-likes.js"></script>
+  <script src="js/jquery.data-tables.min.js"></script>
+  <script src="js/data-tables.bootstrap4.min.js"></script>
+  <script src="js/jquery.mb.ytplayer.min.js"></script>
+  <script src="js/script.js"></script>
+
+  <script src="js/formoid.min.js"></script>
+
   
   
  <div id="scrollToTop" class="scrollToTop mbr-arrow-up" style="display: none;">

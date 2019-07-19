@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using System.Data;
 
 namespace AccesoDatos
 {
@@ -104,6 +105,20 @@ namespace AccesoDatos
             {
                 throw ex;
             }
+        }
+        public DataSet dataSet(string cmd)
+        {
+            AccesoDatosManager ad = new AccesoDatosManager();
+            ad.abrirConexion();
+
+            DataSet ds = new DataSet();
+            SqlDataAdapter dp = new SqlDataAdapter(cmd, cadenaConexion);
+
+            dp.Fill(ds);
+            ad.cerrarConexion();
+
+            return ds;
+
         }
 
     }
