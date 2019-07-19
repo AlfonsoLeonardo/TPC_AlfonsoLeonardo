@@ -15,6 +15,31 @@ namespace Negocio
     {
 
 
+        public void pruebapro(prueba nuevo)
+        {
+            AccesoDatosManager accesoDatos = new AccesoDatosManager();
+            try
+            {
+                accesoDatos.setearSP("pruebaagregar");
+                accesoDatos.Comando.Parameters.Clear();
+                accesoDatos.Comando.Parameters.AddWithValue("@id", nuevo.prod);
+                accesoDatos.Comando.Parameters.AddWithValue("@cant", nuevo.cant);
+                accesoDatos.Comando.Parameters.AddWithValue("@Tota", nuevo.total);
+               
+
+                accesoDatos.abrirConexion();
+                accesoDatos.ejecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                accesoDatos.cerrarConexion();
+            }
+        }
         public List<Ingrediente> ListarIngrediente()
         {
 

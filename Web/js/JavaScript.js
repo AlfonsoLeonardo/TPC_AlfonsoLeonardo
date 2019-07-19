@@ -18,7 +18,6 @@ var grupo_productos_template;
 subtotal_template = $.templates("#subtotal_template");
 var htmlOutput = subtotal_template.render({subTotal, total});
 $("#subtotal").html(htmlOutput);
-
 function procesarCondiciones(renderObj, grupo) {
     /// <summary>Se encarga de procesar los horarios en los que trabaja la sucursal y los rangos del producto para determinar si el producto debería estar disponible.</summary>
 
@@ -81,7 +80,6 @@ function getProductoProcesado(idProducto) {
         id_grupo_prod: idGrupoProducto
     };
 }
-
 function agregarProducto(id, nombre, precio, tipocomida) {
     const nuevo = {
         id: id,
@@ -113,15 +111,14 @@ function agregarProducto(id, nombre, precio, tipocomida) {
     cambiarSubtotal();  
     
 }
-
 function cambiarSubtotal() {
     
     total = subTotal + delivery;
+    if (subTotal == 0) {total=0}
     $("#subtotal .sub-total").text("$" + subTotal);
     $("#subtotal .precio").text("$" + total);
     $(".ver-pedido-total").text("($" + total + ")");
 }
-
 $("#vaciarPedido").on("click", function () {
 
     var prop = 0;
@@ -135,13 +132,12 @@ $("#vaciarPedido").on("click", function () {
 
     }   
     stotal();
-    $("#subtotal .sub-total").text("$" + subTotal);
-   
+    //$("#subtotal .sub-total").text("$" + subTotal);
+    cambiarSubtotal();
     
     reloadPedidos();   
     
 })
-
 function reloadPedidos() {
     /// <summary>Recarga todo el carrito de pedidos</summary>
 
@@ -149,7 +145,6 @@ function reloadPedidos() {
     $("#pedidoVacio").show();
    
     }
-
 function mostrarLista() {
     var html = '';
     
@@ -342,8 +337,6 @@ var scrollSidebar = (function () {
         initialize: initScroll
     };
 })();
-
-
 $("#revisarPedido").on("click", function () {
 
     if (subTotal == 0) {
@@ -367,19 +360,12 @@ function fcn_detalle_pedido() {
 
     $('#TablaModalRevisar').empty();
 
-    var v_pisoDto = 'PISOOOOO'; //localStorage.getItem('TPPDto');
+    var v_pisoDto = 'PISOOOOO';
 
-    //if (v_pisoDto != '' && v_pisoDto != null) {
-    //    $('#dir_entrega_conf').html(userHelper.getUserAddress() + ' ' + v_pisoDto);
-    //} else {
-    //    $('#dir_entrega_conf').html(userHelper.getUserAddress());
-    //}
 
     $('#dir_hora_conf').html($('#deliveryTime').val());
 
-    //if ($('#dir_hora_conf').html() != 'Lo antes posible') {
-    //    $('#dir_hora_conf').html($('#dir_hora_conf').html() + 'hs');
-    //}
+
 
     if ($('#comentarios').val() != '') {
         $('#comentarios_conf').html($('#comentarios').val());
@@ -388,10 +374,6 @@ function fcn_detalle_pedido() {
         $('#comentarios_div').hide();
     }
 
-
-
-    //alert(pedido.pedidos[1].nombre);
-   // var v_txt_promo = '';
     var v_txt_cant = '';
 
     for (var prop in pedido) {
@@ -412,23 +394,17 @@ function fcn_detalle_pedido() {
     $("#PagaConMsj").html('');
     $("#NumTelMsj").html('');
     $("#ModalRevisarPagaCon").val('');
-
+    enviarDataAjax(pedido);
     $("#confirmarPedido").attr('disabled', false);
 
     $('#ModalRevisar').modal({ backdrop: 'static', keyboard: false });
 }
-
-    /// <summary>Crea los event listeners para cuando el usuario hace click sobre algún producto,
-    /// y se encarga de comunicarse con pedidoModule para indicarle que se seleccionó un producto.</summary>
-
     var timeoutHandle;
-
     function clearProductosAdded() {
         /// <summary>Esto resetea todos los iconos de los productos de nuevo al "+".</summary>
         $("#productosContainer .producto").removeClass("added").find(".far").removeClass("fa-check-square").addClass("fa-plus-square");
         timeoutHandle = null;
     }
-
     $("#productosContainer").on("click", ".producto", function () {
 
         $(this).addClass("added").find(".far").removeClass("fa-plus-square").addClass("fa-check-square");
@@ -438,22 +414,20 @@ function fcn_detalle_pedido() {
         timeoutHandle = setTimeout(clearProductosAdded, 1000);
     });
 
-//var  rr;
-function enviarDataAjax() {
+var  rr;
+function enviarDataAjax(rr) {
 
     $.ajax({
         type: "POST",
-        url: "Pedidos.aspx/prueba",
-        data: {},
+        url: '',/*"<%= ResolveUrl(".aspx / ElUsuario") %>",*/
+        data: JSON.stringify(rr),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         Error: function (xhr, ajaxOptions, thrownError) {
             console.log(xhr.status + " \n" + xhr.responseText, "\n" + thrownError);
         },
-        success: function (info) {
-            console.log(info);
+        success: function (data) {
+            console.log(data);
         }
     });
 }
-enviarDataAjax();
-

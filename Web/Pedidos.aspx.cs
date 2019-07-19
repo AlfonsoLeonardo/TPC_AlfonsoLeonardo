@@ -64,7 +64,7 @@ namespace Web
             {
                 ListaTipo = tipoComidaNegocio.ListarTipoComida();
             }
-            catch (Exception    ex)
+            catch (Exception ex)
             {
                // ListaTipo = null;
             }
@@ -74,7 +74,7 @@ namespace Web
         {
             List<TipoComida> ListaTipo = null;
             AccesoDatosManager ac = new AccesoDatosManager();
-            DataSet ds = ac.dataSet("select d.idFactura as NumFactura, d.Fecha, c.nombre as Cliente, d.importe from DetalleVenta as d inner join CLIENTES as c on c.id=d.IdCliente");
+            DataSet ds = ac.dataSet("");
            //return ds.Tables;
            // dlListaVentas.DataBind();
         }

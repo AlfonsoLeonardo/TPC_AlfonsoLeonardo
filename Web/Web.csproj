@@ -555,7 +555,7 @@
     <Content Include="images\sign_bg.jpg" />
     <Content Include="images\small_slider_bg.jpg" />
     <Content Include="images\stamp.png" />
-    <Content Include="JavaScript.js" />
+    <Content Include="js\JavaScript.js" />
     <Content Include="js\bootsnav.js" />
     <Content Include="js\bootstrap-carousel-swipe.js" />
     <Content Include="js\bootstrap-carousel-swipe\bootstrap-carousel-swipe.js" />
